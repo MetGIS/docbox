@@ -6,468 +6,468 @@ Our forecasts are updated every 24 hours. Once a day, at approximately 4:00 UTC,
 
 ![Coverage of MetGIS Maps API](./img/coverage_thumb.jpg)
 
+TODO: GIF?
+
 The following sections provide detailed information about our Maps API, with various [examples](#examples) showing how to include our weather in your maps.
 
 ### Weather Parameters
 
 The following weather parameters are currently available:
 
-| Code | Parameter |
+| **Weather Parameter** | **Code** |
 |------|-----------|
-| `tmp2m` | Temperature |
-| `hr_p` | Precipitation |
-| `hr_sn` | Fresh Snow |
-| `tcdcprs` | Cloudiness |
-| `wind` | Wind |
+| Temperature | `tmp2m` |
+| Precipitation | `hr_p` |
+| Fresh Snow | `hr_sn` |
+| Cloudiness | `tcdcprs` |
+| Wind | `wind` |
 
-TODO: cumu??
+TODO: Sollen hier die kumulierten Parameter auch angeführt werden??
+
 Some more parameters (cumulative snow and precipitation for time spans of one to three days) are currently under development and will be available soon.
 
 ### API Call for Tiles
 
-To view our weather tiles within your website or application you need to call the following address with parameters specified according to your requirements:
+To view our weather tiles within your map or application you need to call the following URL with the fields specified according to your requirements.
 
-```json
-http://{t1-t3}.metgis.com/tilestache/{parameter}_{timestep}/{z}/{x}/{y}.png?key={YOUR-API-KEY}
+#### Tiles URL
+
+```http
+http://{t1-t3}.metgis.com/{parameter}_{timestep}/{z}/{x}/{y}.png?key={YOUR-API-KEY}
 ```
 
-Parameters:
+**Parameters:**
 
-TODO: Find better word for parameter - property?
-
-| Parameter | Description |
+| **URL Parameter** | **Description** |
 |-----------|-------------|
 | `{t1-t3}` | subdomains to get around browser limitations on the number of simultaneous HTTP connections to each host |
 | `{parameter}` | the code of the desired weather parameter as described in `meta.json` |
-| `{timestep}` | value of the desired time step, starting at 1 which reflects the weather forecasts for the time  `forecastIssued`, see [meta.json](#meta.json) |
+| `{timestep}` | value of the desired time step, starting at 1 which reflects the weather forecasts for the time  `forecastIssued`, see [meta.json](#metajson) |
 | `{x}`, `{y}`, `{z}` | x,y coordinates and zoom of a tile |
 | `{YOUR-API-KEY}` | your unique API-Key, [more information](#api-key) |
 
-Please check our [sample code](#examples) to see how to place the code line above in the right context.
+Please check our [sample code](#examples) to see how to use the tiles in your map.
 
-### List wobbles
+### UTFGrid
 
-Lists all wobbles for a particular account.
+To enable fast information about our weather layers we also provide [UTFGrids](https://github.com/mapbox/utfgrid-spec) for our tiles. Like in our [demo page](http://tiles.metgis.com/tiles-demo/) you can use the UTFGrid Layers with a mouseover or on tap on mobile devices.
+
+#### UTFGrid URL
+
+```http
+http://{t1-t3}.metgis.com/{parameter}_{timestep}_grid/{z}/{x}/{y}.json?callback={cb}&key={YOUR-API-KEY}
+```
+
+**Parameters:**
+
+| **URL Parameter** | **Description** |
+|---------------|-----------------|
+| `{t1-t3}` | subdomains to get around browser limitations on the number of simultaneous HTTP connections to each host |
+| `{parameter}` | the code of the desired weather parameter as described in `meta.json` |
+| `{timestep}` | value of the desired time step, starting at 1 which reflects the weather forecasts for the time  `forecastIssued`, see [meta.json](#metajson) |
+| `{x}`, `{y}`, `{z}` | x,y coordinates and zoom of a tile |
+| `{YOUR-API-KEY}` | your unique API-Key, [more information](#api-key) |
+
+Please check our [sample code](#examples) to see how to use the UTFGrids in your map.
+
+### Values for selected locations
+
+TODO: Screenshot
+
+Please note that this feature is currently only available in the [demo page](http://tiles.metgis.com/tiles-demo/). Please [contact us](http://www.metgis.com/about/contact/) for further information.
+
+To show values for a variety of significant locations (cities, towns, peaks, ...) as additional overlay on your map, you can integrate our Point-Layers. They are available for all of our [weather parameters](#weather-parameters) and you can show them on your map [in the same way](#api-call-for-tiles).
+
+#### Sample call
+
+```http
+http://{t1-t3}.metgis.com/{parameter}_{timestep}_point/{z}/{x}/{y}.png?key={YOUR-API-KEY}
+```
+
+
+### API-Key
+
+TODO: Eigene Sektion am Anfang (mach Stefan)
+
+
+### meta.json
+
+For every forecast runa a file with meta-information is produced. It contains the start time of the forecast run and other useful information. This `meta.json` is located at `http://tiles.metgis.com/meta/{V}/meta.json` where `{V}` stands for the version number. Please check the current version in [the changelog](http://tiles.metgis.com/meta/).
 
 ```endpoint
-GET /wobbles/v1/{username} wobbles:read
+GET http://tiles.metgis.com/meta/{V}/meta.json
 ```
 
-#### Example request
+**Properties:**
 
-```curl
-$ curl https://wobble.biz/wobbles/v1/{username}
-```
 
-```bash
-$ wbl wobbles list
-```
+| **Property** | **Description** |
+|--------------|-----------------|
+| `description` | a brief description of the service |
+| `productInfo` | information on the product |
+| `forecastIssued` | start time of the calculations of the meteorological forecast model as ISO-Datestring (UTC). This is also the time of the latest measurements that exercise an influence on the forecast. |
+| `forecastCompleted` | end time of the calculation of the tiles, the time when the forecasts are available to be viewed as ISO-Datestring (UTC). |
+| `projection` | EPSG-Code of the coordinate reference system used for the tiles |
+| `bbox` | the bounding box of the currently available tiles (latitude/longitude of the lower left and upper right box limit) |
+| `timeStep` | length of period of time between two forecast times, tipically 3 hours |
+| `timeStepUnit` | the unit of `timeStep` and `parameterPeriod`, `h` stands for hour |
+| `timeStepNumber` | number of `timeSteps` for this forecast |
+| `attribution` | attribution that has to be shown in conjunction with the forecasts, see the [demo page](http://tiles.metgis.com/tiles-demo/) |
+| `parameters` | list of available weather parameters |
+| `parameterUnit` | unit of the given parameter |
+| `parameterPeriod` | time period which a single prediction refers to. For most parameters (e.g. temperature) this is a point in time, for some others (e.g. `precipitation`) it is a period (typically as long as the `timeStep`). `0` indicates a point in time, any other number describes the length of the time period. |
+| `parameterName` | localized name of the given parameter, indetified by ISO 639-1 Codes. Currently available languages: English, German, Spanish, French, Italian, Slovenian. |
 
-```javascript
-client.listWobbles(function(err, wobbles) {
-  console.log(wobbles);
-});
-```
 
-```python
-wobbles.list()
-```
-
-#### Example response
+#### Example Response
 
 ```json
-[
-  {
-    "owner": "{username}",
-    "id": "{wobble_id}",
-    "created": "{timestamp}",
-    "modified": "{timestamp}"
-  },
-  {
-    "owner": "{username}",
-    "id": "{wobble_id}",
-    "created": "{timestamp}",
-    "modified": "{timestamp}"
+{
+   "description":"MetGIS Tile Server",
+   "productInfo":"MetGIS Weather Forecast based on GFS Data",
+   "forecastIssued":"2015-01-03T18:00Z",
+   "forecastCompleted":"2015-01-04T03:44Z",
+   "projection":"EPSG:3857",
+   "bbox":"43.0,5.0,50.0,18.0",
+   "timeStep":3,
+   "timeStepUnit":"h",
+   "timeStepNumber":25,
+   "attribution":"Weather Forecast &copy; <a title='MetGIS Professional Weather Service' href='http:\/\/www.metgis.com\/' target='_blank'>MetGIS</a>",
+   "parameters":{
+      "wind":{
+         "parameterUnit":"km\/h",
+         "parameterPeriod":0,
+         "parameterName":{
+            "sl":"Veter",
+            "de":"Wind",
+            "it":"Vento",
+            "fr":"Vent",
+            "en":"Wind",
+            "es":"Viento"
+         }
+      },
+      "tmp2m":{
+         "parameterUnit":"°C",
+         "parameterPeriod":0,
+         "parameterName":{
+            "sl":"Temperatura",
+            "de":"Temperatur",
+            "it":"Temperatura",
+            "fr":"Température",
+            "en":"Temperature",
+            "es":"Temperatura"
+         }
+      },
+      "tcdcprs":{
+         "parameterUnit":"%",
+         "parameterPeriod":0,
+         "parameterName":{
+            "sl":"Oblačnost",
+            "de":"Bewölkung",
+            "it":"Nuvolosità",
+            "fr":"Nébulosité",
+            "en":"Cloudiness",
+            "es":"Nubosidad"
+         }
+      },
+      "hr_p":{
+         "parameterUnit":"mm",
+         "parameterPeriod":3,
+         "parameterName":{
+            "sl":"Padavine",
+            "de":"Niederschlag",
+            "it":"Precipitazione",
+            "fr":"Précipitations",
+            "en":"Precipitation",
+            "es":"Precipitación"
+         }
+      },
+      "hr_sn":{
+         "parameterUnit":"cm",
+         "parameterPeriod":3,
+         "parameterName":{
+            "sl":"Novozapadli sneg",
+            "de":"Neuschnee",
+            "it":"Neve fresca",
+            "fr":"Neige fraiche",
+            "en":"Fresh Snow",
+            "es":"Nieve fresca"
+         }
+      }
+   }
+}
+```
+
+### Color values
+
+The color values related to the parameters are as follows:
+
+TODO: Table Breite?
+
+**Temperature**
+
+| **Value [°C]** | **Color** |
+|----------------|-----------|
+| <-30 | `#737373` |
+| -30 | `#969696` |
+| -28 | `#bdbdbd` |
+| -26 | `#efedf5` |
+| -24 | `#dadaeb` |
+| -22 | `#bcbddc` |
+| -20 | `#9e9ac8` |
+| -18 | `#807dba` |
+| -16 | `#6a51a3` |
+| -14 | `#544082` |
+| -12 | `#06407c` |
+| -10 | `#08519c` |
+| -8 | `#2171b5` |
+| -6 | `#4292c6` |
+| -4 | `#6baed6` |
+| -2 | `#9ecae1` |
+| 0 | `#238443` |
+| 2 | `#41ab5d` |
+| 4 | `#78c679` |
+| 6 | `#addd8e` |
+| 8 | `#d9f0a3` |
+| 10 | `#f7fcb9` |
+| 12 | `#ffffcc` |
+| 14 | `#ffeda0` |
+| 16 | `#fed976` |
+| 18 | `#feb24c` |
+| 20 | `#fd8d3c` |
+| 22 | `#fdbb84` |
+| 24 | `#fc8d59` |
+| 26 | `#ef6548` |
+| 28 | `#d7301f` |
+| 30 | `#bd0026` |
+| 32 | `#b30000` |
+| 34 | `#800026` |
+| 36 | `#7f0000` |
+| 38 | `#4c0016` |
+| >40 | `#35000f` |
+
+**Precipitation**
+
+| **Value [mm]** | **Color** |
+|----------------|-----------|
+| 0.1 | `#deebf7` |
+| 0.2 | `#c6dbef` |
+| 0.5 | `#9ecae1` |
+| 1 | `#6baed6` |
+| 1.5 | `#4292c6` |
+| 2 | `#2171b5` |
+| 3 | `#08519c` |
+| 4 | `#08306b` |
+| 6 | `#fde0ef` |
+| 8 | `#f1b6da` |
+| 12 | `#de77ae` |
+| 16 | `#c51b7d` |
+
+**Fresh Snow**
+
+| **Value [cm]** | **Color** |
+|----------------|-----------|
+| 0.1 | `#ffffff` |
+| 0.3 | `#c6ecf9` |
+| 1 | `#a0e0f6` |
+| 2 | `#59ccf2` |
+| 4 | `#19bbf1` |
+| 6 | `#019ccf` |
+| 8 | `#f79df3` |
+| 12 | `#f353ec` |
+| 16 | `#f311e8` |
+| 20 | `#fbc607` |
+| 30 | `#fba204` |
+| 50 | `#f7760f` |
+| 80 | `#e03603` |
+| 120 | `#a11a04` |
+
+**Cloudiness**
+
+| **Value [%]** | **Color** |
+|---------------|-----------|
+| 25 | `#cccccc` |
+| 37.5 | `#b2b2b2` |
+| 50 | `#999999` |
+| 62.5 | `#7f7f7f` |
+| 75 | `#666666` |
+| 87.5 | `#4c4c4c` |
+
+**Wind**
+
+| **Value [km/h]** | **Image** |
+|------------------|-----------|
+| 0 | wind-0-270.png |
+| 2 | wind-2-270.png |
+| 5 | wind-5-270.png |
+| 10 | wind-10-270.png |
+| 20 | wind-20-270.png |
+| 30 | wind-30-270.png |
+| 40 | wind-40-270.png |
+| 50 | wind-50-270.png |
+| 75 | wind-75-270.png |
+| 100 | wind-100-270.png |
+
+#### JavaScript Objects for generating legends
+
+``` javascript
+{
+    "tmp2m": [[">40","#35000f"],["38","#4c0016"],["36","#7f0000"],["34","#800026"],["32","#b30000"],["30","#bd0026"],["28","#d7301f"],["26","#ef6548"],["24","#fc8d59"],["22","#fdbb84"],["20","#fd8d3c"],["18","#feb24c"],["16","#fed976"],["14","#ffeda0"],["12","#ffffcc"],["10","#f7fcb9"],["8","#d9f0a3"],["6","#addd8e"],["4","#78c679"],["2","#41ab5d"],["0","#238443"],["-2","#9ecae1"],["-4","#6baed6"],["-6","#4292c6"],["-8","#2171b5"],["-10","#08519c"],["-12","#06407c"],["-14","#544082"],["-16","#6a51a3"],["-18","#807dba"],["-20","#9e9ac8"],["-22","#bcbddc"],["-24","#dadaeb"],["-26","#efedf5"],["-28","#bdbdbd"],["-30","#969696"],["<-30","#737373"]],
+
+    "hr_p": [["16","#c51b7d"],["12","#de77ae"],["8","#f1b6da"],["6","#fde0ef"],["4","#08306b"],["3","#08519c"],["2","#2171b5"],["1.5","#4292c6"],["1","#6baed6"],["0.5","#9ecae1"],["0.2","#c6dbef"],["0.1","#deebf7"]],
+
+    "hr_sn": [["16","#f311e8"],["12","#f353ec"],["8","#f79df3"],["6","#019ccf"],["4","#19bbf1"],["2","#59ccf2"],["1","#a0e0f6"],["0.3","#c6ecf9"],["0.1","#ffffff"]],
+
+    "tcdcprs": [["87.5","#4c4c4c"],["75","#666666"],["62.5","#7f7f7f"],["50","#999999"],["37.5","#b2b2b2"],["25","#cccccc"]],
+
+    "wind": [["100","#ffffff url('img/270n/wind-100-270.png') no-repeat center; width: 59px; height: 33px;"],["75","#ffffff url('img/270n/wind-75-270.png') no-repeat center; width: 54px; height: 30px;"],["50","#ffffff url('img/270n/wind-50-270.png') no-repeat center; width: 48px; height: 28px;"],["40","#ffffff url('img/270n/wind-40-270.png') no-repeat center; width: 43px; height: 24px;"],["30","#ffffff url('img/270n/wind-30-270.png') no-repeat center; width: 36px; height: 20px;"],["20","#ffffff url('img/270n/wind-20-270.png') no-repeat center; width: 29px; height: 16px;"],["10","#ffffff url('img/270n/wind-10-270.png') no-repeat center; width: 23px; height: 13px;"],["5","#ffffff url('img/270n/wind-5-270.png') no-repeat center; width: 18px; height: 10px;"],["2","#ffffff url('img/270n/wind-2-270.png') no-repeat center; width: 13px; height: 8px;"],["0","#ffffff url('img/270n/wind-0-270.png') no-repeat center; width: 8px; height: 8px;"]]
   }
-]
 ```
 
-### Create wobble
+## Examples
 
-Creates a new, empty wobble.
+Our weather maps may be embedded within your website or app, using different software frameworks. Some of them are:
 
-```endpoint
-POST /wobbles/v1/{username}
-```
+|  **Web**  |  **Apps**  |
+|-----------|------------|
+| [Leaflet](http://leafletjs.com/) | [Google Maps Android API](https://developers.google.com/maps/documentation/android/) |
+| [OpenLayers](http://openlayers.org/) | [Google Maps SDK for iOS](https://developers.google.com/maps/documentation/ios/) |
+| [Google Maps API](https://developers.google.com/maps/) | Apple's [Maps for Developers](https://developer.apple.com/maps/) |
+|  | [Mapbox SDK](https://www.mapbox.com/mobile/) |
 
-#### Example request
-
-```curl
-curl -X POST https://wobble.biz/wobbles/v1/{username}
-```
-
-```bash
-$ wbl wobbles create
-```
+#### Example integration with Leaflet
 
 ```javascript
-client.createWobble({
-  name: 'example',
-  description: 'An example wobble'
-}, function(err, wobble) {
-  console.log(wobble);
+var temperatureLayer = L.tileLayer( 'http://t1.metgis.com/tmp2m_5/{z}/{x}/{y}.png?key=YOUR_API_KEY' );
+```
+
+The following examples show possible implementations with different frameworks.
+
+### Leaflet
+
+#### Simple example of temperature:
+
+```javascript
+var tmp2mUrl = 'http://{s}.metgis.com/tmp2m_';
+var urlSuffix = '/{z}/{x}/{y}.png?key=YOUR-API-KEY';
+var timestep = 1; // a value between 1 and 25
+
+var layertmp2m = L.tileLayer( tmp2mUrl + timestep + urlSuffix, {
+  maxZoom: 15,
+  attribution: "Weather Forecast &copy; <a title='MetGIS Professional Weather Service' href='http://www.metgis.com/' target='_blank'>MetGIS</a>",
+  opacity:0.7,
+  subdomains: ["t1", "t2", "t3"]
 });
 ```
 
-```python
-response = wobbles.create(
-  name='example', description='An example wobble')
-```
 
-#### Example request body
 
-```json
-{
-  "name": "foo",
-  "description": "bar"
-}
-```
+#### Add UTFGrids
 
-Property | Description
----|---
-`name` | (optional) the name of the wobble
-`description` | (optional) a description of the wobble
-
-#### Example response
-
-```json
-{
-  "owner": "{username}",
-  "id": "{wobble_id}",
-  "name": null,
-  "description": null,
-  "created": "{timestamp}",
-  "modified": "{timestamp}"
-}
-```
-
-### Retrieve a wobble
-
-Returns a single wobble.
-
-```endpoint
-GET /wobbles/v1/{username}/{wobble_id}
-```
-
-Retrieve information about an existing wobble.
-
-#### Example request
-
-```curl
-curl https://wobble.biz/wobbles/v1/{username}/{wobble_id}
-```
-
-```bash
-$ wbl wobble read-wobble wobble-id
-```
-
-```python
-attrs = wobbles.read_wobble(wobble_id).json()
-```
 
 ```javascript
-client.readWobble('wobble-id',
-  function(err, wobble) {
-    console.log(wobble);
+
+// To integrate UTFGrids with Leaflet you have to use the Leaflet.utfgrid plugin.
+// https://github.com/danzel/Leaflet.utfgrid
+
+var tmp2mGridUrl = 'http://{s}.metgis.com/tmp2m_';
+var gridUrlSuffix = '_grid/{z}/{x}/{y}.json?callback={cb}';
+var timestep = 1; // a value between 1 and 25
+
+var layertmp2mGrid = new L.UtfGrid(tmp2mGridUrl + timestep + gridUrlSuffix, {
+  resolution: 4,
+  pointerCursor: false,
+  maxRequests:8,
+  subdomains: ["t1", "t2", "t3"]
+});
+layertmp2mGrid.on('mouseover', function(e){console.log(e.data);});
+```
+
+Please refer to our [demo page](http://tiles.metgis.com/tiles-demo/) to view a full working example.
+
+### OpenLayers 3
+
+#### Simple example of temperature:
+
+```javascript
+var map = new ol.Map({
+  target: 'map',
+  layers: [
+    new ol.layer.Tile({
+      source: new ol.source.MapQuest({layer: 'sat'})
+    }),
+    new ol.layer.Tile({
+      source: new ol.source.XYZ({
+        url: 'http://t{1-3}.metgis.com/tmp2m_7/{z}/{x}/{y}.png',
+        maxZoom:15,
+        attributions: [
+          new ol.Attribution({
+            html: "Weather Forecast &copy; <a title='MetGIS Professional Weather Service' href='http://www.metgis.com/' target='_blank'>MetGIS</a>"
+        })]
+      }),
+      opacity: 0.7
+    })
+  ],
+  view: new ol.View({
+    center: ol.proj.transform([12.41, 47.82], 'EPSG:4326', 'EPSG:3857'),
+    zoom: 5
+  })
+});
+```
+
+#### With UTFGrids:
+
+```javascript
+var view =  new ol.View({
+    center: ol.proj.transform([12.41, 47.82], 'EPSG:4326', 'EPSG:3857'),
+    zoom: 5
   });
-```
-
-#### Example response
-
-```json
-{
-  "owner": "{username}",
-  "id": "{wobble_id}",
-  "created": "{timestamp}",
-  "modified": "{timestamp}"
-}
-```
-
-### Update a wobble
-
-Updates the properties of a particular wobble.
-
-```endpoint
-PATCH /wobbles/v1/{username}/{wobble_id}
-```
-
-#### Example request
-
-```curl
-curl --request PATCH https://wobble.biz/wobbles/v1/{username}/{wobble_id} \
-  -d @data.json
-```
-
-```python
-resp = wobbles.update_wobble(
-  wobble_id,
-  name='updated example',
-  description='An updated example wobble'
-  ).json()
-```
-
-```bash
-$ wbl wobble update-wobble wobble-id
-```
-
-```javascript
-var options = { name: 'foo' };
-client.updateWobble('wobble-id', options, function(err, wobble) {
-  console.log(wobble);
+var gridSource = new ol.source.TileUTFGrid({
+  url: 'http://tiles.metgis.com/meta/0.6/metgis_tilejsonwrapper.php?parameter=hr_p&timestep=7&key=YOUR-API-KEY'
 });
-```
+var gridLayer = new ol.layer.Tile({source: gridSource});
 
-#### Example request body
-
-```json
-{
-  "name": "foo",
-  "description": "bar"
-}
-```
-
-Property | Description
----|---
-`name` | (optional) the name of the wobble
-`description` | (optional) a description of the wobble
-
-#### Example response
-
-```json
-{
-  "owner": "{username}",
-  "id": "{wobble_id}",
-  "name": "foo",
-  "description": "bar",
-  "created": "{timestamp}",
-  "modified": "{timestamp}"
-}
-```
-
-### Delete a wobble
-
-Deletes a wobble, including all wibbles it contains.
-
-```endpoint
-DELETE /wobbles/v1/{username}/{wobble_id}
-```
-
-#### Example request
-
-```curl
-curl -X DELETE https://wobble.biz/wobbles/v1/{username}/{wobble_id}
-```
-
-```bash
-$ wbl wobble delete-wobble wobble-id
-```
-
-```python
-resp = wobbles.delete_wobble(wobble_id)
-```
-
-```javascript
-client.deleteWobble('wobble-id', function(err) {
-  if (!err) console.log('deleted!');
+var map = new ol.Map({
+  target: 'map',
+  layers: [
+    new ol.layer.Tile({
+      source: new ol.source.MapQuest({layer: 'sat'})
+    }),
+    new ol.layer.Tile({
+      source: new ol.source.XYZ({
+        url: 'http://t{1-3}.metgis.com/hr_p_7/{z}/{x}/{y}.png',
+        maxZoom:15,
+        attributions: [
+          new ol.Attribution({
+            html: "Weather Forecast &copy; <a title='MetGIS Professional Weather Service' href='http://www.metgis.com/' target='_blank'>MetGIS</a>"
+        })]
+      }),
+      opacity: 0.7
+    }),
+    gridLayer
+  ],
+  view: view
 });
-```
 
-#### Example response
-
-> HTTP 204
-
-### List wibbles
-
-List all the wibbles in a wobble. The response body will be a
-WobbleCollection.
-
-```endpoint
-GET /wobbles/v1/{username}/{wobble_id}/wibbles
-```
-
-#### Example request
-
-```curl
-curl https://wobble.biz/wobbles/v1/{username}/{wobble_id}/wibbles
-```
-
-```bash
-$ wbl wobble list-wibbles wobble-id
-```
-
-```python
-collection = wobbles.list_wibbles(wobble_id).json()
-```
-
-```javascript
-client.listWobbles('wobble-id', {}, function(err, collection) {
-  console.log(collection);
-});
-```
-
-#### Example response
-
-```json
-{
-  "type": "Wobble",
-  "wibbles": [
-    {
-      "id": "{wibble_id}",
-      "type": "Wobble",
-      "properties": {
-        "prop0": "value0"
-      }
-    },
-    {
-      "id": "{wibble_id}",
-      "type": "Wobble",
-      "properties": {
-        "prop0": "value0"
-      }
-    }
-  ]
-}
-```
-
-### Insert or update a wibble
-
-Inserts or updates a wibble in a wobble. If there's already a wibble
-with the given ID in the wobble, it will be replaced. If there isn't
-a wibble with that ID, a new wibble is created.
-
-```endpoint
-PUT /wobbles/v1/{username}/{wobble_id}/wibbles/{wibble_id}
-```
-
-#### Example request
-
-```curl
-curl https://wobble.biz/wobbles/v1/{username}/{wobble_id}/wibbles/{wibble_id} \
-  -X PUT \
-  -d @file.geojson
-```
-
-```bash
-$ wbl wobble put-wibble wobble-id wibble-id 'geojson-wibble'
-```
-
-```javascript
-var wibble = {
-  "type": "Wobble",
-  "properties": { "name": "Null Island" }
+var displayCountryInfo = function(coordinate) {
+  var viewResolution = /** @type {number} */ (view.getResolution());
+  gridSource.forDataAtCoordinateAndResolution(coordinate, viewResolution,
+      function(data) {
+        console.log(data);
+      });
 };
-client.insertWobble(wibble, 'wobble-id', function(err, wibble) {
-  console.log(wibble);
+
+map.on('pointermove', function(evt) {
+  if (evt.dragging) {
+    return;
+  }
+  var coordinate = map.getEventCoordinate(evt.originalEvent);
+  displayCountryInfo(coordinate);
 });
 ```
 
-#### Example request body
+**Note:** the `ol.source.TileUTFGrid` expects a [TileJSON](https://github.com/mapbox/tilejson-spec) file. We provide a PHP script that returns the appropriate data. Please submit the required fields to the query string to get the correct version.
 
-```json
-{
-  "id": "{wibble_id}",
-  "type": "Wobble",
-  "properties": {
-    "prop0": "value0"
-  }
-}
-```
+`http://tiles.metgis.com/meta/0.6/metgis_tilejsonwrapper.php?parameter={parameter}&timestep={timestep}&key={YOUR-API-KEY}&callback={cb}`
 
-Property | Description
---- | ---
-`id` | the id of an existing wibble in the wobble
-
-#### Example response
-
-```json
-{
-  "id": "{wibble_id}",
-  "type": "Wobble",
-  "properties": {
-    "prop0": "value0"
-  }
-}
-```
-
-### Retrieve a wibble
-
-Retrieves a wibble in a wobble.
-
-```endpoint
-GET /wobbles/v1/{username}/{wobble_id}/wibbles/{wibble_id}
-```
-
-#### Example request
-
-```curl
-curl https://wobble.biz/wobbles/v1/{username}/{wobble_id}/wibbles/{wibble_id}
-```
-
-```bash
-$ wbl wobble read-wibble wobble-id wibble-id
-```
-
-```javascript
-client.readWobble('wibble-id', 'wobble-id',
-  function(err, wibble) {
-    console.log(wibble);
-  });
-```
-
-```python
-wibble = wobbles.read_wibble(wobble_id, '2').json()
-```
-
-#### Example response
-
-```json
-{
-  "id": "{wibble_id}",
-  "type": "Wobble",
-  "properties": {
-    "prop0": "value0"
-  }
-}
-```
-
-### Delete a wibble
-
-Removes a wibble from a wobble.
-
-```endpoint
-DELETE /wobbles/v1/{username}/{wobble_id}/wibbles/{wibble_id}
-```
-
-#### Example request
-
-```javascript
-client.deleteWobble('wibble-id', 'wobble-id', function(err, wibble) {
-  if (!err) console.log('deleted!');
-});
-```
-
-```curl
-curl -X DELETE https://wobble.biz/wobbles/v1/{username}/{wobble_id}/wibbles/{wibble_id}
-```
-
-```python
-resp = wobbles.delete_wibble(wobble_id, wibble_id)
-```
-
-```bash
-$ wbl wobble delete-wibble wobble-id wibble-id
-```
-
-#### Example response
-
-> HTTP 204
+Please refer to the official OpenLayers [TileUTFGrid Example](http://openlayers.org/en/v3.6.0/examples/tileutfgrid.html) for more information regarding the `ol.source.TileUTFGrid`
