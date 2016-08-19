@@ -1,8 +1,8 @@
 ## Tiles API
 
-The MetGIS Weather Maps API offers forecasts as a Tile Maps Service (TMS). This standardized format enables you to integrate our weather predictions for Central Europe into any dynamic map on your website or within your app. Check our [demo page](http://tiles.metgis.com/tiles-demo/) to see an example of weather data layers integrated in zoomable maps.
+The MetGIS Maps API offers forecasts as a Tile Map Service (TMS). This standardized format enables you to integrate our weather predictions for Central Europe into any dynamic map on your website or within your app. Check our [demo page](http://tiles.metgis.com/tiles-demo/) to see an example of weather data layers integrated into zoomable maps.
 
-Our forecasts are updated every 24 hours. Once a day, at approximately 4:00 UTC, a new forecast is available, covering the following 75 hours in three-hour time intervals. Beside regular tiles (in PNG-format) we also provide UTFGrid Tiles to enable a fast numerical representation of our colored maps.
+Our forecasts are updated every 24 hours. Once a day, at approximately 2:00 UTC, a new forecast is available, covering the following 75 hours mostly in three-hour time intervals. Beside regular tiles (in PNG-format) we also provide UTFGrid Tiles to enable a fast numerical representation of our colored maps.
 
 ![Coverage of MetGIS Maps API](./img/coverage_thumb.jpg)
 
@@ -14,21 +14,25 @@ The following sections provide detailed information about our Maps API, with var
 
 The following weather parameters are currently available:
 
-| **Weather Parameter** | **Code** |
-|------|-----------|
-| Temperature | `tmp2m` |
-| Precipitation | `hr_p` |
-| Fresh Snow | `hr_sn` |
-| Cloudiness | `tcdcprs` |
-| Wind | `wind` |
+| **Weather Parameter** | **Code** | **Time Interval** |
+|------|:-----------:|:-----------:|
+| Temperature | `tmp2m` | 3 hours |
+| Precipitation | `hr_p` | 3 hours |
+| Fresh Snow | `hr_sn` | 3 hours |
+| Cloudiness | `tcdcprs` | 3 hours |
+| Wind | `wind` | 3 hours |
+| Fresh Snow Today | `hr_sn_0-24` | 24 hours |
+| Fresh Snow Tomorrow | `hr_sn_24-48` | 24 hours |
+| Fresh Snow Day after Tomorrow | `hr_sn_48-72` | 24 hours |
+| Fresh Snow 0 - 48 hours | `hr_sn_0-48` | 48 hours |
+| Fresh Snow 24 - 72 hours | `hr_sn_24-72` | 48 hours |
+| Fresh Snow 0 - 72 hours | `hr_sn_0-72` | 72 hours |
 
-TODO: Sollen hier die kumulierten Parameter auch angeführt werden??
-
-Some more parameters (cumulative snow and precipitation for time spans of one to three days) are currently under development and will be available soon.
+TODO: Soll hier auch hrsn -24 - 24 angeführt werden??
 
 ### API Call for Tiles
 
-To view our weather tiles within your map or application you need to call the following URL with the fields specified according to your requirements.
+To visualize our weather tiles within your map or application, you need to call the following URL with the fields specified according to your requirements.
 
 #### Tiles URL
 
@@ -43,14 +47,14 @@ http://{t1-t3}.metgis.com/{parameter}_{timestep}/{z}/{x}/{y}.png?key={YOUR-API-K
 | `{t1-t3}` | subdomains to get around browser limitations on the number of simultaneous HTTP connections to each host |
 | `{parameter}` | the code of the desired weather parameter as described in `meta.json` |
 | `{timestep}` | value of the desired time step, starting at 1 which reflects the weather forecasts for the time  `forecastIssued`, see [meta.json](#metajson) |
-| `{x}`, `{y}`, `{z}` | x,y coordinates and zoom of a tile |
+| `{x}`, `{y}`, `{z}` | x,y coordinates and zoom level of a tile |
 | `{YOUR-API-KEY}` | your unique API-Key, [more information](#api-key) |
 
-Please check our [sample code](#examples) to see how to use the tiles in your map.
+Please check our [sample code](#examples) to see how to use the tiles in your application.
 
 ### UTFGrid
 
-To enable fast information about our weather layers we also provide [UTFGrids](https://github.com/mapbox/utfgrid-spec) for our tiles. Like in our [demo page](http://tiles.metgis.com/tiles-demo/) you can use the UTFGrid Layers with a mouseover or on tap on mobile devices.
+Our [UTFGrids](https://github.com/mapbox/utfgrid-spec) provide numerical information related to our tiles. Like in our [demo page](http://tiles.metgis.com/tiles-demo/) you can use the UTFGrid Layers with a "mouseover" or "on tap" on mobile devices. Thus numerical forecast values can be displayed at specified geographic locations.
 
 #### UTFGrid URL
 
@@ -65,18 +69,18 @@ http://{t1-t3}.metgis.com/{parameter}_{timestep}_grid/{z}/{x}/{y}.json?callback=
 | `{t1-t3}` | subdomains to get around browser limitations on the number of simultaneous HTTP connections to each host |
 | `{parameter}` | the code of the desired weather parameter as described in `meta.json` |
 | `{timestep}` | value of the desired time step, starting at 1 which reflects the weather forecasts for the time  `forecastIssued`, see [meta.json](#metajson) |
-| `{x}`, `{y}`, `{z}` | x,y coordinates and zoom of a tile |
+| `{x}`, `{y}`, `{z}` | x,y coordinates and zoom level of a tile |
 | `{YOUR-API-KEY}` | your unique API-Key, [more information](#api-key) |
 
-Please check our [sample code](#examples) to see how to use the UTFGrids in your map.
+Please check our [sample code](#examples) to see how to use the UTFGrids in your application.
 
-### Values for selected locations
+### Numerical values for Selected Locations
 
 TODO: Screenshot
 
-Please note that this feature is currently only available in the [demo page](http://tiles.metgis.com/tiles-demo/). Please [contact us](http://www.metgis.com/about/contact/) for further information.
+Please note that this feature is currently only available in our [demo page](http://tiles.metgis.com/tiles-demo/) after checking the "Show numbers" box. Please [contact us](http://www.metgis.com/about/contact/) for further information.
 
-To show values for a variety of significant locations (cities, towns, peaks, ...) as additional overlay on your map, you can integrate our Point-Layers. They are available for all of our [weather parameters](#weather-parameters) and you can show them on your map [in the same way](#api-call-for-tiles).
+To show values for a variety of significant locations (cities, towns, peaks, ...) as additional overlay on your map, you can integrate our Point-Layers. They are available for all of our [weather parameters](#weather-parameters).
 
 #### Sample call
 
@@ -92,7 +96,7 @@ TODO: Eigene Sektion am Anfang (mach Stefan)
 
 ### meta.json
 
-For every forecast runa a file with meta-information is produced. It contains the start time of the forecast run and other useful information. This `meta.json` is located at `http://tiles.metgis.com/meta/{V}/meta.json` where `{V}` stands for the version number. Please check the current version in [the changelog](http://tiles.metgis.com/meta/).
+For every forecast run a file with meta-information is produced. It contains the start time of the forecast run and other useful information. This `meta.json` is located at `http://tiles.metgis.com/meta/{V}/meta.json` where `{V}` stands for the version number. Please check the current version in [the changelog](http://tiles.metgis.com/meta/).
 
 ```endpoint
 GET http://tiles.metgis.com/meta/{V}/meta.json
@@ -106,17 +110,17 @@ GET http://tiles.metgis.com/meta/{V}/meta.json
 | `description` | a brief description of the service |
 | `productInfo` | information on the product |
 | `forecastIssued` | start time of the calculations of the meteorological forecast model as ISO-Datestring (UTC). This is also the time of the latest measurements that exercise an influence on the forecast. |
-| `forecastCompleted` | end time of the calculation of the tiles, the time when the forecasts are available to be viewed as ISO-Datestring (UTC). |
+| `forecastCompleted` | end time of the calculation of the tiles as ISO-Datestring (UTC), the time when the forecasts can be accessed. |
 | `projection` | EPSG-Code of the coordinate reference system used for the tiles |
 | `bbox` | the bounding box of the currently available tiles (latitude/longitude of the lower left and upper right box limit) |
-| `timeStep` | length of period of time between two forecast times, tipically 3 hours |
+| `timeStep` | length of period of time between two forecast times, typically 3 hours |
 | `timeStepUnit` | the unit of `timeStep` and `parameterPeriod`, `h` stands for hour |
 | `timeStepNumber` | number of `timeSteps` for this forecast |
 | `attribution` | attribution that has to be shown in conjunction with the forecasts, see the [demo page](http://tiles.metgis.com/tiles-demo/) |
 | `parameters` | list of available weather parameters |
 | `parameterUnit` | unit of the given parameter |
-| `parameterPeriod` | time period which a single prediction refers to. For most parameters (e.g. temperature) this is a point in time, for some others (e.g. `precipitation`) it is a period (typically as long as the `timeStep`). `0` indicates a point in time, any other number describes the length of the time period. |
-| `parameterName` | localized name of the given parameter, indetified by ISO 639-1 Codes. Currently available languages: English, German, Spanish, French, Italian, Slovenian. |
+| `parameterPeriod` | time period which a single prediction refers to in hours. For most parameters (e.g. temperature) this is a point in time, for some others (e.g. `precipitation`) it is a period (typically as long as the `timeStep`). `0` indicates a point in time, any other number describes the length of the time period. |
+| `parameterName` | Language dependent name of the given parameter, indetified by ISO 639-1 Codes. Currently available languages: English, German, Spanish, French, Italian, Slovenian. |
 
 
 #### Example Response
@@ -198,7 +202,7 @@ GET http://tiles.metgis.com/meta/{V}/meta.json
 }
 ```
 
-### Color values
+### Color Values
 
 The color values related to the parameters are as follows:
 
@@ -326,7 +330,7 @@ TODO: Table Breite?
 
 ## Examples
 
-Our weather maps may be embedded within your website or app, using different software frameworks. Some of them are:
+Our weather maps may be integrated into your website or app, using different software frameworks. Some of them are:
 
 |  **Web**  |  **Apps**  |
 |-----------|------------|
@@ -335,7 +339,7 @@ Our weather maps may be embedded within your website or app, using different sof
 | [Google Maps API](https://developers.google.com/maps/) | Apple's [Maps for Developers](https://developer.apple.com/maps/) |
 |  | [Mapbox SDK](https://www.mapbox.com/mobile/) |
 
-#### Example integration with Leaflet
+#### Example of integration with Leaflet
 
 ```javascript
 var temperatureLayer = L.tileLayer( 'http://t1.metgis.com/tmp2m_5/{z}/{x}/{y}.png?key=YOUR_API_KEY' );
@@ -345,7 +349,7 @@ The following examples show possible implementations with different frameworks.
 
 ### Leaflet
 
-#### Simple example of temperature:
+#### Example of temperature integration:
 
 ```javascript
 var tmp2mUrl = 'http://{s}.metgis.com/tmp2m_';
@@ -383,7 +387,7 @@ var layertmp2mGrid = new L.UtfGrid(tmp2mGridUrl + timestep + gridUrlSuffix, {
 layertmp2mGrid.on('mouseover', function(e){console.log(e.data);});
 ```
 
-Please refer to our [demo page](http://tiles.metgis.com/tiles-demo/) to view a full working example.
+Please refer to our [demo page](http://tiles.metgis.com/tiles-demo/) to view a fully functional example.
 
 ### OpenLayers 3
 
@@ -470,4 +474,4 @@ map.on('pointermove', function(evt) {
 
 `http://tiles.metgis.com/meta/0.6/metgis_tilejsonwrapper.php?parameter={parameter}&timestep={timestep}&key={YOUR-API-KEY}&callback={cb}`
 
-Please refer to the official OpenLayers [TileUTFGrid Example](http://openlayers.org/en/v3.6.0/examples/tileutfgrid.html) for more information regarding the `ol.source.TileUTFGrid`
+Please refer to the official OpenLayers [TileUTFGrid Example](http://openlayers.org/en/v3.6.0/examples/tileutfgrid.html) for more information regarding the `ol.source.TileUTFGrid`.
