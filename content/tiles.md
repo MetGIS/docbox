@@ -4,9 +4,7 @@ The MetGIS Maps API offers forecasts as a Tile Map Service (TMS). This standardi
 
 Our forecasts are updated every 24 hours. Once a day, at approximately 2:00 UTC, a new forecast is available, covering the following 75 hours mostly in three-hour time intervals. Beside regular tiles (in PNG-format) we also provide UTFGrid Tiles to enable a fast numerical representation of our colored maps.
 
-![Coverage of MetGIS Maps API](./img/coverage_thumb.jpg)
-
-TODO: GIF?
+![Coverage of MetGIS Maps API](./img/map-coverage-thumb.gif)
 
 The following sections provide detailed information about our Maps API, with various [examples](#examples) showing how to include our weather in your maps.
 
@@ -21,18 +19,18 @@ The following weather parameters are currently available:
 | Fresh Snow | `hr_sn` | 3 hours |
 | Cloudiness | `tcdcprs` | 3 hours |
 | Wind | `wind` | 3 hours |
-| Fresh Snow Today | `hr_sn_0-24` | 24 hours |
-| Fresh Snow Tomorrow | `hr_sn_24-48` | 24 hours |
-| Fresh Snow Day after Tomorrow | `hr_sn_48-72` | 24 hours |
+| Fresh Snow Today (0 - 24 hours) | `hr_sn_0-24` | 24 hours |
+| Fresh Snow Tomorrow (24 - 48 hours) | `hr_sn_24-48` | 24 hours |
+| Fresh Snow Day after Tomorrow (48 - 72 hours) | `hr_sn_48-72` | 24 hours |
+| Fresh Snow Yesterday and Today (-24 - 24 hours) | `hr_sn_24-24` | 48 hours |
 | Fresh Snow 0 - 48 hours | `hr_sn_0-48` | 48 hours |
 | Fresh Snow 24 - 72 hours | `hr_sn_24-72` | 48 hours |
 | Fresh Snow 0 - 72 hours | `hr_sn_0-72` | 72 hours |
 
-TODO: Soll hier auch hrsn -24 - 24 angeführt werden??
 
 ### API Call for Tiles
 
-To visualize our weather tiles within your map or application, you need to call the following URL with the fields specified according to your requirements.
+To visualize our weather tiles within your map or application, you need to call the following URL with the fields specified according to your requirements. To see an example please head to our [examples section](#examples).
 
 #### Tiles URL
 
@@ -44,9 +42,9 @@ http://{t1-t3}.metgis.com/{parameter}_{timestep}/{z}/{x}/{y}.png?key={YOUR-API-K
 
 | **URL Parameter** | **Description** |
 |-----------|-------------|
-| `{t1-t3}` | subdomains to get around browser limitations on the number of simultaneous HTTP connections to each host |
+| `{t1-t3}` | subdomains to get around browser limitations on the number of simultaneous HTTP connections to each host, available are `t1`, `t2` and `t3` |
 | `{parameter}` | the code of the desired weather parameter as described in `meta.json` |
-| `{timestep}` | value of the desired time step, starting at 1 which reflects the weather forecasts for the time  `forecastIssued`, see [meta.json](#metajson) |
+| `{timestep}` | value of the desired time step, starting at 1 - which reflects the weather forecasts for the time  `forecastIssued`, for clarification see [Time Step](#time-step) and [meta.json](#metajson) |
 | `{x}`, `{y}`, `{z}` | x,y coordinates and zoom level of a tile |
 | `{YOUR-API-KEY}` | your unique API-Key, [more information](#api-key) |
 
@@ -66,17 +64,17 @@ http://{t1-t3}.metgis.com/{parameter}_{timestep}_grid/{z}/{x}/{y}.json?callback=
 
 | **URL Parameter** | **Description** |
 |---------------|-----------------|
-| `{t1-t3}` | subdomains to get around browser limitations on the number of simultaneous HTTP connections to each host |
+| `{t1-t3}` | subdomains to get around browser limitations on the number of simultaneous HTTP connections to each host, available are `t1`, `t2` and `t3` |
 | `{parameter}` | the code of the desired weather parameter as described in `meta.json` |
-| `{timestep}` | value of the desired time step, starting at 1 which reflects the weather forecasts for the time  `forecastIssued`, see [meta.json](#metajson) |
+| `{timestep}` | value of the desired time step, starting at 1 - which reflects the weather forecasts for the time  `forecastIssued`, for clarification see [Time Step](#time-step) and [meta.json](#metajson) |
 | `{x}`, `{y}`, `{z}` | x,y coordinates and zoom level of a tile |
 | `{YOUR-API-KEY}` | your unique API-Key, [more information](#api-key) |
 
 Please check our [sample code](#examples) to see how to use the UTFGrids in your application.
 
-### Numerical values for Selected Locations
+### Numerical Values for Selected Locations
 
-TODO: Screenshot
+![Numerical values for precipitation](./img/numbers_small.jpg)
 
 Please note that this feature is currently only available in our [demo page](http://tiles.metgis.com/tiles-demo/) after checking the "Show numbers" box. Please [contact us](http://www.metgis.com/about/contact/) for further information.
 
@@ -89,9 +87,20 @@ http://{t1-t3}.metgis.com/{parameter}_{timestep}_point/{z}/{x}/{y}.png?key={YOUR
 ```
 
 
-### API-Key
+### Time Step
 
-TODO: Eigene Sektion am Anfang (mach Stefan)
+Weather forecasts are issued for 3 hour intervals. They start at the time specified as `forecastIssued` in the [meta.json](#metajson). The parameters temperature, cloudiness and wind are valid for the exact time (e.g. 12:00 UTC), whereas the parameters precipitation and fresh snow are valid for the whole interval of the past three hours (e.g. 9:00 UTC - 12:00 UTC) - this also means that there are no forecasts for these parameters for time step = 1.
+
+To simplify the access to the tiles we introduced time steps which represent the 3 hour intervals. Starting at 1 - which reflects the weather forecasts for the time  `forecastIssued` - it counts up to 25 where every single step counts as 3 hours. Please see the following table related to the example `"forecastIssued": "2015-01-03T18:00Z"` for clarification:
+
+| **`timestep`** | **forecast valid for temperature, cloudiness + wind** | **forecast valid for precipitation + fresh snow** |
+|--------|--------|--------|
+| 1 | 2015-01-03 18:00 UTC | not available |
+| 2 | 2015-01-03 21:00 UTC | 2015-01-03 18:00 - 21:00 UTC |
+| 5 | 2015-01-04 6:00 UTC | 2015-01-04 3:00 - 6:00 UTC |
+| ... | ... | ... |
+| 25 | 2015-01-06 12:00 UTC | 2015-01-06 9:00 - 12:00 UTC |
+
 
 
 ### meta.json
@@ -110,7 +119,7 @@ GET http://tiles.metgis.com/meta/{V}/meta.json
 | `description` | a brief description of the service |
 | `productInfo` | information on the product |
 | `forecastIssued` | start time of the calculations of the meteorological forecast model as ISO-Datestring (UTC). This is also the time of the latest measurements that exercise an influence on the forecast. |
-| `forecastCompleted` | end time of the calculation of the tiles as ISO-Datestring (UTC), the time when the forecasts can be accessed. |
+| `forecastCompleted` | end time of the calculation of the tiles as ISO-Datestring (UTC) |
 | `projection` | EPSG-Code of the coordinate reference system used for the tiles |
 | `bbox` | the bounding box of the currently available tiles (latitude/longitude of the lower left and upper right box limit) |
 | `timeStep` | length of period of time between two forecast times, typically 3 hours |
@@ -206,8 +215,6 @@ GET http://tiles.metgis.com/meta/{V}/meta.json
 
 The color values related to the parameters are as follows:
 
-TODO: Table Breite?
-
 **Temperature**
 
 | **Value [°C]** | **Color** |
@@ -254,63 +261,63 @@ TODO: Table Breite?
 
 | **Value [mm]** | **Color** |
 |----------------|-----------|
-| 0.1 | `#deebf7` |
-| 0.2 | `#c6dbef` |
-| 0.5 | `#9ecae1` |
-| 1 | `#6baed6` |
-| 1.5 | `#4292c6` |
-| 2 | `#2171b5` |
-| 3 | `#08519c` |
-| 4 | `#08306b` |
-| 6 | `#fde0ef` |
-| 8 | `#f1b6da` |
-| 12 | `#de77ae` |
-| 16 | `#c51b7d` |
+| 0.1 <= x < 0.2| `#deebf7` |
+| 0.2 <= x < 0.5 | `#c6dbef` |
+| 0.5 <= x < 1 | `#9ecae1` |
+| 1 <= x < 1.5 | `#6baed6` |
+| 1.5 <= x < 2 | `#4292c6` |
+| 2 <= x < 3 | `#2171b5` |
+| 3 <= x < 4 | `#08519c` |
+| 4 <= x < 6 | `#08306b` |
+| 6 <= x < 8 | `#fde0ef` |
+| 8 <= x < 12 | `#f1b6da` |
+| 12 <= x < 16 | `#de77ae` |
+| 16 <= x | `#c51b7d` |
 
 **Fresh Snow**
 
 | **Value [cm]** | **Color** |
 |----------------|-----------|
-| 0.1 | `#ffffff` |
-| 0.3 | `#c6ecf9` |
-| 1 | `#a0e0f6` |
-| 2 | `#59ccf2` |
-| 4 | `#19bbf1` |
-| 6 | `#019ccf` |
-| 8 | `#f79df3` |
-| 12 | `#f353ec` |
-| 16 | `#f311e8` |
-| 20 | `#fbc607` |
-| 30 | `#fba204` |
-| 50 | `#f7760f` |
-| 80 | `#e03603` |
-| 120 | `#a11a04` |
+| 0.1 <= x < 0.3 | `#ffffff` |
+| 0.3 <= x < 1 | `#c6ecf9` |
+| 1 <= x < 2 | `#a0e0f6` |
+| 2 <= x < 4 | `#59ccf2` |
+| 4 <= x < 6 | `#19bbf1` |
+| 6 <= x < 8 | `#019ccf` |
+| 8 <= x < 12 | `#f79df3` |
+| 12 <= x < 16 | `#f353ec` |
+| 16 <= x < 20 | `#f311e8` |
+| 20 <= x < 30 | `#fbc607` |
+| 30 <= x < 50 | `#fba204` |
+| 50 <= x < 80 | `#f7760f` |
+| 80 <= x < 120 | `#e03603` |
+| 120 <= x  | `#a11a04` |
 
 **Cloudiness**
 
 | **Value [%]** | **Color** |
 |---------------|-----------|
-| 25 | `#cccccc` |
-| 37.5 | `#b2b2b2` |
-| 50 | `#999999` |
-| 62.5 | `#7f7f7f` |
-| 75 | `#666666` |
-| 87.5 | `#4c4c4c` |
+| 25 <= x < 37.5 | `#cccccc` |
+| 37.5 <= x < 50 | `#b2b2b2` |
+| 50 <= x < 62.5 | `#999999` |
+| 62.5 <= x < 75 | `#7f7f7f` |
+| 75 <= x < 87.5 | `#666666` |
+| 87.5 <= x <= 100  | `#4c4c4c` |
 
 **Wind**
 
 | **Value [km/h]** | **Image** |
 |------------------|-----------|
-| 0 | wind-0-270.png |
-| 2 | wind-2-270.png |
-| 5 | wind-5-270.png |
-| 10 | wind-10-270.png |
-| 20 | wind-20-270.png |
-| 30 | wind-30-270.png |
-| 40 | wind-40-270.png |
-| 50 | wind-50-270.png |
-| 75 | wind-75-270.png |
-| 100 | wind-100-270.png |
+| 0 <= x < 2 | wind-0-270.png |
+| 2 <= x < 5 | wind-2-270.png |
+| 5 <= x < 10 | wind-5-270.png |
+| 10 <= x < 20 | wind-10-270.png |
+| 20 <= x < 30 | wind-20-270.png |
+| 30 <= x < 40 | wind-30-270.png |
+| 40 <= x < 50 | wind-40-270.png |
+| 50 <= x < 75 | wind-50-270.png |
+| 75 <= x < 100 | wind-75-270.png |
+| 100 <= x | wind-100-270.png |
 
 #### JavaScript Objects for generating legends
 
@@ -332,12 +339,16 @@ TODO: Table Breite?
 
 Our weather maps may be integrated into your website or app, using different software frameworks. Some of them are:
 
-|  **Web**  |  **Apps**  |
-|-----------|------------|
-| [Leaflet](http://leafletjs.com/) | [Google Maps Android API](https://developers.google.com/maps/documentation/android/) |
-| [OpenLayers](http://openlayers.org/) | [Google Maps SDK for iOS](https://developers.google.com/maps/documentation/ios/) |
-| [Google Maps API](https://developers.google.com/maps/) | Apple's [Maps for Developers](https://developer.apple.com/maps/) |
-|  | [Mapbox SDK](https://www.mapbox.com/mobile/) |
+**Web**
+- [Leaflet](http://leafletjs.com/)
+- [OpenLayers](http://openlayers.org/)
+- [Google Maps API](https://developers.google.com/maps/)
+
+**Apps**
+- [Google Maps Android API](https://developers.google.com/maps/documentation/android/)
+- [Google Maps SDK for iOS](https://developers.google.com/maps/documentation/ios/)
+- Apple's [Maps for Developers](https://developer.apple.com/maps/)
+- [Mapbox SDK](https://www.mapbox.com/mobile/)
 
 #### Example of integration with Leaflet
 
@@ -348,6 +359,8 @@ var temperatureLayer = L.tileLayer( 'http://t1.metgis.com/tmp2m_5/{z}/{x}/{y}.pn
 The following examples show possible implementations with different frameworks.
 
 ### Leaflet
+
+This exapmle shows how to implement a weather map using [Leaflet](http://leafletjs.com/).
 
 #### Example of temperature integration:
 
@@ -363,7 +376,6 @@ var layertmp2m = L.tileLayer( tmp2mUrl + timestep + urlSuffix, {
   subdomains: ["t1", "t2", "t3"]
 });
 ```
-
 
 
 #### Add UTFGrids
@@ -390,6 +402,8 @@ layertmp2mGrid.on('mouseover', function(e){console.log(e.data);});
 Please refer to our [demo page](http://tiles.metgis.com/tiles-demo/) to view a fully functional example.
 
 ### OpenLayers 3
+
+This exapmle shows how to implement a weather map using [OpenLayers](http://openlayers.org/).
 
 #### Simple example of temperature:
 
