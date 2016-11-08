@@ -1,3 +1,3 @@
 ## Our API
 
-Welcome the MetGIS API Documentation. We have Tiles and Points.
+Welcome to the MetGIS Weather API Documentation. This document describes how to use our Point API and our Maps API.
