@@ -133,3 +133,6 @@ strong{
 em{
   font-style: italic;
 }
+
+.fill-icon {
+    background: rgba(0, 0, 0, 0) url("../img/icon.png") no-repeat scroll center;
