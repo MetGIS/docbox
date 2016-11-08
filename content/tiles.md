@@ -129,6 +129,7 @@ GET http://tiles.metgis.com/meta/{V}/meta.json
 | `parameters` | list of available weather parameters |
 | `parameterUnit` | unit of the given parameter |
 | `parameterPeriod` | time period which a single prediction refers to in hours. For most parameters (e.g. temperature) this is a point in time, for some others (e.g. `precipitation`) it is a period (typically as long as the `timeStep`). `0` indicates a point in time, any other number describes the length of the time period. |
+| `parameterPeriodOffset` | **only for cumulated parameters,** defines the offset of the start time from `forecastIssued`|
 | `parameterName` | Language dependent name of the given parameter, indetified by ISO 639-1 Codes. Currently available languages: English, German, Spanish, French, Italian, Slovenian. |
 
 
@@ -205,6 +206,32 @@ GET http://tiles.metgis.com/meta/{V}/meta.json
             "fr":"Neige fraiche",
             "en":"Fresh Snow",
             "es":"Nieve fresca"
+         }
+      },
+      "hr_sn_0-24": {
+         "parameterUnit": "cm",
+         "parameterPeriod": 24,
+         "parameterPeriodOffset": 0,
+         "parameterName": {
+            "sl": "Novozapadli sneg 0-24h",
+            "de": "Neuschnee 0-24h",
+            "it": "Neve fresca 0-24h",
+            "fr": "Neige fraiche 0-24h",
+            "en": "Fresh Snow 0-24h",
+            "es": "Nieve fresca 0-24h"
+         }
+      },
+      "hr_sn_24-72": {
+         "parameterUnit": "cm",
+         "parameterPeriod": 48,
+         "parameterPeriodOffset": 24,
+         "parameterName": {
+            "sl": "Novozapadli sneg 24-72h",
+            "de": "Neuschnee 24-72h",
+            "it": "Neve fresca 24-72h",
+            "fr": "Neige fraiche 24-72h",
+            "en": "Fresh Snow 24-72h",
+            "es": "Nieve fresca 24-72h"
          }
       }
    }
@@ -326,6 +353,8 @@ The color values related to the parameters are as follows:
     "tmp2m": [[">40","#35000f"],["38","#4c0016"],["36","#7f0000"],["34","#800026"],["32","#b30000"],["30","#bd0026"],["28","#d7301f"],["26","#ef6548"],["24","#fc8d59"],["22","#fdbb84"],["20","#fd8d3c"],["18","#feb24c"],["16","#fed976"],["14","#ffeda0"],["12","#ffffcc"],["10","#f7fcb9"],["8","#d9f0a3"],["6","#addd8e"],["4","#78c679"],["2","#41ab5d"],["0","#238443"],["-2","#9ecae1"],["-4","#6baed6"],["-6","#4292c6"],["-8","#2171b5"],["-10","#08519c"],["-12","#06407c"],["-14","#544082"],["-16","#6a51a3"],["-18","#807dba"],["-20","#9e9ac8"],["-22","#bcbddc"],["-24","#dadaeb"],["-26","#efedf5"],["-28","#bdbdbd"],["-30","#969696"],["<-30","#737373"]],
 
     "hr_p": [["16","#c51b7d"],["12","#de77ae"],["8","#f1b6da"],["6","#fde0ef"],["4","#08306b"],["3","#08519c"],["2","#2171b5"],["1.5","#4292c6"],["1","#6baed6"],["0.5","#9ecae1"],["0.2","#c6dbef"],["0.1","#deebf7"]],
+
+	"hr_sn_cumulated": [["120","#a11a04"],["80","#e03603"],["50","#f7760f"],["30","#fba204"],["20","#fbc607"],["16","#f311e8"],["12","#f353ec"],["8","#f79df3"],["6","#019ccf"],["4","#19bbf1"],["2","#59ccf2"],["1","#a0e0f6"],["0.3","#c6ecf9"],["0.1","#ffffff"]],
 
     "hr_sn": [["16","#f311e8"],["12","#f353ec"],["8","#f79df3"],["6","#019ccf"],["4","#19bbf1"],["2","#59ccf2"],["1","#a0e0f6"],["0.3","#c6ecf9"],["0.1","#ffffff"]],
 

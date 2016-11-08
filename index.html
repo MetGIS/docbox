@@ -10,7 +10,1307 @@
     <link href='css/railscasts.css' rel='stylesheet' />
   </head>
   <body>
-    <!--START--><div id='app'></div><!--STOP-->
+    <!--START--><div id='app'><div class="container unlimiter" data-reactroot="" data-reactid="1" data-react-checksum="-1607440263"><div class="fixed-top fixed-right space-left16" data-reactid="2"><div class="fill-light col6 pin-right" data-reactid="3"></div></div><div class="space-top5 scroll-styled overflow-auto pad1 width16 sidebar fixed-left fill-dark dark" data-reactid="4"><div class="pad0x small" data-reactid="5"><div class="small pad0x quiet space-top1" data-reactid="6">Introduction</div><a href="#our-api" class="line-height15 pad0x pad00y quiet block " data-reactid="7">Our API</a><a href="#obtain-developer-key" class="line-height15 pad0x pad00y quiet block " data-reactid="8">Obtain Developer Key</a><div class="small pad0x quiet space-top1" data-reactid="9">Points</div><a href="#point-api" class="line-height15 pad0x pad00y quiet block " data-reactid="10">Point API</a><div class="small pad0x quiet space-top1" data-reactid="11">Tiles</div><a href="#tiles-api" class="line-height15 pad0x pad00y quiet block " data-reactid="12">Tiles API</a><a href="#examples" class="line-height15 pad0x pad00y quiet block " data-reactid="13">Examples</a></div></div><div class="space-left16" data-reactid="14"><div class="" data-reactid="15"><div class="clearfix" data-reactid="16"><div data-title="Our API" class="keyline-top section contain clearfix " data-reactid="17"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="18"><h2 id="our-api">Our API</h2>
+<p>Welcome the MetGIS API Documentation. We have Tiles and Points.</p>
+</div></div><div data-title="Obtain Developer Key" class="keyline-top section contain clearfix " data-reactid="19"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="20"><h2 id="obtain-developer-key">Obtain Developer Key</h2>
+<p>This document explains how to obtain a free developer key to try the MetGIS points and tiles API.</p>
+</div></div><div data-title="Point API" class="keyline-top section contain clearfix " data-reactid="21"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="22"><h2 id="point-api">Point API</h2>
+<p>The following chapters describe the functions and usage of the MetGIS Point API. To request data from this API you need a valid user key. Click <a href="#obtain-developer-key">here</a> for information on how to obtain a free developer key.</p>
+</div></div><div data-title="Request Data" class="keyline-top section contain clearfix " data-reactid="23"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="24"><h3 id="request-data">Request Data</h3>
+<p>MetGIS forecasts can be retrieved from the point API via https with a request that follows this pattern:</p>
+<p>The curly brackets in this example have to be replaced by values according to the following table:</p>
+<table>
+<thead>
+<tr>
+<th>Content</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{your-user-key}</td>
+<td>user key with valid access to MetGIS point API</td>
+</tr>
+<tr>
+<td>{yy.yyyy}</td>
+<td>Latitude of point for which the weather forecast is requested (more than 4 fractional digits will be truncated)</td>
+</tr>
+<tr>
+<td>{xxx.xxxx}</td>
+<td>Longitude of point for which the weather forecast is requested (more than 4 fractional digits will be truncated, accepted range:-180...360)</td>
+</tr>
+<tr>
+<td>{hhhh}</td>
+<td>Altitude of point for which the weather forecast is requested</td>
+</tr>
+<tr>
+<td>{version}</td>
+<td>Requested forecast version (see chapter 
+<a href="#available-forecast-versions">forecast versions</a>
+ for options)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>Forecasts are delivered are delivered in JSON or JSONP format.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="25"><pre><code class="hljs">https://api.metgis.com/forecast?key={your-user-key}&amp;lat={yy.yyyy}&amp;lon={yyy.yyyy}&amp;alt={hhhh}&amp;v={version}&amp;lang={language}</code></pre>
+</div></div><div data-title="Available Forecast Versions" class="keyline-top section contain clearfix " data-reactid="26"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="27"><h3 id="available-forecast-versions">Available Forecast Versions</h3>
+<p>The following table lists all available forecast formats, and they will be described in detail in the following subsections.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Version Acronym</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Complete3</td>
+<td>a1</td>
+<td>Three day forecast with a all basic weather Parameters and sunrise/sunset</td>
+</tr>
+<tr>
+<td>Summary3</td>
+<td>sum3</td>
+<td>Three day forecast with daily weather parameters and short description of weather</td>
+</tr>
+<tr>
+<td>Summary4</td>
+<td>sum4</td>
+<td>Four day forecast with daily weather parameters and short description of weather</td>
+</tr>
+<tr>
+<td>Summary5</td>
+<td>sum5</td>
+<td>Five day forecast with daily weather parameters and short description of weather</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</div></div><div data-title="Forecast Complete3" class="keyline-top section contain clearfix " data-reactid="28"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="29"><h3 id="forecast-complete3">Forecast Complete3</h3>
+<p>This forecast version offers 3 hourly weather forecasts with sunrise and sunset, a data sample is shown on the right.</p>
+<p>Elements:</p>
+<ul>
+<li>Description: Description of service</li>
+<li>Forecast_issued: Starting time of forecast model run (UTC)</li>
+<li>lat: Geographical latitude of point</li>
+<li>lon: Geographical longitude of point</li>
+<li>h: Height above sea level of point</li>
+<li>Sunrise: ISO-date-string (UTC) of sunrise for day</li>
+<li>Sunset: ISO-date-string (UTC) of sunset for day</li>
+<li>Time_Step (h): Length of time interval between forecast times</li>
+<li>Temperature (C): Temperature in &deg; Celsius, array with values for each forecast time, starting at the time the forecast was issued.</li>
+<li>3hr_Precipitation (mm): Accumulated precipitation of the 3 hour intervals, array with values for each forecast time. The value for the time the forecast is issued will always be null, and the second value denotes the precipitation for the interval [Forecast_issued Forecast_issued+3h], etc.</li>
+<li>3hr_Snowfall (cm): Accumulated fresh snow of the 3 hour intervals, array with values for each forecast time. The value for the time the forecast is issued will always be null, and the second value denotes the precipitation for the interval [Forecast_issued Forecast_issued+3h], etc.</li>
+<li>Transition_height_snow_sleet (m): Height above sea level at which the snow turns into sleet when falling.</li>
+<li>Wind_direction_speed (m/s): Wind direction and wind speed in [m/s]. possible values for wind direction are: NW (north-west), N (north), NE (north-east), E (east), SE (south east), S (south), SW (south-west), W (west) and XX (calm or changeable).</li>
+<li>Total_cloud_cover (%): Cloud cover [%].</li>
+<li>Weather_code: Code of weather conditions. This value can be translated to icons or description of the weather conditions. The values are defined in the following table:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Weather Code</th>
+<th>Precipitation 
+[mm/3h]</th>
+<th>Cloud cover 
+[%]</th>
+<th>Form of precipitation</th>
+<th>Risk of thunderstorms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>N&lt;10</td>
+<td>No precipitation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>10&lt;=N&lt;70</td>
+<td>No precipitation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>N&gt;70&#x9;No Precipitation</td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>&lt;2</td>
+<td>10&lt;=N&lt;70</td>
+<td>rain</td>
+<td>No</td>
+</tr>
+<tr>
+<td>5</td>
+<td>&lt;2</td>
+<td>N&gt;70</td>
+<td>rain</td>
+<td>No</td>
+</tr>
+<tr>
+<td>6</td>
+<td>&lt;2</td>
+<td>10&lt;=N&lt;70</td>
+<td>rain</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>7</td>
+<td>&lt;2</td>
+<td>N&gt;70</td>
+<td>rain</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>8</td>
+<td>&gt;=2</td>
+<td>10&lt;=N&lt;70</td>
+<td>heavy rain</td>
+<td>No</td>
+</tr>
+<tr>
+<td>9</td>
+<td>&gt;=2</td>
+<td>N&gt;70</td>
+<td>heavy rain</td>
+<td>No</td>
+</tr>
+<tr>
+<td>10</td>
+<td>&gt;=2</td>
+<td>10&lt;=N&lt;70</td>
+<td>heavy rain</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>11</td>
+<td>&gt;=2</td>
+<td>N&gt;70</td>
+<td>heavy rain</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>12</td>
+<td>&lt;2</td>
+<td>10&lt;=N&lt;70</td>
+<td>sleet</td>
+<td>No</td>
+</tr>
+<tr>
+<td>13</td>
+<td>&lt;2</td>
+<td>N&gt;70</td>
+<td>sleet</td>
+<td>No</td>
+</tr>
+<tr>
+<td>14</td>
+<td>&lt;2</td>
+<td>10&lt;=N&lt;70</td>
+<td>sleet</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>15</td>
+<td>&lt;2</td>
+<td>N&gt;70</td>
+<td>sleet</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>16</td>
+<td>&gt;=2</td>
+<td>10&lt;=N&lt;70</td>
+<td>heavy sleet</td>
+<td>No</td>
+</tr>
+<tr>
+<td>17</td>
+<td>&gt;=2</td>
+<td>N&gt;70</td>
+<td>heavy sleet</td>
+<td>No</td>
+</tr>
+<tr>
+<td>18</td>
+<td>&gt;=2</td>
+<td>10&lt;=N&lt;70</td>
+<td>heavy sleet</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>19</td>
+<td>&gt;=2</td>
+<td>N&gt;70</td>
+<td>heavy sleet</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>20</td>
+<td>&lt;2</td>
+<td>10&lt;=N&lt;70</td>
+<td>snow fall</td>
+<td>No</td>
+</tr>
+<tr>
+<td>21</td>
+<td>&lt;2</td>
+<td>N&gt;70</td>
+<td>snow fall</td>
+<td>No</td>
+</tr>
+<tr>
+<td>22</td>
+<td>&lt;2</td>
+<td>10&lt;=N&lt;70</td>
+<td>snow fall</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>23</td>
+<td>&lt;2</td>
+<td>N&gt;70</td>
+<td>snow fall</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>24</td>
+<td>&gt;=2</td>
+<td>10&lt;=N&lt;70</td>
+<td>heavy snow fall</td>
+<td>No</td>
+</tr>
+<tr>
+<td>25</td>
+<td>&gt;=2</td>
+<td>N&gt;70</td>
+<td>heavy snow fall</td>
+<td>No</td>
+</tr>
+<tr>
+<td>26</td>
+<td>&gt;=2</td>
+<td>10&lt;=N&lt;70</td>
+<td>heavy snow fall</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>27</td>
+<td>&gt;=2</td>
+<td>N&gt;70</td>
+<td>heavy snow fall</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="30"><pre><code class="hljs">{<span class="hljs-attr">"Time_step (h)"</span>:<span class="hljs-number">3</span>,<span class="hljs-attr">"Description"</span>:<span class="hljs-string">"Metgis Point Forecast"</span>,<span class="hljs-attr">"Forecast_issued"</span>:<span class="hljs-string">"2016-07-14T06:00Z"</span>,<span class="hljs-attr">"Temperature (C)"</span>:[<span class="hljs-number">18</span>,<span class="hljs-number">21</span>,<span class="hljs-number">24</span>,<span class="hljs-number">25</span>,<span class="hljs-number">21</span>,<span class="hljs-number">16</span>,<span class="hljs-number">14</span>,<span class="hljs-number">13</span>,<span class="hljs-number">15</span>,<span class="hljs-number">20</span>,<span class="hljs-number">23</span>,<span class="hljs-number">24</span>,<span class="hljs-number">20</span>,<span class="hljs-number">15</span>,<span class="hljs-number">14</span>,<span class="hljs-number">13</span>,<span class="hljs-number">16</span>,<span class="hljs-number">22</span>,<span class="hljs-number">25</span>,<span class="hljs-number">24</span>,<span class="hljs-number">20</span>,<span class="hljs-number">16</span>,<span class="hljs-number">15</span>,<span class="hljs-number">14</span>,<span class="hljs-number">18</span>,<span class="hljs-number">25</span>,<span class="hljs-number">27</span>,<span class="hljs-number">26</span>],<span class="hljs-attr">"Wind_direction_speed (m/s)"</span>:[<span class="hljs-string">"NE3"</span>,<span class="hljs-string">"NE3"</span>,<span class="hljs-string">"NE2"</span>,<span class="hljs-string">"NE2"</span>,<span class="hljs-string">"NE3"</span>,<span class="hljs-string">"NE3"</span>,<span class="hljs-string">"NE4"</span>,<span class="hljs-string">"NE4"</span>,<span class="hljs-string">"NE3"</span>,<span class="hljs-string">"NE3"</span>,<span class="hljs-string">"NE4"</span>,<span class="hljs-string">"NE4"</span>,<span class="hljs-string">"N1"</span>,<span class="hljs-string">"NE3"</span>,<span class="hljs-string">"NE3"</span>,<span class="hljs-string">"NE3"</span>,<span class="hljs-string">"NE2"</span>,<span class="hljs-string">"N1"</span>,<span class="hljs-string">"SW2"</span>,<span class="hljs-string">"SW3"</span>,<span class="hljs-string">"W2"</span>,<span class="hljs-string">"NE1"</span>,<span class="hljs-string">"NE3"</span>,<span class="hljs-string">"NE3"</span>,<span class="hljs-string">"NE2"</span>,<span class="hljs-string">"SW1"</span>,<span class="hljs-string">"SW3"</span>,<span class="hljs-string">"SW3"</span>],<span class="hljs-attr">"3hr_Snowfall (cm)"</span>:[<span class="hljs-literal">null</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>],<span class="hljs-attr">"h"</span>:<span class="hljs-number">200</span>,<span class="hljs-attr">"Weather_code"</span>:[<span class="hljs-literal">null</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>],<span class="hljs-attr">"lon"</span>:<span class="hljs-number">13.567</span>,<span class="hljs-attr">"3hr_Precipitation (mm)"</span>:[<span class="hljs-literal">null</span>,<span class="hljs-number">1.1</span>,<span class="hljs-number">0.1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0.1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>],<span class="hljs-attr">"Sunset"</span>:<span class="hljs-string">"2016-07-14T18:54Z"</span>,<span class="hljs-attr">"Total_cloud_cover (%)"</span>:[<span class="hljs-number">1</span>,<span class="hljs-number">27</span>,<span class="hljs-number">1</span>,<span class="hljs-number">16</span>,<span class="hljs-number">50</span>,<span class="hljs-number">2</span>,<span class="hljs-number">17</span>,<span class="hljs-number">30</span>,<span class="hljs-number">30</span>,<span class="hljs-number">30</span>,<span class="hljs-number">34</span>,<span class="hljs-number">49</span>,<span class="hljs-number">30</span>,<span class="hljs-number">8</span>,<span class="hljs-number">30</span>,<span class="hljs-number">30</span>,<span class="hljs-number">30</span>,<span class="hljs-number">30</span>,<span class="hljs-number">30</span>,<span class="hljs-number">30</span>,<span class="hljs-number">2</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>],<span class="hljs-attr">"Transition_height_snow_sleet (m)"</span>:[<span class="hljs-number">2600</span>,<span class="hljs-number">2500</span>,<span class="hljs-number">2600</span>,<span class="hljs-number">2700</span>,<span class="hljs-number">2600</span>,<span class="hljs-number">2700</span>,<span class="hljs-number">2700</span>,<span class="hljs-number">2600</span>,<span class="hljs-number">2600</span>,<span class="hljs-number">2600</span>,<span class="hljs-number">2500</span>,<span class="hljs-number">2600</span>,<span class="hljs-number">2600</span>,<span class="hljs-number">2600</span>,<span class="hljs-number">2700</span>,<span class="hljs-number">2700</span>,<span class="hljs-number">2800</span>,<span class="hljs-number">2900</span>,<span class="hljs-number">2700</span>,<span class="hljs-number">2700</span>,<span class="hljs-number">2800</span>,<span class="hljs-number">2900</span>,<span class="hljs-number">3000</span>,<span class="hljs-number">3200</span>,<span class="hljs-number">3300</span>,<span class="hljs-number">3400</span>,<span class="hljs-number">3500</span>,<span class="hljs-number">3700</span>],<span class="hljs-attr">"Sunrise"</span>:<span class="hljs-string">"2016-07-14T03:28Z"</span>,<span class="hljs-attr">"lat"</span>:<span class="hljs-number">46.123</span>}</code></pre>
+</div></div><div data-title="Forecasts Summary3, Summary4 and Summary5" class="keyline-top section contain clearfix " data-reactid="31"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="32"><h3 id="forecasts-summary3-summary4-and-summary5">Forecasts Summary3, Summary4 and Summary5</h3>
+<p>Json forecast files with daily values describing the weather for 3, 4 or 5 days. A few optional parameters can be appended to the request to choose different languages and units. The available optional parameters are shown in the following table:</p>
+<table>
+<thead>
+<tr>
+<th>Optional parameter</th>
+<th>Description</th>
+<th>Possible options</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lang</td>
+<td>Optional parameter to choose language of forecast file</td>
+<td>&#x27;de&#x27; for german (default) or &#x27;en&#x27; for english</td>
+</tr>
+<tr>
+<td>tempU</td>
+<td>Optional parameter to choose the temperature unit used in the forecast file</td>
+<td>&#x27;c&#x27; for &deg;C (default) or &#x27;f&#x27; for &deg;F</td>
+</tr>
+<tr>
+<td>linU</td>
+<td>Optional parameter to choose the length unit used in the forecast file</td>
+<td>&#x27;m&#x27; yields precipitation in mm/day and fresh snow in cm/day (default) or &#x27;ft&#x27; which yields precipitation and fresh snow in inch</td>
+</tr>
+<tr>
+<td>windU</td>
+<td>Optional parameter to choose the wind speed unit</td>
+<td>&#x27;kmh&#x27; for km/h (default), &#x27;ms&#x27; for m/s, &#x27;mph&#x27; for miles/hour and &#x27;bft&#x27; for Beaufort</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>An example for a request is shown on the right with the resulting JSON underneath.</p>
+<p>The JSON file contains the following elements:</p>
+<ul>
+<li>sunrise: Array of ISO-date-strings showing time of sunrise for each day.</li>
+<li>dayCount: Integer showing how many days are described in the forecast file.</li>
+<li>weatherIcon: Name of weather icon that describes the weather conditions on the respective day.</li>
+<li>snowfall: Amount of fresh snow for each day (unit can be choosen via the parameter linU, default is cm).</li>
+<li>unitLin: Linear unit used in forecast file (see table above for options and description).</li>
+<li>maxTemp: Array of maximum temperatures for each day (see table above for units and options).</li>
+<li>description: Description of JSON file.</li>
+<li>lon: Geographical longitude the forecast was calculated for.</li>
+<li>windDir: Array of wind directions for each day.</li>
+<li>sunshineDuration: Sunshine duration for each day in hours.</li>
+<li>precipitation: &Aacute;rray of accumulated daily precipitations (unit can be chosen via the parameter linU, default is mm)</li>
+<li>windSpeed: Array with wind speed for each day (see table above for units and options).</li>
+<li>lang: Shows the language used in forecast file (see table above for units and options).</li>
+<li>lat: Geographical latitude the forecast was calculated for.</li>
+<li>rainfall: Array of accumulated rainfall for each day (unit can be choosen via the parameter linU, default is mm)</li>
+<li>unitWind: Unit used for wind speed (see table above for options and description).</li>
+<li>alt: Altitude of the point the forecast was calculated for (m above sea level).</li>
+<li>forecastIssued: Initial time of forecast</li>
+<li>minTemp: Array of minimum temperatures for each day (see table above for units and options).</li>
+<li>unitTemp: Unit of temperatures (see table above for options and description).</li>
+<li>sunset: Array of ISO-date-strings showing time of sunset for each day.</li>
+<li>forecastShortText: Array of short texts describing the weather for each day.</li>
+</ul>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="33"><pre><code class="hljs">https://api.metgis.com/forecast?key=0dfa6e5a4a672b3a7c79e7c2ef&amp;lat=46.123&amp;lon=13.567&amp;alt=200&amp;v=plugin3&amp;lang=en&amp;tempU=f&amp;linU=m&amp;windU=ms</code></pre>
+<pre><code class="hljs">{<span class="hljs-attr">"sunrise"</span>:[<span class="hljs-string">"2016-07-18T03:32Z"</span>,<span class="hljs-string">"2016-07-19T03:33Z"</span>,<span class="hljs-string">"2016-07-20T03:34Z"</span>],<span class="hljs-attr">"dayCount"</span>:<span class="hljs-number">3</span>,<span class="hljs-attr">"weatherIcon"</span>:[<span class="hljs-string">"sun_cloud_bright_rain_thunder"</span>,<span class="hljs-string">"sun_cloud_bright_rain_thunder"</span>,<span class="hljs-string">"sun_cloud_bright_rain_thunder"</span>],<span class="hljs-attr">"snowfall"</span>:[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>],<span class="hljs-attr">"unitLin"</span>:<span class="hljs-string">"m"</span>,<span class="hljs-attr">"maxTemp"</span>:[<span class="hljs-number">82</span>,<span class="hljs-number">86</span>,<span class="hljs-number">84</span>],<span class="hljs-attr">"description"</span>:<span class="hljs-string">"Metgis Point Forecast - Summary 3 Days"</span>,<span class="hljs-attr">"lon"</span>:<span class="hljs-number">13.567</span>,<span class="hljs-attr">"windDir"</span>:[<span class="hljs-string">"SW"</span>,<span class="hljs-string">"NO"</span>,<span class="hljs-string">"SW"</span>],<span class="hljs-attr">"sunshineDuration"</span>:[<span class="hljs-number">14.2</span>,<span class="hljs-number">15.2</span>,<span class="hljs-number">15.2</span>],<span class="hljs-attr">"precipitation"</span>:[<span class="hljs-number">4.5</span>,<span class="hljs-number">5.5</span>,<span class="hljs-number">1.5</span>],<span class="hljs-attr">"windSpeed"</span>:[<span class="hljs-number">3</span>,<span class="hljs-number">3</span>,<span class="hljs-number">3</span>],<span class="hljs-attr">"lang"</span>:<span class="hljs-string">"en"</span>,<span class="hljs-attr">"lat"</span>:<span class="hljs-number">46.123</span>,<span class="hljs-attr">"rainfall"</span>:[<span class="hljs-number">4.5</span>,<span class="hljs-number">5.5</span>,<span class="hljs-number">1.5</span>],<span class="hljs-attr">"unitWind"</span>:<span class="hljs-string">"m/s"</span>,<span class="hljs-attr">"alt"</span>:<span class="hljs-number">200</span>,<span class="hljs-attr">"forecastIssued"</span>:<span class="hljs-string">"2016-07-18T06:00Z"</span>,<span class="hljs-attr">"unitTemp"</span>:<span class="hljs-string">"F"</span>,<span class="hljs-attr">"sunset"</span>:[<span class="hljs-string">"2016-07-18T18:51Z"</span>,<span class="hljs-string">"2016-07-19T18:50Z"</span>,<span class="hljs-string">"2016-07-20T18:49Z"</span>],<span class="hljs-attr">"relativeHumidity"</span>:[<span class="hljs-number">65</span>,<span class="hljs-number">72</span>,<span class="hljs-number">75</span>],<span class="hljs-attr">"forecastShortText"</span>:[<span class="hljs-string">"thundery showers possible"</span>,<span class="hljs-string">"thundery showers possible"</span>,<span class="hljs-string">"thundery showers possible"</span>]}</code></pre>
+</div></div><div data-title="Tiles API" class="keyline-top section contain clearfix " data-reactid="34"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="35"><h2 id="tiles-api">Tiles API</h2>
+<p>The MetGIS Maps API offers forecasts as a Tile Map Service (TMS). This standardized format enables you to integrate our weather predictions for Central Europe into any dynamic map on your website or within your app. Check our <a href="http://tiles.metgis.com/tiles-demo/">demo page</a> to see an example of weather data layers integrated into zoomable maps.</p>
+<p>Our forecasts are updated every 24 hours. Once a day, at approximately 2:00 UTC, a new forecast is available, covering the following 75 hours mostly in three-hour time intervals. Beside regular tiles (in PNG-format) we also provide UTFGrid Tiles to enable a fast numerical representation of our colored maps.</p>
+<p><img src="./img/map-coverage-thumb.gif" alt="Coverage of MetGIS Maps API"></p>
+<p>The following sections provide detailed information about our Maps API, with various <a href="#examples">examples</a> showing how to include our weather in your maps.</p>
+</div></div><div data-title="Weather Parameters" class="keyline-top section contain clearfix " data-reactid="36"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="37"><h3 id="weather-parameters">Weather Parameters</h3>
+<p>The following weather parameters are currently available:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Weather Parameter</strong></th>
+<th align="center"><strong>Code</strong></th>
+<th align="center"><strong>Time Interval</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Temperature</td>
+<td align="center"><code>tmp2m</code></td>
+<td align="center">3 hours</td>
+</tr>
+<tr>
+<td>Precipitation</td>
+<td align="center"><code>hr_p</code></td>
+<td align="center">3 hours</td>
+</tr>
+<tr>
+<td>Fresh Snow</td>
+<td align="center"><code>hr_sn</code></td>
+<td align="center">3 hours</td>
+</tr>
+<tr>
+<td>Cloudiness</td>
+<td align="center"><code>tcdcprs</code></td>
+<td align="center">3 hours</td>
+</tr>
+<tr>
+<td>Wind</td>
+<td align="center"><code>wind</code></td>
+<td align="center">3 hours</td>
+</tr>
+<tr>
+<td>Fresh Snow Today (0 - 24 hours)</td>
+<td align="center"><code>hr_sn_0-24</code></td>
+<td align="center">24 hours</td>
+</tr>
+<tr>
+<td>Fresh Snow Tomorrow (24 - 48 hours)</td>
+<td align="center"><code>hr_sn_24-48</code></td>
+<td align="center">24 hours</td>
+</tr>
+<tr>
+<td>Fresh Snow Day after Tomorrow (48 - 72 hours)</td>
+<td align="center"><code>hr_sn_48-72</code></td>
+<td align="center">24 hours</td>
+</tr>
+<tr>
+<td>Fresh Snow Yesterday and Today (-24 - 24 hours)</td>
+<td align="center"><code>hr_sn_24-24</code></td>
+<td align="center">48 hours</td>
+</tr>
+<tr>
+<td>Fresh Snow 0 - 48 hours</td>
+<td align="center"><code>hr_sn_0-48</code></td>
+<td align="center">48 hours</td>
+</tr>
+<tr>
+<td>Fresh Snow 24 - 72 hours</td>
+<td align="center"><code>hr_sn_24-72</code></td>
+<td align="center">48 hours</td>
+</tr>
+<tr>
+<td>Fresh Snow 0 - 72 hours</td>
+<td align="center"><code>hr_sn_0-72</code></td>
+<td align="center">72 hours</td>
+</tr>
+</tbody>
+</table>
+</div></div><div data-title="API Call for Tiles" class="keyline-top section contain clearfix " data-reactid="38"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="39"><h3 id="api-call-for-tiles">API Call for Tiles</h3>
+<p>To visualize our weather tiles within your map or application, you need to call the following URL with the fields specified according to your requirements. To see an example please head to our <a href="#examples">examples section</a>.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>URL Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>{t1-t3}</code></td>
+<td>subdomains to get around browser limitations on the number of simultaneous HTTP connections to each host, available are 
+<code>t1</code>
+, 
+<code>t2</code>
+ and 
+<code>t3</code></td>
+</tr>
+<tr>
+<td><code>{parameter}</code></td>
+<td>the code of the desired weather parameter as described in 
+<code>meta.json</code></td>
+</tr>
+<tr>
+<td><code>{timestep}</code></td>
+<td>value of the desired time step, starting at 1 - which reflects the weather forecasts for the time  
+<code>forecastIssued</code>
+, for clarification see 
+<a href="#time-step">Time Step</a>
+ and 
+<a href="#metajson">meta.json</a></td>
+</tr>
+<tr>
+<td><code>{x}</code>
+, 
+<code>{y}</code>
+, 
+<code>{z}</code></td>
+<td>x,y coordinates and zoom level of a tile</td>
+</tr>
+<tr>
+<td><code>{YOUR-API-KEY}</code></td>
+<td>your unique API-Key, 
+<a href="#api-key">more information</a></td>
+</tr>
+</tbody>
+</table>
+<p>Please check our <a href="#examples">sample code</a> to see how to use the tiles in your application.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="40"><h4 id="tiles-url">Tiles URL</h4>
+<pre><code class="hljs">http://{t1-t3}.metgis.com/{parameter}_{timestep}/{z}/{x}/{y}.png?key={YOUR-API-KEY}</code></pre>
+</div></div><div data-title="UTFGrid" class="keyline-top section contain clearfix " data-reactid="41"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="42"><h3 id="utfgrid">UTFGrid</h3>
+<p>Our <a href="https://github.com/mapbox/utfgrid-spec">UTFGrids</a> provide numerical information related to our tiles. Like in our <a href="http://tiles.metgis.com/tiles-demo/">demo page</a> you can use the UTFGrid Layers with a &quot;mouseover&quot; or &quot;on tap&quot; on mobile devices. Thus numerical forecast values can be displayed at specified geographic locations.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>URL Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>{t1-t3}</code></td>
+<td>subdomains to get around browser limitations on the number of simultaneous HTTP connections to each host, available are 
+<code>t1</code>
+, 
+<code>t2</code>
+ and 
+<code>t3</code></td>
+</tr>
+<tr>
+<td><code>{parameter}</code></td>
+<td>the code of the desired weather parameter as described in 
+<code>meta.json</code></td>
+</tr>
+<tr>
+<td><code>{timestep}</code></td>
+<td>value of the desired time step, starting at 1 - which reflects the weather forecasts for the time  
+<code>forecastIssued</code>
+, for clarification see 
+<a href="#time-step">Time Step</a>
+ and 
+<a href="#metajson">meta.json</a></td>
+</tr>
+<tr>
+<td><code>{x}</code>
+, 
+<code>{y}</code>
+, 
+<code>{z}</code></td>
+<td>x,y coordinates and zoom level of a tile</td>
+</tr>
+<tr>
+<td><code>{YOUR-API-KEY}</code></td>
+<td>your unique API-Key, 
+<a href="#api-key">more information</a></td>
+</tr>
+</tbody>
+</table>
+<p>Please check our <a href="#examples">sample code</a> to see how to use the UTFGrids in your application.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="43"><h4 id="utfgrid-url">UTFGrid URL</h4>
+<pre><code class="hljs">http://{t1-t3}.metgis.com/{parameter}_{timestep}_grid/{z}/{x}/{y}.json?callback={cb}&amp;key={YOUR-API-KEY}</code></pre>
+</div></div><div data-title="Numerical Values for Selected Locations" class="keyline-top section contain clearfix " data-reactid="44"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="45"><h3 id="numerical-values-for-selected-locations">Numerical Values for Selected Locations</h3>
+<p><img src="./img/numbers_small.jpg" alt="Numerical values for precipitation"></p>
+<p>Please note that this feature is currently only available in our <a href="http://tiles.metgis.com/tiles-demo/">demo page</a> after checking the &quot;Show numbers&quot; box. Please <a href="http://www.metgis.com/about/contact/">contact us</a> for further information.</p>
+<p>To show values for a variety of significant locations (cities, towns, peaks, ...) as additional overlay on your map, you can integrate our Point-Layers. They are available for all of our <a href="#weather-parameters">weather parameters</a>.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="46"><h4 id="sample-call">Sample call</h4>
+<pre><code class="hljs">http://{t1-t3}.metgis.com/{parameter}_{timestep}_point/{z}/{x}/{y}.png?key={YOUR-API-KEY}</code></pre>
+</div></div><div data-title="Time Step" class="keyline-top section contain clearfix " data-reactid="47"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="48"><h3 id="time-step">Time Step</h3>
+<p>Weather forecasts are issued for 3 hour intervals. They start at the time specified as <code>forecastIssued</code> in the <a href="#metajson">meta.json</a>. The parameters temperature, cloudiness and wind are valid for the exact time (e.g. 12:00 UTC), whereas the parameters precipitation and fresh snow are valid for the whole interval of the past three hours (e.g. 9:00 UTC - 12:00 UTC) - this also means that there are no forecasts for these parameters for time step = 1.</p>
+<p>To simplify the access to the tiles we introduced time steps which represent the 3 hour intervals. Starting at 1 - which reflects the weather forecasts for the time  <code>forecastIssued</code> - it counts up to 25 where every single step counts as 3 hours. Please see the following table related to the example <code>&quot;forecastIssued&quot;: &quot;2015-01-03T18:00Z&quot;</code> for clarification:</p>
+<table>
+<thead>
+<tr>
+<th><strong><code>timestep</code></strong></th>
+<th><strong>forecast valid for temperature, cloudiness + wind</strong></th>
+<th><strong>forecast valid for precipitation + fresh snow</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2015-01-03 18:00 UTC</td>
+<td>not available</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2015-01-03 21:00 UTC</td>
+<td>2015-01-03 18:00 - 21:00 UTC</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2015-01-04 6:00 UTC</td>
+<td>2015-01-04 3:00 - 6:00 UTC</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>25</td>
+<td>2015-01-06 12:00 UTC</td>
+<td>2015-01-06 9:00 - 12:00 UTC</td>
+</tr>
+</tbody>
+</table>
+</div></div><div data-title="meta.json" class="keyline-top section contain clearfix " data-reactid="49"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="50"><h3 id="metajson">meta.json</h3>
+<p>For every forecast run a file with meta-information is produced. It contains the start time of the forecast run and other useful information. This <code>meta.json</code> is located at <code>http://tiles.metgis.com/meta/{V}/meta.json</code> where <code>{V}</code> stands for the version number. Please check the current version in <a href="http://tiles.metgis.com/meta/">the changelog</a>.</p>
+<p><strong>Properties:</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>description</code></td>
+<td>a brief description of the service</td>
+</tr>
+<tr>
+<td><code>productInfo</code></td>
+<td>information on the product</td>
+</tr>
+<tr>
+<td><code>forecastIssued</code></td>
+<td>start time of the calculations of the meteorological forecast model as ISO-Datestring (UTC). This is also the time of the latest measurements that exercise an influence on the forecast.</td>
+</tr>
+<tr>
+<td><code>forecastCompleted</code></td>
+<td>end time of the calculation of the tiles as ISO-Datestring (UTC)</td>
+</tr>
+<tr>
+<td><code>projection</code></td>
+<td>EPSG-Code of the coordinate reference system used for the tiles</td>
+</tr>
+<tr>
+<td><code>bbox</code></td>
+<td>the bounding box of the currently available tiles (latitude/longitude of the lower left and upper right box limit)</td>
+</tr>
+<tr>
+<td><code>timeStep</code></td>
+<td>length of period of time between two forecast times, typically 3 hours</td>
+</tr>
+<tr>
+<td><code>timeStepUnit</code></td>
+<td>the unit of 
+<code>timeStep</code>
+ and 
+<code>parameterPeriod</code>
+, 
+<code>h</code>
+ stands for hour</td>
+</tr>
+<tr>
+<td><code>timeStepNumber</code></td>
+<td>number of 
+<code>timeSteps</code>
+ for this forecast</td>
+</tr>
+<tr>
+<td><code>attribution</code></td>
+<td>attribution that has to be shown in conjunction with the forecasts, see the 
+<a href="http://tiles.metgis.com/tiles-demo/">demo page</a></td>
+</tr>
+<tr>
+<td><code>parameters</code></td>
+<td>list of available weather parameters</td>
+</tr>
+<tr>
+<td><code>parameterUnit</code></td>
+<td>unit of the given parameter</td>
+</tr>
+<tr>
+<td><code>parameterPeriod</code></td>
+<td>time period which a single prediction refers to in hours. For most parameters (e.g. temperature) this is a point in time, for some others (e.g. 
+<code>precipitation</code>
+) it is a period (typically as long as the 
+<code>timeStep</code>
+). 
+<code>0</code>
+ indicates a point in time, any other number describes the length of the time period.</td>
+</tr>
+<tr>
+<td><code>parameterPeriodOffset</code></td>
+<td><strong>only for cumulated parameters,</strong>
+ defines the offset of the start time from 
+<code>forecastIssued</code></td>
+</tr>
+<tr>
+<td><code>parameterName</code></td>
+<td>Language dependent name of the given parameter, indetified by ISO 639-1 Codes. Currently available languages: English, German, Spanish, French, Italian, Slovenian.</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="51"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>http://tiles.metgis.com/meta/<span class="strong">{V}</span>/meta.json</div>
+    </div>
+<h4 id="example-response">Example Response</h4>
+<pre><code class="hljs">{
+   <span class="hljs-attr">"description"</span>:<span class="hljs-string">"MetGIS Tile Server"</span>,
+   <span class="hljs-attr">"productInfo"</span>:<span class="hljs-string">"MetGIS Weather Forecast based on GFS Data"</span>,
+   <span class="hljs-attr">"forecastIssued"</span>:<span class="hljs-string">"2015-01-03T18:00Z"</span>,
+   <span class="hljs-attr">"forecastCompleted"</span>:<span class="hljs-string">"2015-01-04T03:44Z"</span>,
+   <span class="hljs-attr">"projection"</span>:<span class="hljs-string">"EPSG:3857"</span>,
+   <span class="hljs-attr">"bbox"</span>:<span class="hljs-string">"43.0,5.0,50.0,18.0"</span>,
+   <span class="hljs-attr">"timeStep"</span>:<span class="hljs-number">3</span>,
+   <span class="hljs-attr">"timeStepUnit"</span>:<span class="hljs-string">"h"</span>,
+   <span class="hljs-attr">"timeStepNumber"</span>:<span class="hljs-number">25</span>,
+   <span class="hljs-attr">"attribution"</span>:<span class="hljs-string">"Weather Forecast &amp;copy; &lt;a title='MetGIS Professional Weather Service' href='http:\/\/www.metgis.com\/' target='_blank'&gt;MetGIS&lt;/a&gt;"</span>,
+   <span class="hljs-attr">"parameters"</span>:{
+      <span class="hljs-attr">"wind"</span>:{
+         <span class="hljs-attr">"parameterUnit"</span>:<span class="hljs-string">"km\/h"</span>,
+         <span class="hljs-attr">"parameterPeriod"</span>:<span class="hljs-number">0</span>,
+         <span class="hljs-attr">"parameterName"</span>:{
+            <span class="hljs-attr">"sl"</span>:<span class="hljs-string">"Veter"</span>,
+            <span class="hljs-attr">"de"</span>:<span class="hljs-string">"Wind"</span>,
+            <span class="hljs-attr">"it"</span>:<span class="hljs-string">"Vento"</span>,
+            <span class="hljs-attr">"fr"</span>:<span class="hljs-string">"Vent"</span>,
+            <span class="hljs-attr">"en"</span>:<span class="hljs-string">"Wind"</span>,
+            <span class="hljs-attr">"es"</span>:<span class="hljs-string">"Viento"</span>
+         }
+      },
+      <span class="hljs-attr">"tmp2m"</span>:{
+         <span class="hljs-attr">"parameterUnit"</span>:<span class="hljs-string">"°C"</span>,
+         <span class="hljs-attr">"parameterPeriod"</span>:<span class="hljs-number">0</span>,
+         <span class="hljs-attr">"parameterName"</span>:{
+            <span class="hljs-attr">"sl"</span>:<span class="hljs-string">"Temperatura"</span>,
+            <span class="hljs-attr">"de"</span>:<span class="hljs-string">"Temperatur"</span>,
+            <span class="hljs-attr">"it"</span>:<span class="hljs-string">"Temperatura"</span>,
+            <span class="hljs-attr">"fr"</span>:<span class="hljs-string">"Température"</span>,
+            <span class="hljs-attr">"en"</span>:<span class="hljs-string">"Temperature"</span>,
+            <span class="hljs-attr">"es"</span>:<span class="hljs-string">"Temperatura"</span>
+         }
+      },
+      <span class="hljs-attr">"tcdcprs"</span>:{
+         <span class="hljs-attr">"parameterUnit"</span>:<span class="hljs-string">"%"</span>,
+         <span class="hljs-attr">"parameterPeriod"</span>:<span class="hljs-number">0</span>,
+         <span class="hljs-attr">"parameterName"</span>:{
+            <span class="hljs-attr">"sl"</span>:<span class="hljs-string">"Oblačnost"</span>,
+            <span class="hljs-attr">"de"</span>:<span class="hljs-string">"Bewölkung"</span>,
+            <span class="hljs-attr">"it"</span>:<span class="hljs-string">"Nuvolosità"</span>,
+            <span class="hljs-attr">"fr"</span>:<span class="hljs-string">"Nébulosité"</span>,
+            <span class="hljs-attr">"en"</span>:<span class="hljs-string">"Cloudiness"</span>,
+            <span class="hljs-attr">"es"</span>:<span class="hljs-string">"Nubosidad"</span>
+         }
+      },
+      <span class="hljs-attr">"hr_p"</span>:{
+         <span class="hljs-attr">"parameterUnit"</span>:<span class="hljs-string">"mm"</span>,
+         <span class="hljs-attr">"parameterPeriod"</span>:<span class="hljs-number">3</span>,
+         <span class="hljs-attr">"parameterName"</span>:{
+            <span class="hljs-attr">"sl"</span>:<span class="hljs-string">"Padavine"</span>,
+            <span class="hljs-attr">"de"</span>:<span class="hljs-string">"Niederschlag"</span>,
+            <span class="hljs-attr">"it"</span>:<span class="hljs-string">"Precipitazione"</span>,
+            <span class="hljs-attr">"fr"</span>:<span class="hljs-string">"Précipitations"</span>,
+            <span class="hljs-attr">"en"</span>:<span class="hljs-string">"Precipitation"</span>,
+            <span class="hljs-attr">"es"</span>:<span class="hljs-string">"Precipitación"</span>
+         }
+      },
+      <span class="hljs-attr">"hr_sn"</span>:{
+         <span class="hljs-attr">"parameterUnit"</span>:<span class="hljs-string">"cm"</span>,
+         <span class="hljs-attr">"parameterPeriod"</span>:<span class="hljs-number">3</span>,
+         <span class="hljs-attr">"parameterName"</span>:{
+            <span class="hljs-attr">"sl"</span>:<span class="hljs-string">"Novozapadli sneg"</span>,
+            <span class="hljs-attr">"de"</span>:<span class="hljs-string">"Neuschnee"</span>,
+            <span class="hljs-attr">"it"</span>:<span class="hljs-string">"Neve fresca"</span>,
+            <span class="hljs-attr">"fr"</span>:<span class="hljs-string">"Neige fraiche"</span>,
+            <span class="hljs-attr">"en"</span>:<span class="hljs-string">"Fresh Snow"</span>,
+            <span class="hljs-attr">"es"</span>:<span class="hljs-string">"Nieve fresca"</span>
+         }
+      },
+      <span class="hljs-attr">"hr_sn_0-24"</span>: {
+         <span class="hljs-attr">"parameterUnit"</span>: <span class="hljs-string">"cm"</span>,
+         <span class="hljs-attr">"parameterPeriod"</span>: <span class="hljs-number">24</span>,
+         <span class="hljs-attr">"parameterPeriodOffset"</span>: <span class="hljs-number">0</span>,
+         <span class="hljs-attr">"parameterName"</span>: {
+            <span class="hljs-attr">"sl"</span>: <span class="hljs-string">"Novozapadli sneg 0-24h"</span>,
+            <span class="hljs-attr">"de"</span>: <span class="hljs-string">"Neuschnee 0-24h"</span>,
+            <span class="hljs-attr">"it"</span>: <span class="hljs-string">"Neve fresca 0-24h"</span>,
+            <span class="hljs-attr">"fr"</span>: <span class="hljs-string">"Neige fraiche 0-24h"</span>,
+            <span class="hljs-attr">"en"</span>: <span class="hljs-string">"Fresh Snow 0-24h"</span>,
+            <span class="hljs-attr">"es"</span>: <span class="hljs-string">"Nieve fresca 0-24h"</span>
+         }
+      },
+      <span class="hljs-attr">"hr_sn_24-72"</span>: {
+         <span class="hljs-attr">"parameterUnit"</span>: <span class="hljs-string">"cm"</span>,
+         <span class="hljs-attr">"parameterPeriod"</span>: <span class="hljs-number">48</span>,
+         <span class="hljs-attr">"parameterPeriodOffset"</span>: <span class="hljs-number">24</span>,
+         <span class="hljs-attr">"parameterName"</span>: {
+            <span class="hljs-attr">"sl"</span>: <span class="hljs-string">"Novozapadli sneg 24-72h"</span>,
+            <span class="hljs-attr">"de"</span>: <span class="hljs-string">"Neuschnee 24-72h"</span>,
+            <span class="hljs-attr">"it"</span>: <span class="hljs-string">"Neve fresca 24-72h"</span>,
+            <span class="hljs-attr">"fr"</span>: <span class="hljs-string">"Neige fraiche 24-72h"</span>,
+            <span class="hljs-attr">"en"</span>: <span class="hljs-string">"Fresh Snow 24-72h"</span>,
+            <span class="hljs-attr">"es"</span>: <span class="hljs-string">"Nieve fresca 24-72h"</span>
+         }
+      }
+   }
+}</code></pre>
+</div></div><div data-title="Color Values" class="keyline-top section contain clearfix " data-reactid="52"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="53"><h3 id="color-values">Color Values</h3>
+<p>The color values related to the parameters are as follows:</p>
+<p><strong>Temperature</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Value [&deg;C]</strong></th>
+<th><strong>Color</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;-30</td>
+<td><code>#737373</code></td>
+</tr>
+<tr>
+<td>-30</td>
+<td><code>#969696</code></td>
+</tr>
+<tr>
+<td>-28</td>
+<td><code>#bdbdbd</code></td>
+</tr>
+<tr>
+<td>-26</td>
+<td><code>#efedf5</code></td>
+</tr>
+<tr>
+<td>-24</td>
+<td><code>#dadaeb</code></td>
+</tr>
+<tr>
+<td>-22</td>
+<td><code>#bcbddc</code></td>
+</tr>
+<tr>
+<td>-20</td>
+<td><code>#9e9ac8</code></td>
+</tr>
+<tr>
+<td>-18</td>
+<td><code>#807dba</code></td>
+</tr>
+<tr>
+<td>-16</td>
+<td><code>#6a51a3</code></td>
+</tr>
+<tr>
+<td>-14</td>
+<td><code>#544082</code></td>
+</tr>
+<tr>
+<td>-12</td>
+<td><code>#06407c</code></td>
+</tr>
+<tr>
+<td>-10</td>
+<td><code>#08519c</code></td>
+</tr>
+<tr>
+<td>-8</td>
+<td><code>#2171b5</code></td>
+</tr>
+<tr>
+<td>-6</td>
+<td><code>#4292c6</code></td>
+</tr>
+<tr>
+<td>-4</td>
+<td><code>#6baed6</code></td>
+</tr>
+<tr>
+<td>-2</td>
+<td><code>#9ecae1</code></td>
+</tr>
+<tr>
+<td>0</td>
+<td><code>#238443</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>#41ab5d</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>#78c679</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>#addd8e</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>#d9f0a3</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>#f7fcb9</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>#ffffcc</code></td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>#ffeda0</code></td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>#fed976</code></td>
+</tr>
+<tr>
+<td>18</td>
+<td><code>#feb24c</code></td>
+</tr>
+<tr>
+<td>20</td>
+<td><code>#fd8d3c</code></td>
+</tr>
+<tr>
+<td>22</td>
+<td><code>#fdbb84</code></td>
+</tr>
+<tr>
+<td>24</td>
+<td><code>#fc8d59</code></td>
+</tr>
+<tr>
+<td>26</td>
+<td><code>#ef6548</code></td>
+</tr>
+<tr>
+<td>28</td>
+<td><code>#d7301f</code></td>
+</tr>
+<tr>
+<td>30</td>
+<td><code>#bd0026</code></td>
+</tr>
+<tr>
+<td>32</td>
+<td><code>#b30000</code></td>
+</tr>
+<tr>
+<td>34</td>
+<td><code>#800026</code></td>
+</tr>
+<tr>
+<td>36</td>
+<td><code>#7f0000</code></td>
+</tr>
+<tr>
+<td>38</td>
+<td><code>#4c0016</code></td>
+</tr>
+<tr>
+<td>&gt;40</td>
+<td><code>#35000f</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Precipitation</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Value [mm]</strong></th>
+<th><strong>Color</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.1 &lt;= x &lt; 0.2</td>
+<td><code>#deebf7</code></td>
+</tr>
+<tr>
+<td>0.2 &lt;= x &lt; 0.5</td>
+<td><code>#c6dbef</code></td>
+</tr>
+<tr>
+<td>0.5 &lt;= x &lt; 1</td>
+<td><code>#9ecae1</code></td>
+</tr>
+<tr>
+<td>1 &lt;= x &lt; 1.5</td>
+<td><code>#6baed6</code></td>
+</tr>
+<tr>
+<td>1.5 &lt;= x &lt; 2</td>
+<td><code>#4292c6</code></td>
+</tr>
+<tr>
+<td>2 &lt;= x &lt; 3</td>
+<td><code>#2171b5</code></td>
+</tr>
+<tr>
+<td>3 &lt;= x &lt; 4</td>
+<td><code>#08519c</code></td>
+</tr>
+<tr>
+<td>4 &lt;= x &lt; 6</td>
+<td><code>#08306b</code></td>
+</tr>
+<tr>
+<td>6 &lt;= x &lt; 8</td>
+<td><code>#fde0ef</code></td>
+</tr>
+<tr>
+<td>8 &lt;= x &lt; 12</td>
+<td><code>#f1b6da</code></td>
+</tr>
+<tr>
+<td>12 &lt;= x &lt; 16</td>
+<td><code>#de77ae</code></td>
+</tr>
+<tr>
+<td>16 &lt;= x</td>
+<td><code>#c51b7d</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Fresh Snow</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Value [cm]</strong></th>
+<th><strong>Color</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.1 &lt;= x &lt; 0.3</td>
+<td><code>#ffffff</code></td>
+</tr>
+<tr>
+<td>0.3 &lt;= x &lt; 1</td>
+<td><code>#c6ecf9</code></td>
+</tr>
+<tr>
+<td>1 &lt;= x &lt; 2</td>
+<td><code>#a0e0f6</code></td>
+</tr>
+<tr>
+<td>2 &lt;= x &lt; 4</td>
+<td><code>#59ccf2</code></td>
+</tr>
+<tr>
+<td>4 &lt;= x &lt; 6</td>
+<td><code>#19bbf1</code></td>
+</tr>
+<tr>
+<td>6 &lt;= x &lt; 8</td>
+<td><code>#019ccf</code></td>
+</tr>
+<tr>
+<td>8 &lt;= x &lt; 12</td>
+<td><code>#f79df3</code></td>
+</tr>
+<tr>
+<td>12 &lt;= x &lt; 16</td>
+<td><code>#f353ec</code></td>
+</tr>
+<tr>
+<td>16 &lt;= x &lt; 20</td>
+<td><code>#f311e8</code></td>
+</tr>
+<tr>
+<td>20 &lt;= x &lt; 30</td>
+<td><code>#fbc607</code></td>
+</tr>
+<tr>
+<td>30 &lt;= x &lt; 50</td>
+<td><code>#fba204</code></td>
+</tr>
+<tr>
+<td>50 &lt;= x &lt; 80</td>
+<td><code>#f7760f</code></td>
+</tr>
+<tr>
+<td>80 &lt;= x &lt; 120</td>
+<td><code>#e03603</code></td>
+</tr>
+<tr>
+<td>120 &lt;= x</td>
+<td><code>#a11a04</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cloudiness</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Value [%]</strong></th>
+<th><strong>Color</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>25 &lt;= x &lt; 37.5</td>
+<td><code>#cccccc</code></td>
+</tr>
+<tr>
+<td>37.5 &lt;= x &lt; 50</td>
+<td><code>#b2b2b2</code></td>
+</tr>
+<tr>
+<td>50 &lt;= x &lt; 62.5</td>
+<td><code>#999999</code></td>
+</tr>
+<tr>
+<td>62.5 &lt;= x &lt; 75</td>
+<td><code>#7f7f7f</code></td>
+</tr>
+<tr>
+<td>75 &lt;= x &lt; 87.5</td>
+<td><code>#666666</code></td>
+</tr>
+<tr>
+<td>87.5 &lt;= x &lt;= 100</td>
+<td><code>#4c4c4c</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wind</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Value [km/h]</strong></th>
+<th><strong>Image</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 &lt;= x &lt; 2</td>
+<td>wind-0-270.png</td>
+</tr>
+<tr>
+<td>2 &lt;= x &lt; 5</td>
+<td>wind-2-270.png</td>
+</tr>
+<tr>
+<td>5 &lt;= x &lt; 10</td>
+<td>wind-5-270.png</td>
+</tr>
+<tr>
+<td>10 &lt;= x &lt; 20</td>
+<td>wind-10-270.png</td>
+</tr>
+<tr>
+<td>20 &lt;= x &lt; 30</td>
+<td>wind-20-270.png</td>
+</tr>
+<tr>
+<td>30 &lt;= x &lt; 40</td>
+<td>wind-30-270.png</td>
+</tr>
+<tr>
+<td>40 &lt;= x &lt; 50</td>
+<td>wind-40-270.png</td>
+</tr>
+<tr>
+<td>50 &lt;= x &lt; 75</td>
+<td>wind-50-270.png</td>
+</tr>
+<tr>
+<td>75 &lt;= x &lt; 100</td>
+<td>wind-75-270.png</td>
+</tr>
+<tr>
+<td>100 &lt;= x</td>
+<td>wind-100-270.png</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="54"><h4 id="javascript-objects-for-generating-legends">JavaScript Objects for generating legends</h4>
+<pre><code class="hljs">{
+    <span class="hljs-string">"tmp2m"</span>: [[<span class="hljs-string">"&gt;40"</span>,<span class="hljs-string">"#35000f"</span>],[<span class="hljs-string">"38"</span>,<span class="hljs-string">"#4c0016"</span>],[<span class="hljs-string">"36"</span>,<span class="hljs-string">"#7f0000"</span>],[<span class="hljs-string">"34"</span>,<span class="hljs-string">"#800026"</span>],[<span class="hljs-string">"32"</span>,<span class="hljs-string">"#b30000"</span>],[<span class="hljs-string">"30"</span>,<span class="hljs-string">"#bd0026"</span>],[<span class="hljs-string">"28"</span>,<span class="hljs-string">"#d7301f"</span>],[<span class="hljs-string">"26"</span>,<span class="hljs-string">"#ef6548"</span>],[<span class="hljs-string">"24"</span>,<span class="hljs-string">"#fc8d59"</span>],[<span class="hljs-string">"22"</span>,<span class="hljs-string">"#fdbb84"</span>],[<span class="hljs-string">"20"</span>,<span class="hljs-string">"#fd8d3c"</span>],[<span class="hljs-string">"18"</span>,<span class="hljs-string">"#feb24c"</span>],[<span class="hljs-string">"16"</span>,<span class="hljs-string">"#fed976"</span>],[<span class="hljs-string">"14"</span>,<span class="hljs-string">"#ffeda0"</span>],[<span class="hljs-string">"12"</span>,<span class="hljs-string">"#ffffcc"</span>],[<span class="hljs-string">"10"</span>,<span class="hljs-string">"#f7fcb9"</span>],[<span class="hljs-string">"8"</span>,<span class="hljs-string">"#d9f0a3"</span>],[<span class="hljs-string">"6"</span>,<span class="hljs-string">"#addd8e"</span>],[<span class="hljs-string">"4"</span>,<span class="hljs-string">"#78c679"</span>],[<span class="hljs-string">"2"</span>,<span class="hljs-string">"#41ab5d"</span>],[<span class="hljs-string">"0"</span>,<span class="hljs-string">"#238443"</span>],[<span class="hljs-string">"-2"</span>,<span class="hljs-string">"#9ecae1"</span>],[<span class="hljs-string">"-4"</span>,<span class="hljs-string">"#6baed6"</span>],[<span class="hljs-string">"-6"</span>,<span class="hljs-string">"#4292c6"</span>],[<span class="hljs-string">"-8"</span>,<span class="hljs-string">"#2171b5"</span>],[<span class="hljs-string">"-10"</span>,<span class="hljs-string">"#08519c"</span>],[<span class="hljs-string">"-12"</span>,<span class="hljs-string">"#06407c"</span>],[<span class="hljs-string">"-14"</span>,<span class="hljs-string">"#544082"</span>],[<span class="hljs-string">"-16"</span>,<span class="hljs-string">"#6a51a3"</span>],[<span class="hljs-string">"-18"</span>,<span class="hljs-string">"#807dba"</span>],[<span class="hljs-string">"-20"</span>,<span class="hljs-string">"#9e9ac8"</span>],[<span class="hljs-string">"-22"</span>,<span class="hljs-string">"#bcbddc"</span>],[<span class="hljs-string">"-24"</span>,<span class="hljs-string">"#dadaeb"</span>],[<span class="hljs-string">"-26"</span>,<span class="hljs-string">"#efedf5"</span>],[<span class="hljs-string">"-28"</span>,<span class="hljs-string">"#bdbdbd"</span>],[<span class="hljs-string">"-30"</span>,<span class="hljs-string">"#969696"</span>],[<span class="hljs-string">"&lt;-30"</span>,<span class="hljs-string">"#737373"</span>]],
+
+    <span class="hljs-string">"hr_p"</span>: [[<span class="hljs-string">"16"</span>,<span class="hljs-string">"#c51b7d"</span>],[<span class="hljs-string">"12"</span>,<span class="hljs-string">"#de77ae"</span>],[<span class="hljs-string">"8"</span>,<span class="hljs-string">"#f1b6da"</span>],[<span class="hljs-string">"6"</span>,<span class="hljs-string">"#fde0ef"</span>],[<span class="hljs-string">"4"</span>,<span class="hljs-string">"#08306b"</span>],[<span class="hljs-string">"3"</span>,<span class="hljs-string">"#08519c"</span>],[<span class="hljs-string">"2"</span>,<span class="hljs-string">"#2171b5"</span>],[<span class="hljs-string">"1.5"</span>,<span class="hljs-string">"#4292c6"</span>],[<span class="hljs-string">"1"</span>,<span class="hljs-string">"#6baed6"</span>],[<span class="hljs-string">"0.5"</span>,<span class="hljs-string">"#9ecae1"</span>],[<span class="hljs-string">"0.2"</span>,<span class="hljs-string">"#c6dbef"</span>],[<span class="hljs-string">"0.1"</span>,<span class="hljs-string">"#deebf7"</span>]],
+
+	<span class="hljs-string">"hr_sn_cumulated"</span>: [[<span class="hljs-string">"120"</span>,<span class="hljs-string">"#a11a04"</span>],[<span class="hljs-string">"80"</span>,<span class="hljs-string">"#e03603"</span>],[<span class="hljs-string">"50"</span>,<span class="hljs-string">"#f7760f"</span>],[<span class="hljs-string">"30"</span>,<span class="hljs-string">"#fba204"</span>],[<span class="hljs-string">"20"</span>,<span class="hljs-string">"#fbc607"</span>],[<span class="hljs-string">"16"</span>,<span class="hljs-string">"#f311e8"</span>],[<span class="hljs-string">"12"</span>,<span class="hljs-string">"#f353ec"</span>],[<span class="hljs-string">"8"</span>,<span class="hljs-string">"#f79df3"</span>],[<span class="hljs-string">"6"</span>,<span class="hljs-string">"#019ccf"</span>],[<span class="hljs-string">"4"</span>,<span class="hljs-string">"#19bbf1"</span>],[<span class="hljs-string">"2"</span>,<span class="hljs-string">"#59ccf2"</span>],[<span class="hljs-string">"1"</span>,<span class="hljs-string">"#a0e0f6"</span>],[<span class="hljs-string">"0.3"</span>,<span class="hljs-string">"#c6ecf9"</span>],[<span class="hljs-string">"0.1"</span>,<span class="hljs-string">"#ffffff"</span>]],
+
+    <span class="hljs-string">"hr_sn"</span>: [[<span class="hljs-string">"16"</span>,<span class="hljs-string">"#f311e8"</span>],[<span class="hljs-string">"12"</span>,<span class="hljs-string">"#f353ec"</span>],[<span class="hljs-string">"8"</span>,<span class="hljs-string">"#f79df3"</span>],[<span class="hljs-string">"6"</span>,<span class="hljs-string">"#019ccf"</span>],[<span class="hljs-string">"4"</span>,<span class="hljs-string">"#19bbf1"</span>],[<span class="hljs-string">"2"</span>,<span class="hljs-string">"#59ccf2"</span>],[<span class="hljs-string">"1"</span>,<span class="hljs-string">"#a0e0f6"</span>],[<span class="hljs-string">"0.3"</span>,<span class="hljs-string">"#c6ecf9"</span>],[<span class="hljs-string">"0.1"</span>,<span class="hljs-string">"#ffffff"</span>]],
+
+    <span class="hljs-string">"tcdcprs"</span>: [[<span class="hljs-string">"87.5"</span>,<span class="hljs-string">"#4c4c4c"</span>],[<span class="hljs-string">"75"</span>,<span class="hljs-string">"#666666"</span>],[<span class="hljs-string">"62.5"</span>,<span class="hljs-string">"#7f7f7f"</span>],[<span class="hljs-string">"50"</span>,<span class="hljs-string">"#999999"</span>],[<span class="hljs-string">"37.5"</span>,<span class="hljs-string">"#b2b2b2"</span>],[<span class="hljs-string">"25"</span>,<span class="hljs-string">"#cccccc"</span>]],
+
+    <span class="hljs-string">"wind"</span>: [[<span class="hljs-string">"100"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-100-270.png') no-repeat center; width: 59px; height: 33px;"</span>],[<span class="hljs-string">"75"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-75-270.png') no-repeat center; width: 54px; height: 30px;"</span>],[<span class="hljs-string">"50"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-50-270.png') no-repeat center; width: 48px; height: 28px;"</span>],[<span class="hljs-string">"40"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-40-270.png') no-repeat center; width: 43px; height: 24px;"</span>],[<span class="hljs-string">"30"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-30-270.png') no-repeat center; width: 36px; height: 20px;"</span>],[<span class="hljs-string">"20"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-20-270.png') no-repeat center; width: 29px; height: 16px;"</span>],[<span class="hljs-string">"10"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-10-270.png') no-repeat center; width: 23px; height: 13px;"</span>],[<span class="hljs-string">"5"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-5-270.png') no-repeat center; width: 18px; height: 10px;"</span>],[<span class="hljs-string">"2"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-2-270.png') no-repeat center; width: 13px; height: 8px;"</span>],[<span class="hljs-string">"0"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-0-270.png') no-repeat center; width: 8px; height: 8px;"</span>]]
+  }</code></pre>
+</div></div><div data-title="Examples" class="keyline-top section contain clearfix " data-reactid="55"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="56"><h2 id="examples">Examples</h2>
+<p>Our weather maps may be integrated into your website or app, using different software frameworks. Some of them are:</p>
+<p><strong>Web</strong></p>
+<ul>
+<li><a href="http://leafletjs.com/">Leaflet</a></li>
+<li><a href="http://openlayers.org/">OpenLayers</a></li>
+<li><a href="https://developers.google.com/maps/">Google Maps API</a></li>
+</ul>
+<p><strong>Apps</strong></p>
+<ul>
+<li><a href="https://developers.google.com/maps/documentation/android/">Google Maps Android API</a></li>
+<li><a href="https://developers.google.com/maps/documentation/ios/">Google Maps SDK for iOS</a></li>
+<li>Apple&#x27;s <a href="https://developer.apple.com/maps/">Maps for Developers</a></li>
+<li><a href="https://www.mapbox.com/mobile/">Mapbox SDK</a></li>
+</ul>
+<p>The following examples show possible implementations with different frameworks.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="57"><h4 id="example-of-integration-with-leaflet">Example of integration with Leaflet</h4>
+<pre><code class="hljs"><span class="hljs-keyword">var</span> temperatureLayer = L.tileLayer( <span class="hljs-string">'http://t1.metgis.com/tmp2m_5/{z}/{x}/{y}.png?key=YOUR_API_KEY'</span> );</code></pre>
+</div></div><div data-title="Leaflet" class="keyline-top section contain clearfix " data-reactid="58"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="59"><h3 id="leaflet">Leaflet</h3>
+<p>This exapmle shows how to implement a weather map using <a href="http://leafletjs.com/">Leaflet</a>.</p>
+<p>Please refer to our <a href="http://tiles.metgis.com/tiles-demo/">demo page</a> to view a fully functional example.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="60"><h4 id="example-of-temperature-integration">Example of temperature integration:</h4>
+<pre><code class="hljs"><span class="hljs-keyword">var</span> tmp2mUrl = <span class="hljs-string">'http://{s}.metgis.com/tmp2m_'</span>;
+<span class="hljs-keyword">var</span> urlSuffix = <span class="hljs-string">'/{z}/{x}/{y}.png?key=YOUR-API-KEY'</span>;
+<span class="hljs-keyword">var</span> timestep = <span class="hljs-number">1</span>; <span class="hljs-comment">// a value between 1 and 25</span>
+
+<span class="hljs-keyword">var</span> layertmp2m = L.tileLayer( tmp2mUrl + timestep + urlSuffix, {
+  maxZoom: <span class="hljs-number">15</span>,
+  attribution: <span class="hljs-string">"Weather Forecast &amp;copy; &lt;a title='MetGIS Professional Weather Service' href='http://www.metgis.com/' target='_blank'&gt;MetGIS&lt;/a&gt;"</span>,
+  opacity:<span class="hljs-number">0.7</span>,
+  subdomains: [<span class="hljs-string">"t1"</span>, <span class="hljs-string">"t2"</span>, <span class="hljs-string">"t3"</span>]
+});</code></pre>
+<h4 id="add-utfgrids">Add UTFGrids</h4>
+<pre><code class="hljs"><span class="hljs-comment">// To integrate UTFGrids with Leaflet you have to use the Leaflet.utfgrid plugin.</span>
+<span class="hljs-comment">// https://github.com/danzel/Leaflet.utfgrid</span>
+
+<span class="hljs-keyword">var</span> tmp2mGridUrl = <span class="hljs-string">'http://{s}.metgis.com/tmp2m_'</span>;
+<span class="hljs-keyword">var</span> gridUrlSuffix = <span class="hljs-string">'_grid/{z}/{x}/{y}.json?callback={cb}'</span>;
+<span class="hljs-keyword">var</span> timestep = <span class="hljs-number">1</span>; <span class="hljs-comment">// a value between 1 and 25</span>
+
+<span class="hljs-keyword">var</span> layertmp2mGrid = <span class="hljs-keyword">new</span> L.UtfGrid(tmp2mGridUrl + timestep + gridUrlSuffix, {
+  resolution: <span class="hljs-number">4</span>,
+  pointerCursor: <span class="hljs-literal">false</span>,
+  maxRequests:<span class="hljs-number">8</span>,
+  subdomains: [<span class="hljs-string">"t1"</span>, <span class="hljs-string">"t2"</span>, <span class="hljs-string">"t3"</span>]
+});
+layertmp2mGrid.on(<span class="hljs-string">'mouseover'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>{<span class="hljs-built_in">console</span>.log(e.data);});</code></pre>
+</div></div><div data-title="OpenLayers 3" class="keyline-top section contain clearfix " data-reactid="61"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="62"><h3 id="openlayers-3">OpenLayers 3</h3>
+<p>This exapmle shows how to implement a weather map using <a href="http://openlayers.org/">OpenLayers</a>.</p>
+<p><strong>Note:</strong> the <code>ol.source.TileUTFGrid</code> expects a <a href="https://github.com/mapbox/tilejson-spec">TileJSON</a> file. We provide a PHP script that returns the appropriate data. Please submit the required fields to the query string to get the correct version.</p>
+<p><code>http://tiles.metgis.com/meta/0.6/metgis_tilejsonwrapper.php?parameter={parameter}&amp;timestep={timestep}&amp;key={YOUR-API-KEY}&amp;callback={cb}</code></p>
+<p>Please refer to the official OpenLayers <a href="http://openlayers.org/en/v3.6.0/examples/tileutfgrid.html">TileUTFGrid Example</a> for more information regarding the <code>ol.source.TileUTFGrid</code>.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="63"><h4 id="simple-example-of-temperature">Simple example of temperature:</h4>
+<pre><code class="hljs"><span class="hljs-keyword">var</span> map = <span class="hljs-keyword">new</span> ol.Map({
+  target: <span class="hljs-string">'map'</span>,
+  layers: [
+    <span class="hljs-keyword">new</span> ol.layer.Tile({
+      source: <span class="hljs-keyword">new</span> ol.source.MapQuest({layer: <span class="hljs-string">'sat'</span>})
+    }),
+    <span class="hljs-keyword">new</span> ol.layer.Tile({
+      source: <span class="hljs-keyword">new</span> ol.source.XYZ({
+        url: <span class="hljs-string">'http://t{1-3}.metgis.com/tmp2m_7/{z}/{x}/{y}.png'</span>,
+        maxZoom:<span class="hljs-number">15</span>,
+        attributions: [
+          <span class="hljs-keyword">new</span> ol.Attribution({
+            html: <span class="hljs-string">"Weather Forecast &amp;copy; &lt;a title='MetGIS Professional Weather Service' href='http://www.metgis.com/' target='_blank'&gt;MetGIS&lt;/a&gt;"</span>
+        })]
+      }),
+      opacity: <span class="hljs-number">0.7</span>
+    })
+  ],
+  view: <span class="hljs-keyword">new</span> ol.View({
+    center: ol.proj.transform([<span class="hljs-number">12.41</span>, <span class="hljs-number">47.82</span>], <span class="hljs-string">'EPSG:4326'</span>, <span class="hljs-string">'EPSG:3857'</span>),
+    zoom: <span class="hljs-number">5</span>
+  })
+});</code></pre>
+<h4 id="with-utfgrids">With UTFGrids:</h4>
+<pre><code class="hljs"><span class="hljs-keyword">var</span> view =  <span class="hljs-keyword">new</span> ol.View({
+    center: ol.proj.transform([<span class="hljs-number">12.41</span>, <span class="hljs-number">47.82</span>], <span class="hljs-string">'EPSG:4326'</span>, <span class="hljs-string">'EPSG:3857'</span>),
+    zoom: <span class="hljs-number">5</span>
+  });
+<span class="hljs-keyword">var</span> gridSource = <span class="hljs-keyword">new</span> ol.source.TileUTFGrid({
+  url: <span class="hljs-string">'http://tiles.metgis.com/meta/0.6/metgis_tilejsonwrapper.php?parameter=hr_p&amp;timestep=7&amp;key=YOUR-API-KEY'</span>
+});
+<span class="hljs-keyword">var</span> gridLayer = <span class="hljs-keyword">new</span> ol.layer.Tile({source: gridSource});
+
+<span class="hljs-keyword">var</span> map = <span class="hljs-keyword">new</span> ol.Map({
+  target: <span class="hljs-string">'map'</span>,
+  layers: [
+    <span class="hljs-keyword">new</span> ol.layer.Tile({
+      source: <span class="hljs-keyword">new</span> ol.source.MapQuest({layer: <span class="hljs-string">'sat'</span>})
+    }),
+    <span class="hljs-keyword">new</span> ol.layer.Tile({
+      source: <span class="hljs-keyword">new</span> ol.source.XYZ({
+        url: <span class="hljs-string">'http://t{1-3}.metgis.com/hr_p_7/{z}/{x}/{y}.png'</span>,
+        maxZoom:<span class="hljs-number">15</span>,
+        attributions: [
+          <span class="hljs-keyword">new</span> ol.Attribution({
+            html: <span class="hljs-string">"Weather Forecast &amp;copy; &lt;a title='MetGIS Professional Weather Service' href='http://www.metgis.com/' target='_blank'&gt;MetGIS&lt;/a&gt;"</span>
+        })]
+      }),
+      opacity: <span class="hljs-number">0.7</span>
+    }),
+    gridLayer
+  ],
+  view: view
+});
+
+<span class="hljs-keyword">var</span> displayCountryInfo = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">coordinate</span>) </span>{
+  <span class="hljs-keyword">var</span> viewResolution = <span class="hljs-comment">/** @type {number} */</span> (view.getResolution());
+  gridSource.forDataAtCoordinateAndResolution(coordinate, viewResolution,
+      <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>{
+        <span class="hljs-built_in">console</span>.log(data);
+      });
+};
+
+map.on(<span class="hljs-string">'pointermove'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">evt</span>) </span>{
+  <span class="hljs-keyword">if</span> (evt.dragging) {
+    <span class="hljs-keyword">return</span>;
+  }
+  <span class="hljs-keyword">var</span> coordinate = map.getEventCoordinate(evt.originalEvent);
+  displayCountryInfo(coordinate);
+});</code></pre>
+</div></div></div></div></div><div class="fixed-top space-left16" data-reactid="64"><div class="events fill-light bottom-shadow pad1 col6 pin-topright  " data-reactid="65"><div class="space-right1 small quiet inline" data-reactid="66">Show examples in:</div><div class="rounded-toggle inline short" data-reactid="67"><a class="strong active" data-reactid="68">JS</a><a class="strong " data-reactid="69">cURL</a></div><div class="fr pad0" data-reactid="70"><a title="Display as 1 column" style="cursor:pointer;" class="icon quiet caret-left pad0 fill-darken0 round" data-reactid="71"></a></div></div></div><div class="fill-dark dark bottom-shadow fixed-top pad0 width16" data-reactid="72"><a href="/" class="active space-top1 space-left1 pin-topleft icon round dark pad0 fill-blue" data-reactid="73"></a><div class="strong small pad0
+          
+          space-left4 line-height15" data-reactid="74">MetGIS API Documentation</div></div></div></div><!--STOP-->
     <script src='bundle.js'></script>
   </body>
 </html>
