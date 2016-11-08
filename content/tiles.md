@@ -2,7 +2,7 @@
 
 The MetGIS Maps API offers forecasts as a Tile Map Service (TMS). This standardized format enables you to integrate our weather predictions for Central Europe into any dynamic map on your website or within your app. Check our [demo page](http://tiles.metgis.com/tiles-demo/) to see an example of weather data layers integrated into zoomable maps.
 
-Our forecasts are updated every 24 hours. Once a day, at approximately 2:00 UTC, a new forecast is available, covering the following 75 hours mostly in three-hour time intervals. Beside regular tiles (in PNG-format) we also provide UTFGrid Tiles to enable a fast numerical representation of our colored maps.
+Our forecasts are updated every 12 hours. Once a day, at approximately 3:00 UTC and 15:00 UTC, a new forecast is available, covering the following 75 hours mostly in three-hour time intervals. Beside regular tiles (in PNG-format) we also provide UTFGrid Tiles to enable a fast numerical representation of our colored maps.
 
 ![Coverage of MetGIS Maps API](./img/map-coverage-thumb.gif)
 
@@ -75,8 +75,6 @@ Please check our [sample code](#examples) to see how to use the UTFGrids in your
 ### Numerical Values for Selected Locations
 
 ![Numerical values for precipitation](./img/numbers_small.jpg)
-
-Please note that this feature is currently only available in our [demo page](http://tiles.metgis.com/tiles-demo/) after checking the "Show numbers" box. Please [contact us](http://www.metgis.com/about/contact/) for further information.
 
 To show values for a variety of significant locations (cities, towns, peaks, ...) as additional overlay on your map, you can integrate our Point-Layers. They are available for all of our [weather parameters](#weather-parameters).
 
