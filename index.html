@@ -10,7 +10,7 @@
     <link href='css/railscasts.css' rel='stylesheet' />
   </head>
   <body>
-    <!--START--><div id='app'><div class="container unlimiter" data-reactroot="" data-reactid="1" data-react-checksum="680511510"><div class="fixed-top fixed-right space-left16" data-reactid="2"><div class="fill-light col6 pin-right" data-reactid="3"></div></div><div class="space-top5 scroll-styled overflow-auto pad1 width16 sidebar fixed-left fill-dark dark" data-reactid="4"><div class="pad0x small" data-reactid="5"><div class="small pad0x quiet space-top1" data-reactid="6">Introduction</div><a href="#our-api" class="line-height15 pad0x pad00y quiet block " data-reactid="7">Our API</a><a href="#get-developer-key" class="line-height15 pad0x pad00y quiet block " data-reactid="8">Get Developer Key</a><div class="small pad0x quiet space-top1" data-reactid="9">Points</div><a href="#point-api" class="line-height15 pad0x pad00y quiet block " data-reactid="10">Point API</a><div class="small pad0x quiet space-top1" data-reactid="11">Tiles</div><a href="#tiles-api" class="line-height15 pad0x pad00y quiet block " data-reactid="12">Tiles API</a><a href="#examples" class="line-height15 pad0x pad00y quiet block " data-reactid="13">Examples</a></div></div><div class="space-left16" data-reactid="14"><div class="" data-reactid="15"><div class="clearfix" data-reactid="16"><div data-title="Our API" class="keyline-top section contain clearfix " data-reactid="17"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="18"><h2 id="our-api">Our API</h2>
+    <!--START--><div id='app'><div class="container unlimiter" data-reactroot="" data-reactid="1" data-react-checksum="1236581193"><div class="fixed-top fixed-right space-left16" data-reactid="2"><div class="fill-light col6 pin-right" data-reactid="3"></div></div><div class="space-top5 scroll-styled overflow-auto pad1 width16 sidebar fixed-left fill-dark dark" data-reactid="4"><div class="pad0x small" data-reactid="5"><div class="small pad0x quiet space-top1" data-reactid="6">Introduction</div><a href="#our-api" class="line-height15 pad0x pad00y quiet block " data-reactid="7">Our API</a><a href="#get-developer-key" class="line-height15 pad0x pad00y quiet block " data-reactid="8">Get Developer Key</a><div class="small pad0x quiet space-top1" data-reactid="9">Points</div><a href="#point-api" class="line-height15 pad0x pad00y quiet block " data-reactid="10">Point API</a><div class="small pad0x quiet space-top1" data-reactid="11">Tiles</div><a href="#tiles-api" class="line-height15 pad0x pad00y quiet block " data-reactid="12">Tiles API</a><a href="#examples" class="line-height15 pad0x pad00y quiet block " data-reactid="13">Examples</a></div></div><div class="space-left16" data-reactid="14"><div class="" data-reactid="15"><div class="clearfix" data-reactid="16"><div data-title="Our API" class="keyline-top section contain clearfix " data-reactid="17"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="18"><h2 id="our-api">Our API</h2>
 <p>Welcome to the MetGIS Weather API Documentation. This document describes how to use our Point API and our Maps API.</p>
 </div></div><div data-title="Get Developer Key" class="keyline-top section contain clearfix " data-reactid="19"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="20"><h2 id="get-developer-key">Get Developer Key</h2>
 <p>The following section explains how to get a free developer key to try the MetGIS points and tiles API. These keys are valid for 30 days, but can be revalidated manually. If you want to obtain a regular key, you can do so at the MetGIS <a href="http://www.metgis.com/shop/">webshop</a>. If you have already used a MetGIS developer key once and want to refresh it follow <a href="#refresh-developer-key">these instructions</a>.
@@ -461,6 +461,11 @@ This is completely free and you will receive a confirmation email immediately.</
 <tr>
 <td>Cloudiness</td>
 <td align="center"><code>tcdcprs</code></td>
+<td align="center">3 hours</td>
+</tr>
+<tr>
+<td>Sunshine Duration</td>
+<td align="center"><code>snsd_3h</code></td>
 <td align="center">3 hours</td>
 </tr>
 <tr>
@@ -1170,6 +1175,29 @@ This is completely free and you will receive a confirmation email immediately.</
 </tr>
 </tbody>
 </table>
+<p><strong>Sunshine Duration</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Value [h]</strong></th>
+<th><strong>Color</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.5</td>
+<td><code>#f8eed1</code></td>
+</tr>
+<tr>
+<td>1.5</td>
+<td><code>#ebcd76</code></td>
+</tr>
+<tr>
+<td>2.5</td>
+<td><code>#dfad1b</code></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Wind</strong></p>
 <table>
 <thead>
@@ -1232,6 +1260,8 @@ This is completely free and you will receive a confirmation email immediately.</
     <span class="hljs-string">"hr_sn"</span>: [[<span class="hljs-string">"16"</span>,<span class="hljs-string">"#f311e8"</span>],[<span class="hljs-string">"12"</span>,<span class="hljs-string">"#f353ec"</span>],[<span class="hljs-string">"8"</span>,<span class="hljs-string">"#f79df3"</span>],[<span class="hljs-string">"6"</span>,<span class="hljs-string">"#019ccf"</span>],[<span class="hljs-string">"4"</span>,<span class="hljs-string">"#19bbf1"</span>],[<span class="hljs-string">"2"</span>,<span class="hljs-string">"#59ccf2"</span>],[<span class="hljs-string">"1"</span>,<span class="hljs-string">"#a0e0f6"</span>],[<span class="hljs-string">"0.3"</span>,<span class="hljs-string">"#c6ecf9"</span>],[<span class="hljs-string">"0.1"</span>,<span class="hljs-string">"#ffffff"</span>]],
 
     <span class="hljs-string">"tcdcprs"</span>: [[<span class="hljs-string">"87.5"</span>,<span class="hljs-string">"#4c4c4c"</span>],[<span class="hljs-string">"75"</span>,<span class="hljs-string">"#666666"</span>],[<span class="hljs-string">"62.5"</span>,<span class="hljs-string">"#7f7f7f"</span>],[<span class="hljs-string">"50"</span>,<span class="hljs-string">"#999999"</span>],[<span class="hljs-string">"37.5"</span>,<span class="hljs-string">"#b2b2b2"</span>],[<span class="hljs-string">"25"</span>,<span class="hljs-string">"#cccccc"</span>]],
+
+    <span class="hljs-string">"snsd_3h"</span>: [[<span class="hljs-string">"2.5"</span>,<span class="hljs-string">"#dfad1b"</span>],[<span class="hljs-string">"1.5"</span>,<span class="hljs-string">"#ebcd76"</span>],[<span class="hljs-string">"0.5"</span>,<span class="hljs-string">"#f8eed1"</span>]],
 
     <span class="hljs-string">"wind"</span>: [[<span class="hljs-string">"100"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-100-270.png') no-repeat center; width: 59px; height: 33px;"</span>],[<span class="hljs-string">"75"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-75-270.png') no-repeat center; width: 54px; height: 30px;"</span>],[<span class="hljs-string">"50"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-50-270.png') no-repeat center; width: 48px; height: 28px;"</span>],[<span class="hljs-string">"40"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-40-270.png') no-repeat center; width: 43px; height: 24px;"</span>],[<span class="hljs-string">"30"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-30-270.png') no-repeat center; width: 36px; height: 20px;"</span>],[<span class="hljs-string">"20"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-20-270.png') no-repeat center; width: 29px; height: 16px;"</span>],[<span class="hljs-string">"10"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-10-270.png') no-repeat center; width: 23px; height: 13px;"</span>],[<span class="hljs-string">"5"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-5-270.png') no-repeat center; width: 18px; height: 10px;"</span>],[<span class="hljs-string">"2"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-2-270.png') no-repeat center; width: 13px; height: 8px;"</span>],[<span class="hljs-string">"0"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-0-270.png') no-repeat center; width: 8px; height: 8px;"</span>]]
   }</code></pre>

@@ -18,6 +18,7 @@ The following weather parameters are currently available:
 | Precipitation | `hr_p` | 3 hours |
 | Fresh Snow | `hr_sn` | 3 hours |
 | Cloudiness | `tcdcprs` | 3 hours |
+| Sunshine Duration | `snsd_3h` | 3 hours |
 | Wind | `wind` | 3 hours |
 | Fresh Snow Today (0 - 24 hours) | `hr_sn_0-24` | 24 hours |
 | Fresh Snow Tomorrow (24 - 48 hours) | `hr_sn_24-48` | 24 hours |
@@ -329,6 +330,14 @@ The color values related to the parameters are as follows:
 | 75 <= x < 87.5 | `#666666` |
 | 87.5 <= x <= 100  | `#4c4c4c` |
 
+**Sunshine Duration**
+
+| **Value [h]** | **Color** |
+|---------------|-----------|
+| 0.5 | `#f8eed1` |
+| 1.5 | `#ebcd76` |
+| 2.5 | `#dfad1b` |
+
 **Wind**
 
 | **Value [km/h]** | **Image** |
@@ -346,7 +355,7 @@ The color values related to the parameters are as follows:
 
 #### JavaScript Objects for generating legends
 
-``` javascript
+```javascript
 {
     "tmp2m": [[">40","#35000f"],["38","#4c0016"],["36","#7f0000"],["34","#800026"],["32","#b30000"],["30","#bd0026"],["28","#d7301f"],["26","#ef6548"],["24","#fc8d59"],["22","#fdbb84"],["20","#fd8d3c"],["18","#feb24c"],["16","#fed976"],["14","#ffeda0"],["12","#ffffcc"],["10","#f7fcb9"],["8","#d9f0a3"],["6","#addd8e"],["4","#78c679"],["2","#41ab5d"],["0","#238443"],["-2","#9ecae1"],["-4","#6baed6"],["-6","#4292c6"],["-8","#2171b5"],["-10","#08519c"],["-12","#06407c"],["-14","#544082"],["-16","#6a51a3"],["-18","#807dba"],["-20","#9e9ac8"],["-22","#bcbddc"],["-24","#dadaeb"],["-26","#efedf5"],["-28","#bdbdbd"],["-30","#969696"],["<-30","#737373"]],
 
@@ -357,6 +366,8 @@ The color values related to the parameters are as follows:
     "hr_sn": [["16","#f311e8"],["12","#f353ec"],["8","#f79df3"],["6","#019ccf"],["4","#19bbf1"],["2","#59ccf2"],["1","#a0e0f6"],["0.3","#c6ecf9"],["0.1","#ffffff"]],
 
     "tcdcprs": [["87.5","#4c4c4c"],["75","#666666"],["62.5","#7f7f7f"],["50","#999999"],["37.5","#b2b2b2"],["25","#cccccc"]],
+
+    "snsd_3h": [["2.5","#dfad1b"],["1.5","#ebcd76"],["0.5","#f8eed1"]],
 
     "wind": [["100","#ffffff url('img/270n/wind-100-270.png') no-repeat center; width: 59px; height: 33px;"],["75","#ffffff url('img/270n/wind-75-270.png') no-repeat center; width: 54px; height: 30px;"],["50","#ffffff url('img/270n/wind-50-270.png') no-repeat center; width: 48px; height: 28px;"],["40","#ffffff url('img/270n/wind-40-270.png') no-repeat center; width: 43px; height: 24px;"],["30","#ffffff url('img/270n/wind-30-270.png') no-repeat center; width: 36px; height: 20px;"],["20","#ffffff url('img/270n/wind-20-270.png') no-repeat center; width: 29px; height: 16px;"],["10","#ffffff url('img/270n/wind-10-270.png') no-repeat center; width: 23px; height: 13px;"],["5","#ffffff url('img/270n/wind-5-270.png') no-repeat center; width: 18px; height: 10px;"],["2","#ffffff url('img/270n/wind-2-270.png') no-repeat center; width: 13px; height: 8px;"],["0","#ffffff url('img/270n/wind-0-270.png') no-repeat center; width: 8px; height: 8px;"]]
   }
