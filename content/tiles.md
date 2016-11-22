@@ -51,7 +51,7 @@ http://{t1-t3}.metgis.com/{parameter}_{timestep}/{z}/{x}/{y}.png?key={YOUR-API-K
 
 Please check our [sample code](#examples) to see how to use the tiles in your application.
 
-### UTFGrid
+### UTFGrid Tiles
 
 Our [UTFGrids](https://github.com/mapbox/utfgrid-spec) provide numerical information related to our tiles. Like in our [demo page](http://tiles.metgis.com/tiles-demo/) you can use the UTFGrid Layers with a "mouseover" or "on tap" on mobile devices. Thus numerical forecast values can be displayed at specified geographic locations.
 
@@ -73,7 +73,7 @@ http://{t1-t3}.metgis.com/{parameter}_{timestep}_grid/{z}/{x}/{y}.json?callback=
 
 Please check our [sample code](#examples) to see how to use the UTFGrids in your application.
 
-### Numerical Values for Selected Locations
+### Tiles Displaying Numerical Values for Selected Locations
 
 ![Numerical values for precipitation](./img/numbers_small.jpg)
 
