@@ -1,6 +1,6 @@
 ## Get Developer Key
 
-The following section explains how to get a free developer key to try the MetGIS points and tiles API. These keys are valid for 30 days, but can be revalidated manually. If you want to obtain a regular key, you can do so at the MetGIS [webshop](http://www.metgis.com/shop/). If you have already used a MetGIS developer key once and want to refresh it follow [these instructions](#refresh-developer-key).
+The following section explains how to get a free developer key to try the MetGIS points and tiles API. These keys are valid for 30 days, but can be revalidated manually. 
 To get a free developer key follow these two steps:
 
 ### Create MetGIS Account

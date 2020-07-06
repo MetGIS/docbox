@@ -32,8 +32,8 @@ The following table lists all available forecast formats, and they will be descr
 |---------|------------|------------|
 |Complete3|a1|Three day forecast with a all basic weather Parameters and sunrise/sunset|
 |Summary3|sum3|Three day forecast with daily weather parameters and short description of weather|
-|Summary4|sum4|Four day forecast with daily weather parameters and short description of weather|
 |Summary5|sum5|Five day forecast with daily weather parameters and short description of weather|
+|Summary7|sum7|Seven day forecast with daily weather parameters and short description of weather|
 ------------------------------------------
 
 ### Forecast Complete3
