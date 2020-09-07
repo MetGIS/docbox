@@ -15,10 +15,24 @@ GET https://api.hist.metgis.com/histapiserverRest/histdata?key={your-user-key}&l
 curl "https://api.hist.metgis.com/histapiserverRest/histdata?key={your-user-key}&lat={latitude}&lon={longitude}&time={date}&v={version}"
 ```
 
+##### Browser
+
 ```javascript
-fetch("https://api.hist.metgis.com/histapiserverRest/histdata?key={your-user-key}&lat={latitude}&lon={longitude}&time={date}&v={version}")
+fetch('https://api.hist.metgis.com/histapiserverRest/histdata?key={your-user-key}&lat={latitude}&lon={longitude}&time={date}&v={version}')
   .then(response => response.json())
   .then(data => console.log(data))
+  .catch(err => console.error(err))
+```
+
+##### Node
+
+```javascript
+const got = require('got')
+
+got('https://api.hist.metgis.com/histapiserverRest/histdata?key={your-user-key}&lat={latitude}&lon={longitude}&time={date}&v={version}')
+  .json()
+  .then(res => console.log(res))
+  .catch(err => console.error(err))
 ```
 
 | Query Param | Description |
