@@ -10,25 +10,25 @@
     <link href='css/railscasts.css' rel='stylesheet' />
   </head>
   <body>
-    <!--START--><div id='app'><div class="container unlimiter" data-reactroot="" data-reactid="1" data-react-checksum="-1946788873"><div class="fixed-top fixed-right space-left16" data-reactid="2"><div class="fill-light col6 pin-right" data-reactid="3"></div></div><div class="space-top5 scroll-styled overflow-auto pad1 width16 sidebar fixed-left fill-dark dark" data-reactid="4"><div class="pad0x small" data-reactid="5"><div class="small pad0x quiet space-top1" data-reactid="6">Introduction</div><a href="#our-api" class="line-height15 pad0x pad00y quiet block " data-reactid="7">Our API</a><a href="#get-developer-key" class="line-height15 pad0x pad00y quiet block " data-reactid="8">Get Developer Key</a><div class="small pad0x quiet space-top1" data-reactid="9">Points</div><a href="#point-api" class="line-height15 pad0x pad00y quiet block " data-reactid="10">Point API</a><div class="small pad0x quiet space-top1" data-reactid="11">Tiles</div><a href="#tiles-api" class="line-height15 pad0x pad00y quiet block " data-reactid="12">Tiles API</a><a href="#examples" class="line-height15 pad0x pad00y quiet block " data-reactid="13">Examples</a></div></div><div class="space-left16" data-reactid="14"><div class="" data-reactid="15"><div class="clearfix" data-reactid="16"><div data-title="Our API" class="keyline-top section contain clearfix " data-reactid="17"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="18"><h2 id="our-api">Our API</h2>
+    <!--START--><div id='app'><div class="container unlimiter" data-reactroot="" data-reactid="1" data-react-checksum="-730927428"><div class="fixed-top fixed-right space-left16" data-reactid="2"><div class="fill-light col6 pin-right" data-reactid="3"></div></div><div class="space-top5 scroll-styled overflow-auto pad1 width16 sidebar fixed-left fill-dark dark" data-reactid="4"><div class="pad0x small" data-reactid="5"><div class="small pad0x quiet space-top1" data-reactid="6">Introduction</div><a href="#our-api" class="line-height15 pad0x pad00y quiet block " data-reactid="7">Our API</a><a href="#get-developer-key" class="line-height15 pad0x pad00y quiet block " data-reactid="8">Get Developer Key</a><div class="small pad0x quiet space-top1" data-reactid="9">Points</div><a href="#point-api" class="line-height15 pad0x pad00y quiet block " data-reactid="10">Point API</a><div class="small pad0x quiet space-top1" data-reactid="11">Tiles</div><a href="#tiles-api" class="line-height15 pad0x pad00y quiet block " data-reactid="12">Tiles API</a><a href="#examples" class="line-height15 pad0x pad00y quiet block " data-reactid="13">Examples</a><div class="small pad0x quiet space-top1" data-reactid="14">Historical Data</div><a href="#histapi" class="line-height15 pad0x pad00y quiet block " data-reactid="15">HistAPI</a></div></div><div class="space-left16" data-reactid="16"><div class="" data-reactid="17"><div class="clearfix" data-reactid="18"><div data-title="Our API" class="keyline-top section contain clearfix " data-reactid="19"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="20"><h2 id="our-api">Our API</h2>
 <p>Welcome to the MetGIS Weather API Documentation. This document describes how to use our Point API and our Maps API.</p>
-</div></div><div data-title="Get Developer Key" class="keyline-top section contain clearfix " data-reactid="19"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="20"><h2 id="get-developer-key">Get Developer Key</h2>
-<p>The following section explains how to get a free developer key to try the MetGIS points and tiles API. These keys are valid for 30 days, but can be revalidated manually. If you want to obtain a regular key, you can do so at the MetGIS <a href="http://www.metgis.com/shop/">webshop</a>. If you have already used a MetGIS developer key once and want to refresh it follow <a href="#refresh-developer-key">these instructions</a>.
+</div></div><div data-title="Get Developer Key" class="keyline-top section contain clearfix " data-reactid="21"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="22"><h2 id="get-developer-key">Get Developer Key</h2>
+<p>The following section explains how to get a free developer key to try the MetGIS points and tiles API. These keys are valid for 30 days, but can be revalidated manually.
 To get a free developer key follow these two steps:</p>
-</div></div><div data-title="Create MetGIS Account" class="keyline-top section contain clearfix " data-reactid="21"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="22"><h3 id="create-metgis-account">Create MetGIS Account</h3>
+</div></div><div data-title="Create MetGIS Account" class="keyline-top section contain clearfix " data-reactid="23"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="24"><h3 id="create-metgis-account">Create MetGIS Account</h3>
 <p>Go <a href="https://www.metgis.com/shop/index.php/customer/account/create/?___store=en&amp;___from_store=de">here</a> and fill out this form:</p>
 <p><img src="./img/account-shop.png" alt="MetGIS account form">
 This is completely free and you will receive a confirmation email immediately.</p>
-</div></div><div data-title="Initialize API Management Tool Account" class="keyline-top section contain clearfix " data-reactid="23"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="24"><h3 id="initialize-api-management-tool-account">Initialize API Management Tool Account</h3>
+</div></div><div data-title="Initialize API Management Tool Account" class="keyline-top section contain clearfix " data-reactid="25"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="26"><h3 id="initialize-api-management-tool-account">Initialize API Management Tool Account</h3>
 <p>Go to the <a href="https://www.metgis.com/api-monitoring-tool//#login:">MetGIS API Management Tool site</a> and log in with the user name and password you chose in the previous step at the following screen:</p>
 <p><img src="./img/UI_logged_out.png" alt="MetGIS API Monitoring Tool"></p>
 <p>You will see a screen showing the two valid packages you get for free:</p>
 <p><img src="./img/UI_logged_in.png" alt="MetGIS API Monitoring Tool free packages"></p>
 <p>If you click on Details next to your developer package you will see your developer key at the bottom of this screen:</p>
 <p><img src="./img/UI_logged_in_details.png" alt="MetGIS API Monitoring Tool developer package details"></p>
-</div></div><div data-title="Point API" class="keyline-top section contain clearfix " data-reactid="25"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="26"><h2 id="point-api">Point API</h2>
+</div></div><div data-title="Point API" class="keyline-top section contain clearfix " data-reactid="27"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="28"><h2 id="point-api">Point API</h2>
 <p>The following chapters describe the functions and usage of the MetGIS Point API. To request data from this API you need a valid user key. Click <a href="#get-developer-key">here</a> for information on how to obtain a free developer key.</p>
-</div></div><div data-title="Request Data" class="keyline-top section contain clearfix " data-reactid="27"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="28"><h3 id="request-data">Request Data</h3>
+</div></div><div data-title="Request Data" class="keyline-top section contain clearfix " data-reactid="29"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="30"><h3 id="request-data">Request Data</h3>
 <p>MetGIS forecasts can be retrieved from the point API via https with a request that follows this pattern:</p>
 <p>The curly brackets in this example have to be replaced by values according to the following table:</p>
 <table>
@@ -65,8 +65,8 @@ This is completely free and you will receive a confirmation email immediately.</
 </table>
 <hr>
 <p>Forecasts are delivered in JSON or JSONP format.</p>
-</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="29"><pre><code class="hljs">https://api.metgis.com/forecast?key={your-user-key}&amp;lat={yy.yyyy}&amp;lon={yyy.yyyy}&amp;alt={hhhh}&amp;v={version}&amp;lang={language}</code></pre>
-</div></div><div data-title="Available Forecast Versions" class="keyline-top section contain clearfix " data-reactid="30"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="31"><h3 id="available-forecast-versions">Available Forecast Versions</h3>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="31"><pre><code class="hljs">https://api.metgis.com/forecast?key={your-user-key}&amp;lat={yy.yyyy}&amp;lon={yyy.yyyy}&amp;alt={hhhh}&amp;v={version}&amp;lang={language}</code></pre>
+</div></div><div data-title="Available Forecast Versions" class="keyline-top section contain clearfix " data-reactid="32"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="33"><h3 id="available-forecast-versions">Available Forecast Versions</h3>
 <p>The following table lists all available forecast formats, and they will be described in detail in the following subsections.</p>
 <table>
 <thead>
@@ -100,7 +100,7 @@ This is completely free and you will receive a confirmation email immediately.</
 </tbody>
 </table>
 <hr>
-</div></div><div data-title="Forecast Complete3" class="keyline-top section contain clearfix " data-reactid="32"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="33"><h3 id="forecast-complete3">Forecast Complete3</h3>
+</div></div><div data-title="Forecast Complete3" class="keyline-top section contain clearfix " data-reactid="34"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="35"><h3 id="forecast-complete3">Forecast Complete3</h3>
 <p>This forecast version offers 3 hourly weather forecasts with sunrise and sunset, a data sample is shown on the right.</p>
 <p>Elements:</p>
 <ul>
@@ -325,7 +325,7 @@ This is completely free and you will receive a confirmation email immediately.</
 </tbody>
 </table>
 <hr>
-</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="34"><pre><code class="hljs">{
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="36"><pre><code class="hljs">{
 	<span class="hljs-attr">"Time_step (h)"</span>: <span class="hljs-number">3</span>,
 	<span class="hljs-attr">"Description"</span>: <span class="hljs-string">"Metgis Point Forecast"</span>,
 	<span class="hljs-attr">"Forecast_issued"</span>: <span class="hljs-string">"2016-07-14T06:00Z"</span>,
@@ -342,7 +342,7 @@ This is completely free and you will receive a confirmation email immediately.</
 	<span class="hljs-attr">"Sunrise"</span>: <span class="hljs-string">"2016-07-14T03:28Z"</span>,
 	<span class="hljs-attr">"lat"</span>: <span class="hljs-number">46.123</span>
 }</code></pre>
-</div></div><div data-title="Forecasts Summary3, Summary4 and Summary5" class="keyline-top section contain clearfix " data-reactid="35"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="36"><h3 id="forecasts-summary3-summary4-and-summary5">Forecasts Summary3, Summary4 and Summary5</h3>
+</div></div><div data-title="Forecasts Summary3, Summary4 and Summary5" class="keyline-top section contain clearfix " data-reactid="37"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="38"><h3 id="forecasts-summary3-summary4-and-summary5">Forecasts Summary3, Summary4 and Summary5</h3>
 <p>Json forecast files with daily values describing the weather for 3, 4 or 5 days. A few optional parameters can be appended to the request to choose different languages and units. The available optional parameters are shown in the following table:</p>
 <table>
 <thead>
@@ -402,7 +402,7 @@ This is completely free and you will receive a confirmation email immediately.</
 <li>sunset: Array of ISO-date-strings showing time of sunset for each day.</li>
 <li>forecastShortText: Array of short texts describing the weather for each day.</li>
 </ul>
-</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="37"><pre><code class="hljs">https://api.metgis.com/forecast?key=0dfa6e5a4a672b3a7c79e7c2ef&amp;lat=46.123&amp;lon=13.567&amp;alt=200&amp;v=plugin3&amp;lang=en&amp;tempU=f&amp;linU=m&amp;windU=ms</code></pre>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="39"><pre><code class="hljs">https://api.metgis.com/forecast?key=0dfa6e5a4a672b3a7c79e7c2ef&amp;lat=46.123&amp;lon=13.567&amp;alt=200&amp;v=plugin3&amp;lang=en&amp;tempU=f&amp;linU=m&amp;windU=ms</code></pre>
 <pre><code class="hljs">{
 	<span class="hljs-attr">"sunrise"</span>: [<span class="hljs-string">"2016-07-18T03:32Z"</span>, <span class="hljs-string">"2016-07-19T03:33Z"</span>, <span class="hljs-string">"2016-07-20T03:34Z"</span>],
 	<span class="hljs-attr">"dayCount"</span>: <span class="hljs-number">3</span>,
@@ -427,12 +427,12 @@ This is completely free and you will receive a confirmation email immediately.</
 	<span class="hljs-attr">"relativeHumidity"</span>: [<span class="hljs-number">65</span>, <span class="hljs-number">72</span>, <span class="hljs-number">75</span>],
 	<span class="hljs-attr">"forecastShortText"</span>: [<span class="hljs-string">"thundery showers possible"</span>, <span class="hljs-string">"thundery showers possible"</span>, <span class="hljs-string">"thundery showers possible"</span>]
 }</code></pre>
-</div></div><div data-title="Tiles API" class="keyline-top section contain clearfix " data-reactid="38"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="39"><h2 id="tiles-api">Tiles API</h2>
+</div></div><div data-title="Tiles API" class="keyline-top section contain clearfix " data-reactid="40"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="41"><h2 id="tiles-api">Tiles API</h2>
 <p>The MetGIS Maps API offers forecasts as a Tile Map Service (TMS). This standardized format enables you to integrate our weather predictions for Central Europe into any dynamic map on your website or within your app. Check our <a href="http://tiles.metgis.com/tiles-demo/">demo page</a> to see an example of weather data layers integrated into zoomable maps.</p>
 <p>Our forecasts are updated every 12 hours. Once a day, at approximately 3:00 UTC and 15:00 UTC, a new forecast is available, covering the following 75 hours mostly in three-hour time intervals. Beside regular tiles (in PNG-format) we also provide UTFGrid Tiles to enable a fast numerical representation of our colored maps.</p>
 <p><img src="./img/map-coverage-thumb.gif" alt="Coverage of MetGIS Maps API"></p>
 <p>The following sections provide detailed information about our Maps API, with various <a href="#examples">examples</a> showing how to include our weather in your maps.</p>
-</div></div><div data-title="Weather Parameters" class="keyline-top section contain clearfix " data-reactid="40"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="41"><h3 id="weather-parameters">Weather Parameters</h3>
+</div></div><div data-title="Weather Parameters" class="keyline-top section contain clearfix " data-reactid="42"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="43"><h3 id="weather-parameters">Weather Parameters</h3>
 <p>The following weather parameters are currently available:</p>
 <table>
 <thead>
@@ -510,7 +510,7 @@ This is completely free and you will receive a confirmation email immediately.</
 </tr>
 </tbody>
 </table>
-</div></div><div data-title="API Call for Tiles" class="keyline-top section contain clearfix " data-reactid="42"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="43"><h3 id="api-call-for-tiles">API Call for Tiles</h3>
+</div></div><div data-title="API Call for Tiles" class="keyline-top section contain clearfix " data-reactid="44"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="45"><h3 id="api-call-for-tiles">API Call for Tiles</h3>
 <p>To visualize our weather tiles within your map or application, you need to call the following URL with the fields specified according to your requirements. To see an example please head to our <a href="#examples">examples section</a>.</p>
 <p><strong>Parameters:</strong></p>
 <table>
@@ -560,9 +560,9 @@ This is completely free and you will receive a confirmation email immediately.</
 </tbody>
 </table>
 <p>Please check our <a href="#examples">sample code</a> to see how to use the tiles in your application.</p>
-</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="44"><h4 id="tiles-url">Tiles URL</h4>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="46"><h4 id="tiles-url">Tiles URL</h4>
 <pre><code class="hljs">http://{t1-t3}.metgis.com/{parameter}_{timestep}/{z}/{x}/{y}.png?key={YOUR-API-KEY}</code></pre>
-</div></div><div data-title="UTFGrid Tiles" class="keyline-top section contain clearfix " data-reactid="45"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="46"><h3 id="utfgrid-tiles">UTFGrid Tiles</h3>
+</div></div><div data-title="UTFGrid Tiles" class="keyline-top section contain clearfix " data-reactid="47"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="48"><h3 id="utfgrid-tiles">UTFGrid Tiles</h3>
 <p>Our <a href="https://github.com/mapbox/utfgrid-spec">UTFGrids</a> provide numerical information related to our tiles. Like in our <a href="http://tiles.metgis.com/tiles-demo/">demo page</a> you can use the UTFGrid Layers with a &quot;mouseover&quot; or &quot;on tap&quot; on mobile devices. Thus numerical forecast values can be displayed at specified geographic locations.</p>
 <p><strong>Parameters:</strong></p>
 <table>
@@ -612,14 +612,14 @@ This is completely free and you will receive a confirmation email immediately.</
 </tbody>
 </table>
 <p>Please check our <a href="#examples">sample code</a> to see how to use the UTFGrids in your application.</p>
-</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="47"><h4 id="utfgrid-url">UTFGrid URL</h4>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="49"><h4 id="utfgrid-url">UTFGrid URL</h4>
 <pre><code class="hljs">http://{t1-t3}.metgis.com/{parameter}_{timestep}_grid/{z}/{x}/{y}.json?callback={cb}&amp;key={YOUR-API-KEY}</code></pre>
-</div></div><div data-title="Tiles Displaying Numerical Values for Selected Locations" class="keyline-top section contain clearfix " data-reactid="48"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="49"><h3 id="tiles-displaying-numerical-values-for-selected-locations">Tiles Displaying Numerical Values for Selected Locations</h3>
+</div></div><div data-title="Tiles Displaying Numerical Values for Selected Locations" class="keyline-top section contain clearfix " data-reactid="50"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="51"><h3 id="tiles-displaying-numerical-values-for-selected-locations">Tiles Displaying Numerical Values for Selected Locations</h3>
 <p><img src="./img/numbers_small.jpg" alt="Numerical values for precipitation"></p>
 <p>To show values for a variety of significant locations (cities, towns, peaks, ...) as additional overlay on your map, you can integrate our Point-Layers. They are available for all of our <a href="#weather-parameters">weather parameters</a>.</p>
-</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="50"><h4 id="sample-call">Sample call</h4>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="52"><h4 id="sample-call">Sample call</h4>
 <pre><code class="hljs">http://{t1-t3}.metgis.com/{parameter}_{timestep}_point/{z}/{x}/{y}.png?key={YOUR-API-KEY}</code></pre>
-</div></div><div data-title="Time Step" class="keyline-top section contain clearfix " data-reactid="51"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="52"><h3 id="time-step">Time Step</h3>
+</div></div><div data-title="Time Step" class="keyline-top section contain clearfix " data-reactid="53"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="54"><h3 id="time-step">Time Step</h3>
 <p>Weather forecasts are issued for 3 hour intervals. They start at the time specified as <code>forecastIssued</code> in the <a href="#metajson">meta.json</a>. The parameters temperature, cloudiness and wind are valid for the exact time (e.g. 12:00 UTC), whereas the parameters precipitation and fresh snow are valid for the whole interval of the past three hours (e.g. 9:00 UTC - 12:00 UTC) - this also means that there are no forecasts for these parameters for time step = 1.</p>
 <p>To simplify the access to the tiles we introduced time steps which represent the 3 hour intervals. Starting at 1 - which reflects the weather forecasts for the time  <code>forecastIssued</code> - it counts up to 25 where every single step counts as 3 hours. Please see the following table related to the example <code>&quot;forecastIssued&quot;: &quot;2015-01-03T18:00Z&quot;</code> for clarification:</p>
 <table>
@@ -658,7 +658,7 @@ This is completely free and you will receive a confirmation email immediately.</
 </tr>
 </tbody>
 </table>
-</div></div><div data-title="meta.json" class="keyline-top section contain clearfix " data-reactid="53"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="54"><h3 id="metajson">meta.json</h3>
+</div></div><div data-title="meta.json" class="keyline-top section contain clearfix " data-reactid="55"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="56"><h3 id="metajson">meta.json</h3>
 <p>For every forecast run a file with meta-information is produced. It contains the start time of the forecast run and other useful information. This <code>meta.json</code> is located at <code>http://tiles.metgis.com/meta/{V}/meta.json</code> where <code>{V}</code> stands for the version number. Please check the current version in <a href="http://tiles.metgis.com/meta/">the changelog</a>.</p>
 <p><strong>Properties:</strong></p>
 <table>
@@ -748,7 +748,7 @@ This is completely free and you will receive a confirmation email immediately.</
 </tr>
 </tbody>
 </table>
-</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="55"><div class='endpoint dark fill-dark round '>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="57"><div class='endpoint dark fill-dark round '>
       <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
       <div class='pad0 code small endpoint-url'>http://tiles.metgis.com/meta/<span class="strong">{V}</span>/meta.json</div>
     </div>
@@ -853,7 +853,7 @@ This is completely free and you will receive a confirmation email immediately.</
       }
    }
 }</code></pre>
-</div></div><div data-title="Color Values" class="keyline-top section contain clearfix " data-reactid="56"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="57"><h3 id="color-values">Color Values</h3>
+</div></div><div data-title="Color Values" class="keyline-top section contain clearfix " data-reactid="58"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="59"><h3 id="color-values">Color Values</h3>
 <p>The color values related to the parameters are as follows:</p>
 <p><strong>Temperature</strong></p>
 <table>
@@ -1249,7 +1249,7 @@ This is completely free and you will receive a confirmation email immediately.</
 </tr>
 </tbody>
 </table>
-</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="58"><h4 id="javascript-objects-for-generating-legends">JavaScript Objects for generating legends</h4>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="60"><h4 id="javascript-objects-for-generating-legends">JavaScript Objects for generating legends</h4>
 <pre><code class="hljs">{
     <span class="hljs-string">"tmp2m"</span>: [[<span class="hljs-string">"&gt;40"</span>,<span class="hljs-string">"#35000f"</span>],[<span class="hljs-string">"38"</span>,<span class="hljs-string">"#4c0016"</span>],[<span class="hljs-string">"36"</span>,<span class="hljs-string">"#7f0000"</span>],[<span class="hljs-string">"34"</span>,<span class="hljs-string">"#800026"</span>],[<span class="hljs-string">"32"</span>,<span class="hljs-string">"#b30000"</span>],[<span class="hljs-string">"30"</span>,<span class="hljs-string">"#bd0026"</span>],[<span class="hljs-string">"28"</span>,<span class="hljs-string">"#d7301f"</span>],[<span class="hljs-string">"26"</span>,<span class="hljs-string">"#ef6548"</span>],[<span class="hljs-string">"24"</span>,<span class="hljs-string">"#fc8d59"</span>],[<span class="hljs-string">"22"</span>,<span class="hljs-string">"#fdbb84"</span>],[<span class="hljs-string">"20"</span>,<span class="hljs-string">"#fd8d3c"</span>],[<span class="hljs-string">"18"</span>,<span class="hljs-string">"#feb24c"</span>],[<span class="hljs-string">"16"</span>,<span class="hljs-string">"#fed976"</span>],[<span class="hljs-string">"14"</span>,<span class="hljs-string">"#ffeda0"</span>],[<span class="hljs-string">"12"</span>,<span class="hljs-string">"#ffffcc"</span>],[<span class="hljs-string">"10"</span>,<span class="hljs-string">"#f7fcb9"</span>],[<span class="hljs-string">"8"</span>,<span class="hljs-string">"#d9f0a3"</span>],[<span class="hljs-string">"6"</span>,<span class="hljs-string">"#addd8e"</span>],[<span class="hljs-string">"4"</span>,<span class="hljs-string">"#78c679"</span>],[<span class="hljs-string">"2"</span>,<span class="hljs-string">"#41ab5d"</span>],[<span class="hljs-string">"0"</span>,<span class="hljs-string">"#238443"</span>],[<span class="hljs-string">"-2"</span>,<span class="hljs-string">"#9ecae1"</span>],[<span class="hljs-string">"-4"</span>,<span class="hljs-string">"#6baed6"</span>],[<span class="hljs-string">"-6"</span>,<span class="hljs-string">"#4292c6"</span>],[<span class="hljs-string">"-8"</span>,<span class="hljs-string">"#2171b5"</span>],[<span class="hljs-string">"-10"</span>,<span class="hljs-string">"#08519c"</span>],[<span class="hljs-string">"-12"</span>,<span class="hljs-string">"#06407c"</span>],[<span class="hljs-string">"-14"</span>,<span class="hljs-string">"#544082"</span>],[<span class="hljs-string">"-16"</span>,<span class="hljs-string">"#6a51a3"</span>],[<span class="hljs-string">"-18"</span>,<span class="hljs-string">"#807dba"</span>],[<span class="hljs-string">"-20"</span>,<span class="hljs-string">"#9e9ac8"</span>],[<span class="hljs-string">"-22"</span>,<span class="hljs-string">"#bcbddc"</span>],[<span class="hljs-string">"-24"</span>,<span class="hljs-string">"#dadaeb"</span>],[<span class="hljs-string">"-26"</span>,<span class="hljs-string">"#efedf5"</span>],[<span class="hljs-string">"-28"</span>,<span class="hljs-string">"#bdbdbd"</span>],[<span class="hljs-string">"-30"</span>,<span class="hljs-string">"#969696"</span>],[<span class="hljs-string">"&lt;-30"</span>,<span class="hljs-string">"#737373"</span>]],
 
@@ -1265,7 +1265,7 @@ This is completely free and you will receive a confirmation email immediately.</
 
     <span class="hljs-string">"wind"</span>: [[<span class="hljs-string">"100"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-100-270.png') no-repeat center; width: 59px; height: 33px;"</span>],[<span class="hljs-string">"75"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-75-270.png') no-repeat center; width: 54px; height: 30px;"</span>],[<span class="hljs-string">"50"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-50-270.png') no-repeat center; width: 48px; height: 28px;"</span>],[<span class="hljs-string">"40"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-40-270.png') no-repeat center; width: 43px; height: 24px;"</span>],[<span class="hljs-string">"30"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-30-270.png') no-repeat center; width: 36px; height: 20px;"</span>],[<span class="hljs-string">"20"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-20-270.png') no-repeat center; width: 29px; height: 16px;"</span>],[<span class="hljs-string">"10"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-10-270.png') no-repeat center; width: 23px; height: 13px;"</span>],[<span class="hljs-string">"5"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-5-270.png') no-repeat center; width: 18px; height: 10px;"</span>],[<span class="hljs-string">"2"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-2-270.png') no-repeat center; width: 13px; height: 8px;"</span>],[<span class="hljs-string">"0"</span>,<span class="hljs-string">"#ffffff url('img/270n/wind-0-270.png') no-repeat center; width: 8px; height: 8px;"</span>]]
   }</code></pre>
-</div></div><div data-title="Examples" class="keyline-top section contain clearfix " data-reactid="59"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="60"><h2 id="examples">Examples</h2>
+</div></div><div data-title="Examples" class="keyline-top section contain clearfix " data-reactid="61"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="62"><h2 id="examples">Examples</h2>
 <p>Our weather maps may be integrated into your website or app, using different software frameworks. Some of them are:</p>
 <p><strong>Web</strong></p>
 <ul>
@@ -1281,12 +1281,12 @@ This is completely free and you will receive a confirmation email immediately.</
 <li><a href="https://www.mapbox.com/mobile/">Mapbox SDK</a></li>
 </ul>
 <p>The following examples show possible implementations with different frameworks.</p>
-</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="61"><h4 id="example-of-integration-with-leaflet">Example of integration with Leaflet</h4>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="63"><h4 id="example-of-integration-with-leaflet">Example of integration with Leaflet</h4>
 <pre><code class="hljs"><span class="hljs-keyword">var</span> temperatureLayer = L.tileLayer( <span class="hljs-string">'http://t1.metgis.com/tmp2m_5/{z}/{x}/{y}.png?key=YOUR_API_KEY'</span> );</code></pre>
-</div></div><div data-title="Leaflet" class="keyline-top section contain clearfix " data-reactid="62"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="63"><h3 id="leaflet">Leaflet</h3>
+</div></div><div data-title="Leaflet" class="keyline-top section contain clearfix " data-reactid="64"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="65"><h3 id="leaflet">Leaflet</h3>
 <p>This exapmle shows how to implement a weather map using <a href="http://leafletjs.com/">Leaflet</a>.</p>
 <p>Please refer to our <a href="http://tiles.metgis.com/tiles-demo/">demo page</a> to view a fully functional example.</p>
-</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="64"><h4 id="example-of-temperature-integration">Example of temperature integration:</h4>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="66"><h4 id="example-of-temperature-integration">Example of temperature integration:</h4>
 <pre><code class="hljs"><span class="hljs-keyword">var</span> tmp2mUrl = <span class="hljs-string">'http://{s}.metgis.com/tmp2m_'</span>;
 <span class="hljs-keyword">var</span> urlSuffix = <span class="hljs-string">'/{z}/{x}/{y}.png?key=YOUR-API-KEY'</span>;
 <span class="hljs-keyword">var</span> timestep = <span class="hljs-number">1</span>; <span class="hljs-comment">// a value between 1 and 25</span>
@@ -1312,12 +1312,12 @@ This is completely free and you will receive a confirmation email immediately.</
   <span class="hljs-attr">subdomains</span>: [<span class="hljs-string">"t1"</span>, <span class="hljs-string">"t2"</span>, <span class="hljs-string">"t3"</span>]
 });
 layertmp2mGrid.on(<span class="hljs-string">'mouseover'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>{<span class="hljs-built_in">console</span>.log(e.data);});</code></pre>
-</div></div><div data-title="OpenLayers 3" class="keyline-top section contain clearfix " data-reactid="65"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="66"><h3 id="openlayers-3">OpenLayers 3</h3>
+</div></div><div data-title="OpenLayers 3" class="keyline-top section contain clearfix " data-reactid="67"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="68"><h3 id="openlayers-3">OpenLayers 3</h3>
 <p>This exapmle shows how to implement a weather map using <a href="http://openlayers.org/">OpenLayers</a>.</p>
 <p><strong>Note:</strong> the <code>ol.source.TileUTFGrid</code> expects a <a href="https://github.com/mapbox/tilejson-spec">TileJSON</a> file. We provide a PHP script that returns the appropriate data. Please submit the required fields to the query string to get the correct version.</p>
 <p><code>http://tiles.metgis.com/meta/0.6/metgis_tilejsonwrapper.php?parameter={parameter}&amp;timestep={timestep}&amp;key={YOUR-API-KEY}&amp;callback={cb}</code></p>
 <p>Please refer to the official OpenLayers <a href="http://openlayers.org/en/v3.6.0/examples/tileutfgrid.html">TileUTFGrid Example</a> for more information regarding the <code>ol.source.TileUTFGrid</code>.</p>
-</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="67"><h4 id="simple-example-of-temperature">Simple example of temperature:</h4>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="69"><h4 id="simple-example-of-temperature">Simple example of temperature:</h4>
 <pre><code class="hljs"><span class="hljs-keyword">var</span> map = <span class="hljs-keyword">new</span> ol.Map({
   <span class="hljs-attr">target</span>: <span class="hljs-string">'map'</span>,
   <span class="hljs-attr">layers</span>: [
@@ -1388,9 +1388,757 @@ map.on(<span class="hljs-string">'pointermove'</span>, <span class="hljs-functio
   <span class="hljs-keyword">var</span> coordinate = map.getEventCoordinate(evt.originalEvent);
   displayCountryInfo(coordinate);
 });</code></pre>
-</div></div></div></div></div><div class="fixed-top space-left16" data-reactid="68"><div class="events fill-light bottom-shadow pad1 col6 pin-topright  " data-reactid="69"><div class="space-right1 small quiet inline" data-reactid="70">Show examples in:</div><div class="rounded-toggle inline short" data-reactid="71"><a class="strong active" data-reactid="72">JS</a><a class="strong " data-reactid="73">cURL</a></div><div class="fr pad0" data-reactid="74"><a title="Display as 1 column" style="cursor:pointer;" class="icon quiet caret-left pad0 fill-darken0 round" data-reactid="75"></a></div></div></div><div class="fill-dark dark bottom-shadow fixed-top pad0 width16" data-reactid="76"><a href="/" class="active space-top1 space-left1 pin-topleft icon round dark pad0 fill-icon" data-reactid="77"></a><div class="strong small pad0
+</div></div><div data-title="HistAPI" class="keyline-top section contain clearfix " data-reactid="70"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="71"><h2 id="histapi">HistAPI</h2>
+<p>The MetGIS HistApi provides historical weather data.</p>
+</div></div><div data-title="Request Data" class="keyline-top section contain clearfix " data-reactid="72"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="73"><h3 id="request-data-1">Request Data</h3>
+<table>
+<thead>
+<tr>
+<th>Query Param</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>key</strong></td>
+<td>your access token with valid access to MetGIS Hist API</td>
+</tr>
+<tr>
+<td><strong>lat</strong></td>
+<td>latitude: a range defined by two lat values for ex.: &quot;
+<code>50_50.5</code>
+&quot; or a single lat value for ex.: &quot;
+<code>50</code>
+&quot;</td>
+</tr>
+<tr>
+<td><strong>lon</strong></td>
+<td>longitude: a range defined by two lon values for ex.: &quot;
+<code>12_12.5</code>
+&quot; or a single lon value for ex.: &quot;
+<code>12</code>
+&quot;</td>
+</tr>
+<tr>
+<td><strong>time</strong></td>
+<td>date: a range defined by two date strings for ex.: &quot;
+<code>201305030000_201305100000</code>
+&quot; or a single date string for ex.: &quot;
+<code>201305030000</code>
+&quot;</td>
+</tr>
+<tr>
+<td><strong>v</strong></td>
+<td>Requested version (see chapter 
+<a href="#available-histapi-versions">HistAPI Versions</a>
+ for options)</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="74"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>https://api.hist.metgis.com/histapiserverRest/histdata?key={your-user-key}&lat=<span class="strong">{latitude}</span>&lon=<span class="strong">{longitude}</span>&time=<span class="strong">{date}</span>&v=<span class="strong">{version}</span></div>
+    </div>
+<h4 id="example-request">Example Request</h4>
+<h5 id="browser">Browser</h5>
+<pre><code class="hljs">fetch(<span class="hljs-string">'https://api.hist.metgis.com/histapiserverRest/histdata?key={your-user-key}&amp;lat={latitude}&amp;lon={longitude}&amp;time={date}&amp;v={version}'</span>)
+  .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())
+  .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(data))
+  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.error(err))</code></pre>
+<h5 id="node">Node</h5>
+<pre><code class="hljs"><span class="hljs-keyword">const</span> got = <span class="hljs-built_in">require</span>(<span class="hljs-string">'got'</span>)
+
+got(<span class="hljs-string">'https://api.hist.metgis.com/histapiserverRest/histdata?key={your-user-key}&amp;lat={latitude}&amp;lon={longitude}&amp;time={date}&amp;v={version}'</span>)
+  .json()
+  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(res))
+  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.error(err))</code></pre>
+</div></div><div data-title="Available HistAPI Versions" class="keyline-top section contain clearfix " data-reactid="75"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="76"><h3 id="available-histapi-versions">Available HistAPI Versions</h3>
+<table>
+<thead>
+<tr>
+<th>Query Param</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>hitemp</strong></td>
+<td><a href="#hitemp">Temperature</a></td>
+</tr>
+<tr>
+<td><strong>hitempsum</strong></td>
+<td><a href="#daily-min/max/mean-temperature">Daily Min/Max/Mean Temperature</a></td>
+</tr>
+<tr>
+<td><strong>hirh</strong></td>
+<td><a href="#relative-humidity">Relative Humidity</a></td>
+</tr>
+<tr>
+<td><strong>hihrp</strong></td>
+<td><a href="#precipitation">Precipitation</a></td>
+</tr>
+<tr>
+<td><strong>hiwind</strong></td>
+<td><a href="#wind">Wind</a></td>
+</tr>
+<tr>
+<td><strong>hidswr</strong></td>
+<td><a href="#downward-short-wave-radiation-flux">Downward Short Wave Radiation Flux</a></td>
+</tr>
+<tr>
+<td><strong>hicld</strong></td>
+<td><a href="#total-cloud-cover">Total Cloud Cover</a></td>
+</tr>
+<tr>
+<td><strong>hidsum</strong></td>
+<td><a href="#weather-data-daily-summary">Weather Data Daily Summary</a></td>
+</tr>
+</tbody>
+</table>
+</div></div><div data-title="Temperature" class="keyline-top section contain clearfix " data-reactid="77"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="78"><h3 id="temperature">Temperature</h3>
+<p>Json result with hourly temperature data.</p>
+<p>The entries of the json result data array contain the following properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>lon</strong></td>
+<td>geographical longitude of point</td>
+</tr>
+<tr>
+<td><strong>lat</strong></td>
+<td>geographical latitude of point</td>
+</tr>
+<tr>
+<td><strong>alt</strong></td>
+<td>altitude of point in meters</td>
+</tr>
+<tr>
+<td><strong>date</strong></td>
+<td>the wind values correspond to this date</td>
+</tr>
+<tr>
+<td><strong>wdir</strong></td>
+<td>wind direction in &deg;</td>
+</tr>
+<tr>
+<td><strong>wspd</strong></td>
+<td>wind speed in m/s</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="79"><h4 id="example-request-1">Example Request</h4>
+<pre><code class="hljs">fetch(<span class="hljs-string">"https://api.hist.metgis.com/histapiserverRest/histdata?key={token}&amp;lon=12&amp;lat=50&amp;time=201305030000_201305030200&amp;v=hitemp"</span>)
+  .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())
+  .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(data))</code></pre>
+<h4 id="example-result">Example Result</h4>
+<pre><code class="hljs">{
+  <span class="hljs-attr">"Info"</span>: <span class="hljs-string">"Historical Wind Data"</span>,
+  <span class="hljs-attr">"data"</span>: [
+    {
+      <span class="hljs-attr">"lon"</span>: <span class="hljs-number">12</span>,
+      <span class="hljs-attr">"lat"</span>: <span class="hljs-number">50</span>,
+      <span class="hljs-attr">"alt"</span>: <span class="hljs-number">658</span>,
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"20150504 08:00"</span>,
+      <span class="hljs-attr">"wdir"</span>: <span class="hljs-number">243</span>,
+      <span class="hljs-attr">"wspd"</span>: <span class="hljs-number">4.5</span>
+    }
+  ],
+  <span class="hljs-attr">"Info_wdir"</span>: <span class="hljs-string">"Wind Direction (in °)"</span>,
+  <span class="hljs-attr">"Info_wspd"</span>: <span class="hljs-string">"Wind Speed (in m/s)"</span>,
+  <span class="hljs-attr">"Info_lat"</span>: <span class="hljs-string">"latitude of the data point (in degrees)"</span>,
+  <span class="hljs-attr">"Info_lon"</span>: <span class="hljs-string">"longitude of the data point (in degrees)"</span>,
+  <span class="hljs-attr">"Info_alt"</span>: <span class="hljs-string">"altitude of the data point (in m above mean sea level)"</span>
+}</code></pre>
+</div></div><div data-title="Daily Min/Max/Mean Temperature" class="keyline-top section contain clearfix " data-reactid="80"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="81"><h3 id="daily-minmaxmean-temperature">Daily Min/Max/Mean Temperature</h3>
+<p>Json result with daily minimum, maximum and mean temperature data.</p>
+<p>The entries of the json result data array contain the following properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>lon</strong></td>
+<td>geographical longitude of point</td>
+</tr>
+<tr>
+<td><strong>lat</strong></td>
+<td>geographical latitude of point</td>
+</tr>
+<tr>
+<td><strong>alt</strong></td>
+<td>altitude of point in meters</td>
+</tr>
+<tr>
+<td><strong>date</strong></td>
+<td>the temperature values corresponds to this date</td>
+</tr>
+<tr>
+<td><strong>tmp_mean</strong></td>
+<td>mean temperature of the day in &deg;C</td>
+</tr>
+<tr>
+<td><strong>tmp_max</strong></td>
+<td>maximum temperature of the day in &deg;C</td>
+</tr>
+<tr>
+<td><strong>tmp_min</strong></td>
+<td>minimum temperature of the day in &deg;C</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="82"><h4 id="example-request-2">Example Request</h4>
+<pre><code class="hljs">fetch(<span class="hljs-string">"https://api.hist.metgis.com/histapiserverRest/histdata?key={token}&amp;lon=12&amp;lat=50&amp;time=201305030000_201305040000&amp;v=hitempsum"</span>)
+  .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())
+  .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(data))</code></pre>
+<h4 id="example-result-1">Example Result</h4>
+<pre><code class="hljs">{
+  <span class="hljs-attr">"Info"</span>: <span class="hljs-string">"Historical Temperature Data"</span>,
+  <span class="hljs-attr">"data"</span>: [
+    {
+      <span class="hljs-attr">"lon"</span>: <span class="hljs-number">12.0</span>,
+      <span class="hljs-attr">"lat"</span>: <span class="hljs-number">50.0</span>,
+      <span class="hljs-attr">"alt"</span>: <span class="hljs-number">658</span>,
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"20130503"</span>,
+      <span class="hljs-attr">"tmp_mean"</span>: <span class="hljs-number">8.0</span>,
+      <span class="hljs-attr">"tmp_max"</span>: <span class="hljs-number">10.6</span>,
+      <span class="hljs-attr">"tmp_min"</span>: <span class="hljs-number">5.2</span>
+    },
+    {
+      <span class="hljs-attr">"lon"</span>: <span class="hljs-number">12.0</span>,
+      <span class="hljs-attr">"lat"</span>: <span class="hljs-number">50.0</span>,
+      <span class="hljs-attr">"alt"</span>: <span class="hljs-number">658</span>,
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"20130504"</span>,
+      <span class="hljs-attr">"tmp_mean"</span>: <span class="hljs-number">8.0</span>,
+      <span class="hljs-attr">"tmp_max"</span>: <span class="hljs-number">9.8</span>,
+      <span class="hljs-attr">"tmp_min"</span>: <span class="hljs-number">6.7</span>
+    }
+  ],
+  <span class="hljs-attr">"Info_tmp_mean"</span>: <span class="hljs-string">"mean temperature of the day (in °C)"</span>,
+  <span class="hljs-attr">"Info_tmp_min"</span>: <span class="hljs-string">"minimum temperature of the day (in °C)"</span>,
+  <span class="hljs-attr">"Info_tmp_max"</span>: <span class="hljs-string">"maximum temperature of the day (in °C)"</span>,
+  <span class="hljs-attr">"Info_lat"</span>: <span class="hljs-string">"latitude of the data point (in degrees)"</span>,
+  <span class="hljs-attr">"Info_lon"</span>: <span class="hljs-string">"longitude of the data point (in degrees)"</span>,
+  <span class="hljs-attr">"Info_alt"</span>: <span class="hljs-string">"altitude of the data point (in m above mean sea level)"</span>
+}</code></pre>
+</div></div><div data-title="Relative Humidity" class="keyline-top section contain clearfix " data-reactid="83"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="84"><h3 id="relative-humidity">Relative Humidity</h3>
+<p>Json result with hourly relative humidity data.</p>
+<p>The entries of the json result data array contain the following properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>lon</strong></td>
+<td>geographical longitude of point</td>
+</tr>
+<tr>
+<td><strong>lat</strong></td>
+<td>geographical latitude of point</td>
+</tr>
+<tr>
+<td><strong>alt</strong></td>
+<td>altitude of point in meters</td>
+</tr>
+<tr>
+<td><strong>date</strong></td>
+<td>the humidity value corresponds to this date</td>
+</tr>
+<tr>
+<td><strong>rh</strong></td>
+<td>Humidity in %</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="85"><h4 id="example-request-3">Example Request</h4>
+<pre><code class="hljs">fetch(<span class="hljs-string">"https://api.hist.metgis.com/histapiserverRest/histdata?key={token}&amp;lon=12&amp;lat=50&amp;time=201305030000_201305030200&amp;v=hirh"</span>)
+  .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())
+  .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(data))</code></pre>
+<h4 id="example-result-2">Example Result</h4>
+<pre><code class="hljs">{
+  <span class="hljs-attr">"Info"</span>: <span class="hljs-string">"Historical Relative Humidity Data"</span>,
+  <span class="hljs-attr">"data"</span>: [
+    {
+      <span class="hljs-attr">"lon"</span>: <span class="hljs-number">12.0</span>,
+      <span class="hljs-attr">"lat"</span>: <span class="hljs-number">50.0</span>,
+      <span class="hljs-attr">"alt"</span>: <span class="hljs-number">658</span>,
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"20130503 00:00"</span>,
+      <span class="hljs-attr">"rh"</span>: <span class="hljs-number">98</span>
+    },
+    {
+      <span class="hljs-attr">"lon"</span>: <span class="hljs-number">12.0</span>,
+      <span class="hljs-attr">"lat"</span>: <span class="hljs-number">50.0</span>,
+      <span class="hljs-attr">"alt"</span>: <span class="hljs-number">658</span>,
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"20130503 01:00"</span>,
+      <span class="hljs-attr">"rh"</span>: <span class="hljs-number">97</span>
+    },
+    {
+      <span class="hljs-attr">"lon"</span>: <span class="hljs-number">12.0</span>,
+      <span class="hljs-attr">"lat"</span>: <span class="hljs-number">50.0</span>,
+      <span class="hljs-attr">"alt"</span>: <span class="hljs-number">658</span>,
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"20130503 02:00"</span>,
+      <span class="hljs-attr">"rh"</span>: <span class="hljs-number">98</span>
+    }
+  ],
+  <span class="hljs-attr">"Info_rh"</span>: <span class="hljs-string">"Humidity (in %)"</span>,
+  <span class="hljs-attr">"Info_lat"</span>: <span class="hljs-string">"latitude of the data point (in degrees)"</span>,
+  <span class="hljs-attr">"Info_lon"</span>: <span class="hljs-string">"longitude of the data point (in degrees)"</span>,
+  <span class="hljs-attr">"Info_alt"</span>: <span class="hljs-string">"altitude of the data point (in m above mean sea level)"</span>
+}</code></pre>
+</div></div><div data-title="Precipitation" class="keyline-top section contain clearfix " data-reactid="86"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="87"><h3 id="precipitation">Precipitation</h3>
+<p>Json result with hourly precipitation data.</p>
+<p>The entries of the json result data array contain the following properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>lon</strong></td>
+<td>geographical longitude of point</td>
+</tr>
+<tr>
+<td><strong>lat</strong></td>
+<td>geographical latitude of point</td>
+</tr>
+<tr>
+<td><strong>alt</strong></td>
+<td>altitude of point in meters</td>
+</tr>
+<tr>
+<td><strong>date</strong></td>
+<td>the end date of the corresponding one hour range</td>
+</tr>
+<tr>
+<td><strong>hrp</strong></td>
+<td>precipitation amount in mm of the last hour</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="88"><h4 id="example-request-4">Example Request</h4>
+<pre><code class="hljs">fetch(<span class="hljs-string">"https://api.hist.metgis.com/histapiserverRest/histdata?key={token}&amp;lon=12&amp;lat=50&amp;time=201305040800_201305041000&amp;v=hihrp"</span>)
+  .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())
+  .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(data))</code></pre>
+<h4 id="example-result-3">Example Result</h4>
+<pre><code class="hljs">{
+  <span class="hljs-attr">"Info"</span>: <span class="hljs-string">"Historical Precipitation Data"</span>,
+  <span class="hljs-attr">"data"</span>: [
+    {
+      <span class="hljs-attr">"lon"</span>: <span class="hljs-number">12.0</span>,
+      <span class="hljs-attr">"lat"</span>: <span class="hljs-number">50.0</span>,
+      <span class="hljs-attr">"alt"</span>: <span class="hljs-number">658</span>,
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"20130504 08:00"</span>,
+      <span class="hljs-attr">"hrp"</span>: <span class="hljs-number">0.0</span>
+    },
+    {
+      <span class="hljs-attr">"lon"</span>: <span class="hljs-number">12.0</span>,
+      <span class="hljs-attr">"lat"</span>: <span class="hljs-number">50.0</span>,
+      <span class="hljs-attr">"alt"</span>: <span class="hljs-number">658</span>,
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"20130504 09:00"</span>,
+      <span class="hljs-attr">"hrp"</span>: <span class="hljs-number">0.1</span>
+    },
+    {
+      <span class="hljs-attr">"lon"</span>: <span class="hljs-number">12.0</span>,
+      <span class="hljs-attr">"lat"</span>: <span class="hljs-number">50.0</span>,
+      <span class="hljs-attr">"alt"</span>: <span class="hljs-number">658</span>,
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"20130504 10:00"</span>,
+      <span class="hljs-attr">"hrp"</span>: <span class="hljs-number">1.1</span>
+    }
+  ],
+  <span class="hljs-attr">"Info_hrp"</span>: <span class="hljs-string">"Hourly Precipitation (in mm)"</span>,
+  <span class="hljs-attr">"Info_lat"</span>: <span class="hljs-string">"latitude of the data point (in degrees)"</span>,
+  <span class="hljs-attr">"Info_lon"</span>: <span class="hljs-string">"longitude of the data point (in degrees)"</span>,
+  <span class="hljs-attr">"Info_alt"</span>: <span class="hljs-string">"altitude of the data point (in m above mean sea level)"</span>
+}</code></pre>
+</div></div><div data-title="Wind" class="keyline-top section contain clearfix " data-reactid="89"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="90"><h3 id="wind">Wind</h3>
+<p>Json result with hourly wind data.</p>
+<p>The entries of the json result data array contain the following properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>lon</strong></td>
+<td>geographical longitude of point</td>
+</tr>
+<tr>
+<td><strong>lat</strong></td>
+<td>geographical latitude of point</td>
+</tr>
+<tr>
+<td><strong>alt</strong></td>
+<td>altitude of point in meters</td>
+</tr>
+<tr>
+<td><strong>date</strong></td>
+<td>the temperature value corresponds to this date</td>
+</tr>
+<tr>
+<td><strong>tmp</strong></td>
+<td>temperature value in &deg;C</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="91"><h4 id="example-request-5">Example Request</h4>
+<pre><code class="hljs">fetch(<span class="hljs-string">"https://api.hist.metgis.com/histapiserverRest/histdata?key={token}&amp;lon=12&amp;lat=50&amp;time=201505040000_201505040300&amp;v=hiwind"</span>)
+  .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())
+  .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(data))</code></pre>
+<h4 id="example-result-4">Example Result</h4>
+<pre><code class="hljs">{
+  <span class="hljs-attr">"Info"</span>: <span class="hljs-string">"Historical Temperature Data"</span>,
+  <span class="hljs-attr">"data"</span>: [
+    {
+      <span class="hljs-attr">"lon"</span>: <span class="hljs-number">12.0</span>,
+      <span class="hljs-attr">"lat"</span>: <span class="hljs-number">50.0</span>,
+      <span class="hljs-attr">"alt"</span>: <span class="hljs-number">658</span>,
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"20130503 00:00"</span>,
+      <span class="hljs-attr">"tmp"</span>: <span class="hljs-number">5.2</span>
+    },
+    {
+      <span class="hljs-attr">"lon"</span>: <span class="hljs-number">12.0</span>,
+      <span class="hljs-attr">"lat"</span>: <span class="hljs-number">50.0</span>,
+      <span class="hljs-attr">"alt"</span>: <span class="hljs-number">658</span>,
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"20130503 01:00"</span>,
+      <span class="hljs-attr">"tmp"</span>: <span class="hljs-number">5.3</span>
+    },
+    {
+      <span class="hljs-attr">"lon"</span>: <span class="hljs-number">12.0</span>,
+      <span class="hljs-attr">"lat"</span>: <span class="hljs-number">50.0</span>,
+      <span class="hljs-attr">"alt"</span>: <span class="hljs-number">658</span>,
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"20130503 02:00"</span>,
+      <span class="hljs-attr">"tmp"</span>: <span class="hljs-number">5.3</span>
+    }
+  ],
+  <span class="hljs-attr">"Info_lat"</span>: <span class="hljs-string">"latitude of the data point (in degrees)"</span>,
+  <span class="hljs-attr">"Info_lon"</span>: <span class="hljs-string">"longitude of the data point (in degrees)"</span>,
+  <span class="hljs-attr">"Info_alt"</span>: <span class="hljs-string">"altitude of the data point (in m above mean sea level)"</span>,
+  <span class="hljs-attr">"Info_tmp"</span>: <span class="hljs-string">"Temperature (in °C)"</span>
+}</code></pre>
+</div></div><div data-title="Downward Short Wave Radiation Flux" class="keyline-top section contain clearfix " data-reactid="92"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="93"><h3 id="downward-short-wave-radiation-flux">Downward Short Wave Radiation Flux</h3>
+<p>Json result with hourly &quot;downward short wave radiation flux&quot; data.</p>
+<p>The entries of the json result data array contain the following properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>lon</strong></td>
+<td>geographical longitude of point</td>
+</tr>
+<tr>
+<td><strong>lat</strong></td>
+<td>geographical latitude of point</td>
+</tr>
+<tr>
+<td><strong>alt</strong></td>
+<td>altitude of point in meters</td>
+</tr>
+<tr>
+<td><strong>date</strong></td>
+<td>the data value corresponds to this date</td>
+</tr>
+<tr>
+<td><strong>dswr</strong></td>
+<td>downward short wave radiation flux in w/m^2</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="94"><h4 id="example-request-6">Example Request</h4>
+<pre><code class="hljs">fetch(<span class="hljs-string">"https://api.hist.metgis.com/histapiserverRest/histdata?key={token}&amp;lon=12&amp;lat=50&amp;time=201305030900_201305031100&amp;v=hidswr"</span>)
+  .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())
+  .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(data))</code></pre>
+<h4 id="example-result-5">Example Result</h4>
+<pre><code class="hljs">{
+  <span class="hljs-attr">"Info"</span>: <span class="hljs-string">"Historical Downward Short Wave Radiation Flux Data"</span>,
+  <span class="hljs-attr">"data"</span>: [
+    {
+      <span class="hljs-attr">"lon"</span>: <span class="hljs-number">12.0</span>,
+      <span class="hljs-attr">"lat"</span>: <span class="hljs-number">50.0</span>,
+      <span class="hljs-attr">"alt"</span>: <span class="hljs-number">658</span>,
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"20130503 09:00"</span>,
+      <span class="hljs-attr">"dswr"</span>: <span class="hljs-number">398</span>
+    },
+    {
+      <span class="hljs-attr">"lon"</span>: <span class="hljs-number">12.0</span>,
+      <span class="hljs-attr">"lat"</span>: <span class="hljs-number">50.0</span>,
+      <span class="hljs-attr">"alt"</span>: <span class="hljs-number">658</span>,
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"20130503 10:00"</span>,
+      <span class="hljs-attr">"dswr"</span>: <span class="hljs-number">432</span>
+    },
+    {
+      <span class="hljs-attr">"lon"</span>: <span class="hljs-number">12.0</span>,
+      <span class="hljs-attr">"lat"</span>: <span class="hljs-number">50.0</span>,
+      <span class="hljs-attr">"alt"</span>: <span class="hljs-number">658</span>,
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"20130503 11:00"</span>,
+      <span class="hljs-attr">"dswr"</span>: <span class="hljs-number">298</span>
+    }
+  ],
+  <span class="hljs-attr">"Info_dswr"</span>: <span class="hljs-string">"Downward Short Wave Radiation Flux (in W/m^2)"</span>,
+  <span class="hljs-attr">"Info_lat"</span>: <span class="hljs-string">"latitude of the data point (in degrees)"</span>,
+  <span class="hljs-attr">"Info_lon"</span>: <span class="hljs-string">"longitude of the data point (in degrees)"</span>,
+  <span class="hljs-attr">"Info_alt"</span>: <span class="hljs-string">"altitude of the data point (in m above mean sea level)"</span>
+}</code></pre>
+</div></div><div data-title="Total Cloud Cover" class="keyline-top section contain clearfix " data-reactid="95"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="96"><h3 id="total-cloud-cover">Total Cloud Cover</h3>
+<p>Json result with hourly cloud cover data.</p>
+<p>The entries of the json result data array contain the following properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>lon</strong></td>
+<td>geographical longitude of point</td>
+</tr>
+<tr>
+<td><strong>lat</strong></td>
+<td>geographical latitude of point</td>
+</tr>
+<tr>
+<td><strong>alt</strong></td>
+<td>altitude of point in meters</td>
+</tr>
+<tr>
+<td><strong>date</strong></td>
+<td>the data value corresponds to this date</td>
+</tr>
+<tr>
+<td><strong>cld</strong></td>
+<td>total cloud cover in %</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="97"><h4 id="example-request-7">Example Request</h4>
+<pre><code class="hljs">fetch(<span class="hljs-string">"https://api.hist.metgis.com/histapiserverRest/histdata?key={token}&amp;lon=12&amp;lat=50&amp;time=201305030000_201305030200&amp;v=hicld"</span>)
+  .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())
+  .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(data))</code></pre>
+<h4 id="example-result-6">Example Result</h4>
+<pre><code class="hljs">{
+  <span class="hljs-attr">"Info"</span>: <span class="hljs-string">"Historical Total Cloud Cover Data"</span>,
+  <span class="hljs-attr">"data"</span>: [
+    {
+      <span class="hljs-attr">"lon"</span>: <span class="hljs-number">12.0</span>,
+      <span class="hljs-attr">"lat"</span>: <span class="hljs-number">50.0</span>,
+      <span class="hljs-attr">"alt"</span>: <span class="hljs-number">658</span>,
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"20130503 00:00"</span>,
+      <span class="hljs-attr">"cld"</span>: <span class="hljs-number">80</span>
+    },
+    {
+      <span class="hljs-attr">"lon"</span>: <span class="hljs-number">12.0</span>,
+      <span class="hljs-attr">"lat"</span>: <span class="hljs-number">50.0</span>,
+      <span class="hljs-attr">"alt"</span>: <span class="hljs-number">658</span>,
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"20130503 01:00"</span>,
+      <span class="hljs-attr">"cld"</span>: <span class="hljs-number">100</span>
+    },
+    {
+      <span class="hljs-attr">"lon"</span>: <span class="hljs-number">12.0</span>,
+      <span class="hljs-attr">"lat"</span>: <span class="hljs-number">50.0</span>,
+      <span class="hljs-attr">"alt"</span>: <span class="hljs-number">658</span>,
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"20130503 02:00"</span>,
+      <span class="hljs-attr">"cld"</span>: <span class="hljs-number">97</span>
+    }
+  ],
+  <span class="hljs-attr">"Info_cld"</span>: <span class="hljs-string">"Total Cloud Cover (in %)"</span>,
+  <span class="hljs-attr">"Info_lat"</span>: <span class="hljs-string">"latitude of the data point (in degrees)"</span>,
+  <span class="hljs-attr">"Info_lon"</span>: <span class="hljs-string">"longitude of the data point (in degrees)"</span>,
+  <span class="hljs-attr">"Info_alt"</span>: <span class="hljs-string">"altitude of the data point (in m above mean sea level)"</span>
+}</code></pre>
+</div></div><div data-title="Weather Data Daily Summary" class="keyline-top section contain clearfix " data-reactid="98"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="99"><h3 id="weather-data-daily-summary">Weather Data Daily Summary</h3>
+<p>Json result with a daily weather data summary.</p>
+<p>The entries of the json result data array contain the following properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>lon</strong></td>
+<td>geographical longitude of point</td>
+</tr>
+<tr>
+<td><strong>lat</strong></td>
+<td>geographical latitude of point</td>
+</tr>
+<tr>
+<td><strong>alt</strong></td>
+<td>altitude of point in meters</td>
+</tr>
+<tr>
+<td><strong>date</strong></td>
+<td>the data values correspond to this date</td>
+</tr>
+<tr>
+<td><strong>tmp_mean</strong></td>
+<td>mean temperature in &deg;C</td>
+</tr>
+<tr>
+<td><strong>tmp_max</strong></td>
+<td>maximum temperature in &deg;C</td>
+</tr>
+<tr>
+<td><strong>tmp_min</strong></td>
+<td>minimu temperature in &deg;C</td>
+</tr>
+<tr>
+<td><strong>prec_sum</strong></td>
+<td>accumulated precipitation in mm</td>
+</tr>
+<tr>
+<td><strong>wind_dir_weighted</strong></td>
+<td>prevailing wind direction</td>
+</tr>
+<tr>
+<td><strong>wind_dir_max</strong></td>
+<td>wind direction of maximum wind</td>
+</tr>
+<tr>
+<td><strong>wind_speed_mean</strong></td>
+<td>mean wind speed in m/s</td>
+</tr>
+<tr>
+<td><strong>wind_speed_max</strong></td>
+<td>maximum wind speed in m/s</td>
+</tr>
+<tr>
+<td><strong>wind_speed_min</strong></td>
+<td>minimum wind speed in m/s</td>
+</tr>
+<tr>
+<td><strong>cloud_cover_mean</strong></td>
+<td>mean cloud cover in %</td>
+</tr>
+<tr>
+<td><strong>cloud_cover_max</strong></td>
+<td>maximum cloud cover in %</td>
+</tr>
+<tr>
+<td><strong>cloud_cover_min</strong></td>
+<td>minimum cloud cover in %</td>
+</tr>
+<tr>
+<td><strong>sun_dur</strong></td>
+<td>accumulated sunshine duration in h</td>
+</tr>
+<tr>
+<td><strong>rel_hum_mean</strong></td>
+<td>mean relative humidity in %</td>
+</tr>
+<tr>
+<td><strong>rel_hum_max</strong></td>
+<td>maximum relative humidity in %</td>
+</tr>
+<tr>
+<td><strong>rel_hum_min</strong></td>
+<td>minimum relative humidity in %</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="100"><h4 id="example-request-8">Example Request</h4>
+<pre><code class="hljs">fetch(<span class="hljs-string">"https://api.hist.metgis.com/histapiserverRest/histdata?key={token}&amp;lon=12&amp;lat=50&amp;time=201305030000_201305040000&amp;v=hidsum"</span>)
+  .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())
+  .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(data))</code></pre>
+<h4 id="example-result-7">Example Result</h4>
+<pre><code class="hljs">{
+  <span class="hljs-attr">"Info"</span>: <span class="hljs-string">"Historical Weather Data Daily Summary"</span>,
+  <span class="hljs-attr">"data"</span>: [
+    {
+      <span class="hljs-attr">"lon"</span>: <span class="hljs-number">12.0</span>,
+      <span class="hljs-attr">"lat"</span>: <span class="hljs-number">50.0</span>,
+      <span class="hljs-attr">"alt"</span>: <span class="hljs-number">658</span>,
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"20130503"</span>,
+      <span class="hljs-attr">"tmp_mean"</span>: <span class="hljs-number">8.0</span>,
+      <span class="hljs-attr">"tmp_max"</span>: <span class="hljs-number">10.6</span>,
+      <span class="hljs-attr">"tmp_min"</span>: <span class="hljs-number">5.2</span>,
+      <span class="hljs-attr">"prec_sum"</span>: <span class="hljs-number">0.0</span>,
+      <span class="hljs-attr">"wind_dir_weighted"</span>: <span class="hljs-number">33.0</span>,
+      <span class="hljs-attr">"wind_dir_max"</span>: <span class="hljs-number">18.0</span>,
+      <span class="hljs-attr">"wind_speed_mean"</span>: <span class="hljs-number">5.0</span>,
+      <span class="hljs-attr">"wind_speed_max"</span>: <span class="hljs-number">6.3</span>,
+      <span class="hljs-attr">"wind_speed_min"</span>: <span class="hljs-number">3.2</span>,
+      <span class="hljs-attr">"cloud_cover_mean"</span>: <span class="hljs-number">89.0</span>,
+      <span class="hljs-attr">"cloud_cover_max"</span>: <span class="hljs-number">100.0</span>,
+      <span class="hljs-attr">"cloud_cover_min"</span>: <span class="hljs-number">26.0</span>,
+      <span class="hljs-attr">"sun_dur"</span>: <span class="hljs-number">1.47</span>,
+      <span class="hljs-attr">"rel_hum_mean"</span>: <span class="hljs-number">82.0</span>,
+      <span class="hljs-attr">"rel_hum_max"</span>: <span class="hljs-number">99.0</span>,
+      <span class="hljs-attr">"rel_hum_min"</span>: <span class="hljs-number">66.0</span>
+    },
+    {
+      <span class="hljs-attr">"lon"</span>: <span class="hljs-number">12.0</span>,
+      <span class="hljs-attr">"lat"</span>: <span class="hljs-number">50.0</span>,
+      <span class="hljs-attr">"alt"</span>: <span class="hljs-number">658</span>,
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"20130504"</span>,
+      <span class="hljs-attr">"tmp_mean"</span>: <span class="hljs-number">8.0</span>,
+      <span class="hljs-attr">"tmp_max"</span>: <span class="hljs-number">9.8</span>,
+      <span class="hljs-attr">"tmp_min"</span>: <span class="hljs-number">6.7</span>,
+      <span class="hljs-attr">"prec_sum"</span>: <span class="hljs-number">6.8</span>,
+      <span class="hljs-attr">"wind_dir_weighted"</span>: <span class="hljs-number">117.0</span>,
+      <span class="hljs-attr">"wind_dir_max"</span>: <span class="hljs-number">124.0</span>,
+      <span class="hljs-attr">"wind_speed_mean"</span>: <span class="hljs-number">2.0</span>,
+      <span class="hljs-attr">"wind_speed_max"</span>: <span class="hljs-number">3.6</span>,
+      <span class="hljs-attr">"wind_speed_min"</span>: <span class="hljs-number">0.0</span>,
+      <span class="hljs-attr">"cloud_cover_mean"</span>: <span class="hljs-number">81.0</span>,
+      <span class="hljs-attr">"cloud_cover_max"</span>: <span class="hljs-number">100.0</span>,
+      <span class="hljs-attr">"cloud_cover_min"</span>: <span class="hljs-number">0.0</span>,
+      <span class="hljs-attr">"sun_dur"</span>: <span class="hljs-number">2.19</span>,
+      <span class="hljs-attr">"rel_hum_mean"</span>: <span class="hljs-number">85.0</span>,
+      <span class="hljs-attr">"rel_hum_max"</span>: <span class="hljs-number">94.0</span>,
+      <span class="hljs-attr">"rel_hum_min"</span>: <span class="hljs-number">75.0</span>
+    }
+  ],
+  <span class="hljs-attr">"Info_tmp_mean"</span>: <span class="hljs-string">"mean temperature of the day (in °C)"</span>,
+  <span class="hljs-attr">"Info_tmp_min"</span>: <span class="hljs-string">"minimum temperature of the day (in °C)"</span>,
+  <span class="hljs-attr">"Info_tmp_max"</span>: <span class="hljs-string">"maximum temperature of the day (in °C)"</span>,
+  <span class="hljs-attr">"Info_prec_sum"</span>: <span class="hljs-string">"total precipitation accumulated during the day (in mm)"</span>,
+  <span class="hljs-attr">"Info_wind_dir_max"</span>: <span class="hljs-string">"wind direction of maximum wind (in degrees clockwise from north)"</span>,
+  <span class="hljs-attr">"Info_wind_dir_weighted"</span>: <span class="hljs-string">"prevailing wind direction during day (in degrees clockwise from north, -9999 means rotating)"</span>,
+  <span class="hljs-attr">"Info_wind_speed_mean"</span>: <span class="hljs-string">"mean wind speed (in m/s)"</span>,
+  <span class="hljs-attr">"Info_wind_speed_max"</span>: <span class="hljs-string">"maximum wind speed (in m/s)"</span>,
+  <span class="hljs-attr">"Info_wind_speed_min"</span>: <span class="hljs-string">"minimum wind speed (in m/s)"</span>,
+  <span class="hljs-attr">"Info_cloud_cover_mean"</span>: <span class="hljs-string">"mean cloud cover (in %)"</span>,
+  <span class="hljs-attr">"Info_cloud_cover_max"</span>: <span class="hljs-string">"maximum cloud cover (in %)"</span>,
+  <span class="hljs-attr">"Info_sun_dur"</span>: <span class="hljs-string">"accumulated sunshine duration (in h)"</span>,
+  <span class="hljs-attr">"Info_rel_hum_mean"</span>: <span class="hljs-string">"mean relative humidity (in %)"</span>,
+  <span class="hljs-attr">"Info_rel_hum_max"</span>: <span class="hljs-string">"maximum relative humidity (in %)"</span>,
+  <span class="hljs-attr">"Info_rel_hum_min"</span>: <span class="hljs-string">"minimum relative humidity (in %)"</span>,
+  <span class="hljs-attr">"Info_lat"</span>: <span class="hljs-string">"latitude of the data point (in degrees)"</span>,
+  <span class="hljs-attr">"Info_lon"</span>: <span class="hljs-string">"longitude of the data point (in degrees)"</span>,
+  <span class="hljs-attr">"Info_alt"</span>: <span class="hljs-string">"altitude of the data point (in m above mean sea level)"</span>,
+  <span class="hljs-attr">"Info_cloud_cover_min"</span>: <span class="hljs-string">"minimum cloud cover (in %)"</span>
+}</code></pre>
+</div></div></div></div></div><div class="fixed-top space-left16" data-reactid="101"><div class="events fill-light bottom-shadow pad1 col6 pin-topright  " data-reactid="102"><div class="space-right1 small quiet inline" data-reactid="103">Show examples in:</div><div class="rounded-toggle inline short" data-reactid="104"><a class="strong active" data-reactid="105">JS</a><a class="strong " data-reactid="106">cURL</a></div><div class="fr pad0" data-reactid="107"><a title="Display as 1 column" style="cursor:pointer;" class="icon quiet caret-left pad0 fill-darken0 round" data-reactid="108"></a></div></div></div><div class="fill-dark dark bottom-shadow fixed-top pad0 width16" data-reactid="109"><a href="/" class="active space-top1 space-left1 pin-topleft icon round dark pad0 fill-icon" data-reactid="110"></a><div class="strong small pad0
           
-          space-left4 line-height15" data-reactid="78">MetGIS API Documentation</div></div></div></div><!--STOP-->
+          space-left4 line-height15" data-reactid="111">MetGIS API Documentation</div></div></div></div><!--STOP-->
     <script src='bundle.js'></script>
   </body>
 </html>
