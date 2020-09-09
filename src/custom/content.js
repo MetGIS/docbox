@@ -12,8 +12,10 @@ var fs = require('fs');
 module.exports =
   '# Introduction\n' +
   fs.readFileSync('./content/introduction.md', 'utf8') + '\n' +
-  fs.readFileSync('./content/get_developer_key.md', 'utf8') + '\n'+
-  '# Points\n' +
-  fs.readFileSync('./content/point.md', 'utf8') + '\n'+
-  '# Tiles\n' +
-  fs.readFileSync('./content/tiles.md', 'utf8') + '\n';
+  fs.readFileSync('./content/get_developer_key.md', 'utf8') + '\n'+ '# Points\n' +
+  fs.readFileSync('./content/point.md', 'utf8') + '\n' + '# Tiles\n' +
+  fs.readFileSync('./content/tiles.md', 'utf8') + '\n' + '# Historical Data \n' +
+  fs.readFileSync('./content/histapi.md', 'utf8') + '\n'
+
+  /* + '# Example\n' +
+  fs.readFileSync('./content/example.md', 'utf8') + '\n'; */
