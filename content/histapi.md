@@ -52,7 +52,7 @@ got('https://api.hist.metgis.com/histapiserverRest/histdata?key={your-user-key}&
 | **hitempsum** | [Daily Min/Max/Mean Temperature](#daily-min/max/mean-temperature) |
 | **hirh** | [Relative Humidity](#relative-humidity) |
 | **hihrp** | [Precipitation](#precipitation) |
-| **hiwind** | --- |
+| **hiwind** | [Wind](#wind) |
 | **hidswr** | [Downward Short Wave Radiation Flux](#downward-short-wave-radiation-flux) |
 | **hicld** | [Total Cloud Cover](#total-cloud-cover) |
 | **hidsum** | [Weather Data Daily Summary](#weather-data-daily-summary) |
@@ -70,41 +70,29 @@ fetch("https://api.hist.metgis.com/histapiserverRest/histdata?key={token}&lon=12
 ```
 
 ```curl
-curl "https://api.hist.metgis.com/histapiserverRest/histdata?key={token}&lon=12&lat=50&time=201305030000_201305030200&v=hitemp"
+curl "https://api.hist.metgis.com/histapiserverRest/histdata?key={token}&lon=12&lat=50&time=201505040000_201505040300&v=hiwind"
 ```
 
 #### Example Result
 
 ```json
 {
-  "Info": "Historical Temperature Data",
+  "Info": "Historical Wind Data",
   "data": [
     {
-      "lon": 12.0,
-      "lat": 50.0,
+      "lon": 12,
+      "lat": 50,
       "alt": 658,
-      "date": "20130503 00:00",
-      "tmp": 5.2
-    },
-    {
-      "lon": 12.0,
-      "lat": 50.0,
-      "alt": 658,
-      "date": "20130503 01:00",
-      "tmp": 5.3
-    },
-    {
-      "lon": 12.0,
-      "lat": 50.0,
-      "alt": 658,
-      "date": "20130503 02:00",
-      "tmp": 5.3
+      "date": "20150504 08:00",
+      "wdir": 243,
+      "wspd": 4.5
     }
   ],
+  "Info_wdir": "Wind Direction (in °)",
+  "Info_wspd": "Wind Speed (in m/s)",
   "Info_lat": "latitude of the data point (in degrees)",
   "Info_lon": "longitude of the data point (in degrees)",
-  "Info_alt": "altitude of the data point (in m above mean sea level)",
-  "Info_tmp": "Temperature (in °C)"
+  "Info_alt": "altitude of the data point (in m above mean sea level)"
 }
 ```
 
@@ -115,10 +103,9 @@ The entries of the json result data array contain the following properties:
 | **lon**  | geographical longitude of point                  |
 | **lat**  | geographical latitude of point                   |
 | **alt**  | altitude of point in meters                      |
-| **date** | the temperature value corresponds to this date   |
-| **tmp**  | temperature value in °C                          |
-
-
+| **date** | the wind values correspond to this date          |
+| **wdir** | wind direction in °                              |
+| **wspd** | wind speed in m/s                                |
 
 
 ### Daily Min/Max/Mean Temperature
@@ -305,7 +292,66 @@ The entries of the json result data array contain the following properties:
 | **date**      | the end date of the corresponding one hour range  |
 | **hrp**       | precipitation amount in mm of the last hour       |
 
-### ~~hiwind~~ [TODO]
+### Wind
+
+Json result with hourly wind data.
+
+#### Example Request
+
+```javascript
+fetch("https://api.hist.metgis.com/histapiserverRest/histdata?key={token}&lon=12&lat=50&time=201505040000_201505040300&v=hiwind")
+  .then(response => response.json())
+  .then(data => console.log(data))
+```
+
+```curl
+curl "https://api.hist.metgis.com/histapiserverRest/histdata?key={token}&lon=12&lat=50&time=201305030000_201305030200&v=hiwind"
+```
+
+#### Example Result
+
+```json
+{
+  "Info": "Historical Temperature Data",
+  "data": [
+    {
+      "lon": 12.0,
+      "lat": 50.0,
+      "alt": 658,
+      "date": "20130503 00:00",
+      "tmp": 5.2
+    },
+    {
+      "lon": 12.0,
+      "lat": 50.0,
+      "alt": 658,
+      "date": "20130503 01:00",
+      "tmp": 5.3
+    },
+    {
+      "lon": 12.0,
+      "lat": 50.0,
+      "alt": 658,
+      "date": "20130503 02:00",
+      "tmp": 5.3
+    }
+  ],
+  "Info_lat": "latitude of the data point (in degrees)",
+  "Info_lon": "longitude of the data point (in degrees)",
+  "Info_alt": "altitude of the data point (in m above mean sea level)",
+  "Info_tmp": "Temperature (in °C)"
+}
+```
+
+The entries of the json result data array contain the following properties:
+
+| Property | Description                                      |
+|----------|--------------------------------------------------|
+| **lon**  | geographical longitude of point                  |
+| **lat**  | geographical latitude of point                   |
+| **alt**  | altitude of point in meters                      |
+| **date** | the temperature value corresponds to this date   |
+| **tmp**  | temperature value in °C                          |
 
 ### Downward Short Wave Radiation Flux
 
